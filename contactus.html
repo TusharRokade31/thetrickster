@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.min.css">
   <!-- favicon -->
   <link rel="icon" href="favicon.ico">
-  <title>The Trickster | Contact</title>
+  <title>Dentessa | Contact</title>
 </head>
 <body>
 
@@ -1296,44 +1296,48 @@
 
   <!-- SECTION WRAP -->
   <div class="section-wrap">
-    <!-- SECTION -->
-    <div class="section no-title bottom-void">
-      <!-- FEATURE ENUM -->
-      <div class="feature-enum full">
-        <!-- FEATURE ENUM ITEM -->
-        <div class="feature-enum-item">
-          <i class="s-icon icon-location-pin"></i>
-          <h6 class="title">Our Address</h6>
-          <p>568 The Bebop Avenue</p>
-          <p>Los Angeles, CA</p>
+  <div class="section no-title bottom-void">
+    <div class="feature-enum full four-cols">
+      
+      <div class="feature-enum-item address-container boxed">
+        <i class="s-icon icon-location-pin"></i>
+        <h6 class="title">Our Address</h6>
+        <div class="address-row">
+          <div class="address-column">
+            <p><strong>Mumbai (HQ) </strong>Kandivali (E),Mumbai — 400101</p>
+            <p></p>
+          </div>
+          <div class="vertical-line"></div>
+          <div class="address-column">
+            <p><strong>Jammu (Mfg.)</strong></p>
+            <p>Digiana,<br>Jammu — 180010</p>
+          </div>
         </div>
-        <!-- FEATURE ENUM ITEM -->
-
-        <!-- FEATURE ENUM ITEM -->
-        <div class="feature-enum-item">
-          <i class="s-icon icon-envelope"></i>
-          <h6 class="title">Our Email</h6>
-          <p>
-            <a href="mailto:info@tricksterhelmets.com" class="link medium">info@tricksterhelmets.com</a>
-          </p>
-          <p>
-            <a href="mailto:deliveries@tricksterhelmets.com" class="link medium">deliveries@tricksterhelmets.com</a>
-          </p>
-        </div>
-        <!-- FEATURE ENUM ITEM -->
-
-        <!-- FEATURE ENUM ITEM -->
-        <div class="feature-enum-item">
-          <i class="s-icon icon-phone"></i>
-          <h6 class="title">Our Phone</h6>
-          <p>Make your phone order to:</p>
-          <p>(044) - 555 - 123 - 1234</p>
-        </div>
-        <!-- FEATURE ENUM ITEM -->
       </div>
-      <!-- /FEATURE ENUM -->
+
+      <div class="feature-enum-item boxed">
+        <i class="s-icon icon-envelope"></i>
+        <h6 class="title">Our Email</h6>
+        <p>Drop us a line:</p>
+        <p><a href="mailto:care@dentessapro.com" class="link medium">care@dentessapro.com</a></p>
+      </div>
+
+      <div class="feature-enum-item boxed">
+        <i class="s-icon icon-globe"></i>
+        <h6 class="title">Our Website</h6>
+        <p>Visit us online:</p>
+        <p><a href="www.atyantadental.com" target="_blank" class="link medium">www.atyantadental.com</a></p>
+      </div>
+
+      <div class="feature-enum-item boxed">
+        <i class="s-icon icon-phone"></i>
+        <h6 class="title">Our Phone</h6>
+        <p>Call for enquiries:</p>
+        <p>+91 9619633900</p>
+      </div>
+
     </div>
-    <!-- /SECTION -->
+    </div>
   </div>
   <!-- /SECTION WRAP -->
 
@@ -1348,33 +1352,64 @@
           <h2 class="subsection-title">Send Us a Message</h2>
           <hr class="line-separator">
           <!-- FORM -->
-          <form>
-            <!-- FORM ROW -->
-            <div class="form-row">
-              <div class="half">
-                <label for="c_name" class="rl-label">Name</label>
-                <input type="text" id="c_name" name="c_name" placeholder="Enter your name here...">
-              </div>
-              <div class="half">
-                <label for="c_email" class="rl-label">Email</label>
-                <input type="text" id="c_email" name="c_email" placeholder="Enter your email here...">
-              </div>
-            </div>
-            <!-- /FORM ROW -->
+         <form>
+  <div class="form-row">
+    <div class="half">
+      <label for="c_name" class="rl-label">Your Name (required)</label>
+      <input type="text" id="c_name" name="c_name" placeholder="Enter your name here..." required>
+    </div>
+    <div class="half">
+      <label for="c_clinic" class="rl-label">Clinic / Hospital Name</label>
+      <input type="text" id="c_clinic" name="c_clinic" placeholder="Enter clinic name...">
+    </div>
+  </div>
 
-            <!-- FORM ROW -->
-            <div class="form-row">
-              <label for="c_comment" class="rl-label">Message</label>
-              <textarea id="c_comment" name="c_comment" placeholder="Write your message here..."></textarea>
-            </div>
-            <!-- /FORM ROW -->
+  <div class="form-row">
+    <div class="half">
+      <label for="c_phone" class="rl-label">Phone Number (required)</label>
+      <input type="tel" id="c_phone" name="c_phone" placeholder="Enter phone number..." required>
+    </div>
+    <div class="half">
+      <label for="c_email" class="rl-label">Email Address</label>
+      <input type="email" id="c_email" name="c_email" placeholder="Enter your email here...">
+    </div>
+  </div>
 
-            <!-- FORM ROW -->
-            <div class="form-row separated">
-              <button class="button">Send your Message</button>
-            </div>
-            <!-- /FORM ROW -->
-          </form>
+  <div class="form-row">
+    <label for="c_product" class="rl-label">Product of Interest</label>
+    <select id="c_product" name="c_product" class="rl-input">
+      <option value="general">General Enquiry</option>
+      <option value="barrixa">Barrixa</option>
+      <option value="bio_vion">Bio Vion</option>
+      <option value="fog_nix">Fog Nix</option>
+      <option value="glanzaa">Glanzaa</option>
+      <option value="gleam">Gleam</option>
+      <option value="inter_fill">Inter Fill</option>
+      <option value="lini_cal">Lini Cal</option>
+      <option value="markx">MarkX</option>
+      <option value="nexa_etch">Nexa Etch</option>
+      <option value="nexa_prep">Nexa Prep</option>
+      <option value="resinx_gic">ResinX GIC</option>
+      <option value="retrix">Retrix</option>
+      <option value="solvexa">Solvexa</option>
+      <option value="statrix">Statrix</option>
+      <option value="statrix_aqua">Statrix Aqua</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label for="c_comment" class="rl-label">Message / Specific Requirements</label>
+    <textarea id="c_comment" name="c_comment" placeholder="Write your message here..."></textarea>
+  </div>
+
+  <div class="form-row separated">
+    <button type="submit" class="button">Submit Enquiry &rarr;</button>
+  </div>
+  
+  <p class="confirmation-note" style="font-size: 0.9em; margin-top: 10px;">
+    <em>Thank you! Our team will get back to you within 24 hours.</em>
+  </p>
+</form>
           <!-- /FORM -->
         </div>
         <!-- /CONTACT FORM -->
@@ -1651,7 +1686,7 @@
       <div class="content-dropdown-column full">
         <h6 class="title small secondary">Quick Contact</h6>
         <hr class="line-separator">
-        <p class="description">Lorem ipsum dolor sit amet, sectetur adipisicing elit, sed do eiusmod en derum der trenser lorem.</p>
+        <p class="description">Have a question? Send us a message and our clinical support team will respond within 24 hours.</p>
         <form class="quick-contact-form">
           <input type="text" class="dark" name="qc_email" placeholder="Email">
           <textarea name="qc_message" class="dark" placeholder="Message"></textarea>
