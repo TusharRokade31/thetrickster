@@ -117,7 +117,7 @@ figure>figcaption {
 }
 
 .column-3-wrap {
-	width: 870px
+	width: 1070px
 }
 
 .column-3-wrap .column:nth-child(3n+3) {
@@ -1680,20 +1680,10 @@ span.bold {
 }
 
 .feature-enum.full .feature-enum-item:first-child {
-	width: 35%
+	width: 25%
 }
 
-.feature-enum.full .feature-enum-item:nth-child(2) {
-	width: 21.6666666667%
-}
 
-.feature-enum.full .feature-enum-item:nth-child(3) {
-	width: 21.6666666667%
-}
-
-.feature-enum.full .feature-enum-item:nth-child(4) {
-	width: 21.6666666667%
-}
 
 .feature-enum .feature-enum-item {
 	float: left;
@@ -3602,9 +3592,7 @@ span.bold {
 	background-color: #f9f9f9
 }
 
-.welcome-section {
-	padding-bottom: 470px
-}
+
 
 .features-section {
 	position: relative
@@ -4426,6 +4414,7 @@ span.bold {
 }
 
 .product-preview-list .product-preview-list-item .product-img {
+	
 	position: absolute;
 	top: 0;
 	left: 0

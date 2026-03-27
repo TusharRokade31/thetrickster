@@ -1,0 +1,74 @@
+{
+  "page_meta": {
+    "category_name": "Endodontics",
+    "sub_heading": "Healing Beyond the Surface — Perfect Seal · Efficient Canal Cleaning · Bioactive · Biocompatible",
+    "categories": ["Endodontics", "Restorative Dentistry", "Diagnosis & Prophylaxis", "Surgery"],
+    "product_types": ["Sealers", "Lubricants & Chelants", "Intracanal Dressings", "Solvents"]
+  },
+  "products": [
+    {
+      "id": "bio-vion",
+      "name": "Bio-Vion",
+      "category": "Endodontics",
+      "tagline": "Crafted to Seal, Made to Heal",
+      "short_descriptor": "Bioceramic Root Canal Sealer",
+      "price": "Enquire for Price",
+      "pack_size": "2 g × 1 syringe",
+      "images": {
+        "main": "img/products/bio-vion-main.jpg",
+        "gallery": [
+          "img/products/bio-vion-main.jpg",
+          "img/products/bio-vion-box-front.jpg",
+          "img/products/bio-vion-box-side.jpg",
+          "img/products/bio-vion-xray.jpg"
+        ]
+      },
+      "description": {
+        "about": "Bio-Vion is Dentessa's next-generation injectable bioceramic root canal sealer, engineered to deliver a superior hermetic seal, excellent biocompatibility, and effortless clinical handling. Developed for the modern endodontist, Bio-Vion's single-component premixed formula eliminates the need for mixing and sets in the presence of moisture — working with the clinical environment rather than against it. Compatible with cold and warm obturation techniques, Bio-Vion integrates seamlessly into single cone, lateral compaction, or thermoplasticised gutta percha workflows, giving clinicians the freedom to work in their preferred technique without compromise.",
+        "indications": [
+          "Permanent obturation of root canals",
+          "Compatible with both cold and warm obturation techniques",
+          "Suitable for use with single cone, lateral compaction, or thermoplasticised gutta percha techniques"
+        ],
+        "benefits": [
+          {"title": "Bioactivity", "detail": "Promotes hard tissue formation, supporting natural periapical healing."},
+          {"title": "Superior Seal", "detail": "Excellent sealing ability — adapts to canal anatomy and fills accessory canals."},
+          {"title": "Radiopaque", "detail": "Clearly visible on X-rays for accurate clinical assessment post-obturation."}
+        ]
+      },
+      "badges": [
+        {"title": "Quality Assurance", "body": "Every Bio-Vion syringe is manufactured at our ISO 13485:2016 certified facility in Jammu, J&K. Stringent quality checks ensure consistency in every batch."},
+        {"title": "Pan-India Availability", "body": "Bio-Vion is available across India through authorised distributors and direct orders. Contact us to place an enquiry or request a product sample."}
+      ],
+      "reviews": [
+        {"author": "Dr. Brijesh Vyas", "location": "Surat", "text": "Exceptional healing owing to the Bioactive properties of the sealer."},
+        {"author": "Dr. Pradnya Chaudhari", "location": "Mumbai", "text": "Pairs up perfectly with the single cone obturation technique to save chair time."}
+      ],
+      "related_ids": ["nexaprep", "nexacal", "solvexa"]
+    },
+    {
+      "id": "nexaprep",
+      "name": "NexaPrep",
+      "category": "Endodontics",
+      "short_descriptor": "EDTA Gel",
+      "price": "Enquire for Price",
+      "images": { "main": "img/products/nexaprep.jpg" }
+    },
+    {
+      "id": "nexacal",
+      "name": "NexaCal",
+      "category": "Endodontics",
+      "short_descriptor": "Aq. Calcium Hydroxide",
+      "price": "Enquire for Price",
+      "images": { "main": "img/products/nexacal.jpg" }
+    },
+    {
+      "id": "solvexa",
+      "name": "Solvexa",
+      "category": "Endodontics",
+      "short_descriptor": "GP Solvent",
+      "price": "Enquire for Price",
+      "images": { "main": "img/products/solvexa.jpg" }
+    }
+  ]
+}

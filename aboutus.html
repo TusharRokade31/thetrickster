@@ -1,1888 +1,1638 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-  <!-- styles -->
-  <link rel="stylesheet" href="css/vendor/font-awesome.min.css">
-  <link rel="stylesheet" href="css/vendor/simple-line-icons.css">
-  <link rel="stylesheet" href="css/vendor/magnific-popup.css">
-  <link rel="stylesheet" href="css/style.min.css">
-  <!-- favicon -->
-  <link rel="icon" href="favicon.ico">
-  <title>The Trickster | About</title>
+     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+    <!-- styles -->
+    <link rel="stylesheet" href="css/vendor/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/vendor/simple-line-icons.css" />
+    <link rel="stylesheet" href="css/vendor/magnific-popup.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <!-- favicon -->
+    <link rel="icon" href="favicon.ico" />
+    <title>Dentessa | About</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:          '#242935',
+            'navy-light':  '#2e3547',
+            'navy-dark':   '#1a1f29',
+            accent:        '#e4380f',
+            'accent-light':'#ff4a20',
+            'accent-muted':'#c42d0a',
+          },
+          fontFamily: {
+  heading: ['"Inter"', 'sans-serif'],
+  body: ['"Inter"', 'sans-serif'],
+}
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Manrope", sans-serif; background: #fff; color: #242935; overflow-x: hidden; }
+
+    /* ────── NAV (identical to index) ────── */
+    #navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(36,41,53,0.08);
+    transition: box-shadow .3s;
+  }
+  #navbar.scrolled { box-shadow: 0 4px 30px rgba(36,41,53,.12); }
+
+  .nav-link {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #242935;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px;
+    background: #e4380f; transform: scaleX(0); transform-origin: left; transition: transform .3s;
+  }
+  .nav-link:hover { color: #e4380f; }
+  .nav-link:hover::after { transform: scaleX(1); }
+  .nav-link.active-page { color: #e4380f; }
+  .nav-link.active-page::after { transform: scaleX(1); }
+
+  .cart-btn {
+    background: #e4380f; color: #fff;
+    font-family: "Syne", sans-serif;
+    font-weight: 700; letter-spacing: .06em; font-size: .85rem;
+    padding: .55rem 1.2rem; transition: background .2s, transform .15s;
+  }
+    /* ────── HERO BANNER ────── */
+    .page-hero {
+      min-height: 62vh;
+      background: linear-gradient(135deg, #242935 0%, #1a1f29 50%, #2e1a14 100%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(228,56,15,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(228,56,15,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .page-hero-glow {
+      position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(228,56,15,.15) 0%, transparent 65%);
+      border-radius: 50%; right: -80px; top: -100px; pointer-events: none;
+    }
+    .page-hero-glow-2 {
+      position: absolute; width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(228,56,15,.09) 0%, transparent 70%);
+      border-radius: 50%; left: -60px; bottom: -80px; pointer-events: none;
+    }
+    .breadcrumb-link {
+      font-family: "Syne", sans-serif; font-size: .75rem;
+      letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.35);
+      transition: color .2s;
+    }
+    .breadcrumb-link:hover { color: #e4380f; }
+
+    /* ────── SECTION UTILS ────── */
+    .section-kicker {
+      font-family: "Syne", sans-serif; font-weight: 600;
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: #e4380f;
+    }
+    .section-title {
+      font-family: "Syne", sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem); line-height: 1; text-transform: uppercase; color: #242935;
+    }
+    .section-title.light { color: #fff; }
+    .title-line { width: 40px; height: 3px; background: #e4380f; margin: 1rem 0; }
+    .title-line.centered { margin: 1rem auto; }
+
+    /* ────── BRAND STORY ────── */
+    .story-quote-mark {
+      font-family: "Syne", sans-serif; font-size: 8rem; line-height: .8;
+      color: rgba(228,56,15,.12); position: absolute; top: -1rem; left: -1.5rem;
+      pointer-events: none; user-select: none;
+    }
+
+    /* ────── VISION / MISSION SPLIT ────── */
+    .vm-card {
+      position: relative; padding: 3rem 2.5rem; overflow: hidden;
+    }
+    .vm-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #e4380f, #ff4a20);
+    }
+    .vm-number {
+      font-family: "Syne", sans-serif; font-weight: 800; font-size: 6rem;
+      color: rgba(228,56,15,.07); position: absolute; bottom: 1rem; right: 1.5rem;
+      line-height: 1; pointer-events: none; user-select: none;
+    }
+
+    /* ────── VALUE CARDS ────── */
+    .value-card {
+      border: 1px solid rgba(36,41,53,.09); padding: 2rem;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .value-card::after {
+      content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 3px;
+      background: #e4380f; transition: width .4s;
+    }
+    .value-card:hover { border-color: rgba(228,56,15,.25); box-shadow: 0 10px 35px rgba(36,41,53,.08); transform: translateY(-4px); }
+    .value-card:hover::after { width: 100%; }
+    .value-icon {
+      width: 44px; height: 44px; background: rgba(228,56,15,.08);
+      border: 1.5px solid rgba(228,56,15,.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      margin-bottom: 1.1rem;
+    }
+    .value-title {
+      font-family: "Syne", sans-serif; font-weight: 800;
+      font-size: 1.1rem; text-transform: uppercase; letter-spacing: .04em;
+      color: #242935; margin-bottom: .6rem;
+    }
+    .value-desc { font-size: .85rem; color: #6b7280; line-height: 1.7; }
+
+    /* ────── TIMELINE (why different) ────── */
+    .timeline-item { display: flex; gap: 1.5rem; }
+    .timeline-left {
+      display: flex; flex-direction: column; align-items: center;
+      flex-shrink: 0; width: 40px;
+    }
+    .timeline-dot {
+      width: 40px; height: 40px; background: #242935; flex-shrink: 0;
+      border: 2px solid rgba(228,56,15,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Syne", sans-serif; font-weight: 800;
+      font-size: .85rem; color: #e4380f;
+    }
+    .timeline-line {
+      flex: 1; width: 1px; background: rgba(36,41,53,.1); margin-top: .5rem;
+    }
+
+    /* ────── PHILOSOPHY DARK PANEL ────── */
+    .philosophy-bg {
+      background: #242935; position: relative; overflow: hidden;
+    }
+    .philosophy-pattern {
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(228,56,15,.04) 0px, rgba(228,56,15,.04) 1px,
+        transparent 1px, transparent 50px
+      );
+    }
+    .philosophy-glow {
+      position: absolute; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(228,56,15,.12) 0%, transparent 70%);
+      border-radius: 50%; left: -100px; top: 50%; transform: translateY(-50%);
+    }
+    .philosophy-quote {
+      font-family: "Syne", sans-serif; font-style: italic;
+      font-size: clamp(1.3rem, 2.5vw, 1.85rem); line-height: 1.5;
+      color: rgba(255,255,255,.9);
+    }
+    .philosophy-quote em { color: #e4380f; font-style: normal; }
+
+    /* ────── TARGET AUDIENCE ────── */
+    .audience-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: "Syne", sans-serif; font-weight: 700;
+      font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+      background: #f7f8fa; border: 1.5px solid rgba(36,41,53,.1);
+      color: #242935; padding: .45rem 1rem;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .audience-tag:hover { background: #e4380f; border-color: #e4380f; color: #fff; }
+    .audience-tag svg { width: 14px; height: 14px; }
+
+    /* ────── STATS STRIP ────── */
+    .stats-strip {
+      background: linear-gradient(90deg, #e4380f 0%, #c42d0a 50%, #e8620a 100%);
+    }
+    .stat-item {
+      text-align: center; padding: 2.5rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: "Syne", sans-serif; font-weight: 800;
+      font-size: 3rem; color: #fff; line-height: 1;
+    }
+    .stat-label {
+      font-family: "Syne", sans-serif; font-size: .75rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.7); margin-top: .35rem;
+    }
+
+    /* ────── SCROLL REVEALS ────── */
+    .reveal        { opacity: 0; transform: translateY(30px); }
+    .reveal-left   { opacity: 0; transform: translateX(-40px); }
+    .reveal-right  { opacity: 0; transform: translateX(40px); }
+    .reveal-scale  { opacity: 0; transform: scale(.93); }
+    .reveal-fade   { opacity: 0; }
+
+    /* ────── FOOTER ────── */
+    footer { background: #1a1f29; }
+    .footer-logo { font-family: "Syne", sans-serif; font-weight: 800; font-size: 2rem; letter-spacing: .05em; text-transform: uppercase; color: #fff; }
+    .footer-logo span { color: #e4380f; }
+    .footer-link { color: rgba(255,255,255,.45); font-size: .85rem; transition: color .2s; display: block; margin-bottom: .5rem; }
+    .footer-link:hover { color: #e4380f; }
+    .footer-heading { font-family: "Syne", sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.2rem; }
+
+    /* ────── BTN ────── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: #e4380f; color: #fff;
+      font-family: "Syne", sans-serif; font-weight: 700;
+      font-size: 1rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: .85rem 2rem;
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-primary:hover { background: #c42d0a; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(228,56,15,.4); }
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; gap: .6rem;
+      border: 1.5px solid rgba(36,41,53,.2); color: #242935;
+      font-family: "Syne", sans-serif; font-weight: 700;
+      font-size: 1rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: .85rem 2rem;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .btn-outline-dark:hover { border-color: #e4380f; color: #e4380f; background: rgba(228,56,15,.04); }
+
+    /* ────── TEAM SECTION ────── */
+    .team-card {
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(36,41,53,.08);
+      transition: border-color .35s, box-shadow .35s, transform .35s;
+    }
+    .team-card:hover {
+      border-color: rgba(228,56,15,.25);
+      box-shadow: 0 16px 50px rgba(36,41,53,.12);
+      transform: translateY(-6px);
+    }
+    .team-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: #f0f1f5;
+    }
+    .team-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform .6s cubic-bezier(.23,1,.32,1);
+      filter: grayscale(8%);
+    }
+    .team-card:hover .team-img-wrap img {
+      transform: scale(1.05);
+      filter: grayscale(0%);
+    }
+    /* Red accent bar revealed on hover */
+    .team-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: #e4380f;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .team-card:hover .team-img-wrap::after { transform: scaleX(1); }
+
+    .team-body {
+      padding: 1.5rem 1.6rem 1.75rem;
+      border-top: 1px solid rgba(36,41,53,.06);
+      position: relative;
+    }
+    .team-role {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #e4380f;
+      margin-bottom: .3rem;
+    }
+    .team-name {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      color: #242935;
+      line-height: 1.1;
+    }
+    .team-divider {
+      width: 28px; height: 2px;
+      background: rgba(228,56,15,.35);
+      margin: .75rem 0;
+      transition: width .35s;
+    }
+    .team-card:hover .team-divider { width: 48px; background: #e4380f; }
+    .team-credential {
+      font-family: "Manrope", sans-serif;
+      font-size: .78rem;
+      color: rgba(36,41,53,.45);
+      line-height: 1.55;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- FORM POPUP -->
-  <div id="login-popup" class="form-popup medium mfp-hide">
-    <!-- CLOSE BTN -->
-    <svg class="svg-cross medium close-btn">
-      <use xlink:href="#svg-cross"></use>
-    </svg>
-    <!-- /CLOSE BTN -->
-
-    <!-- FORM POPUP COLUMN -->
-    <div class="form-popup-column small">
-      <h2 class="subsection-title medium">Register now!</h2>
-      <hr class="line-separator">
-      <p class="small">Lorem ipsum dolor sit amet, consectetur ipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <!-- FORM -->
-      <form>
-        <!-- FORM ROW -->
-        <div class="form-row">
-          <label for="email" class="rl-label">Email</label>
-          <input type="text" id="email" name="email" placeholder="Enter your email...">
-        </div>
-        <!-- /FORM ROW -->
-
-        <!-- FORM ROW -->
-        <div class="form-row">
-          <label for="password" class="rl-label">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password...">
-        </div>
-        <!-- /FORM ROW -->
-
-        <!-- FORM ROW -->
-        <div class="form-row separated">
-          <button class="button dark full">Register to Trickster!</button>
-        </div>
-        <!-- /FORM ROW -->
-      </form>
-      <!-- /FORM -->
-    </div>
-    <!-- /FORM POPUP COLUMN -->
-
-    <!-- FORM POPUP COLUMN SEPARATOR -->
-    <div class="form-popup-column-separator"></div>
-    <!-- /FORM POPUP COLUMN SEPARATOR -->
-
-    <!-- FORM POPUP COLUMN -->
-    <div class="form-popup-column small">
-      <h2 class="subsection-title medium">Login to Trickster</h2>
-      <hr class="line-separator">
-      <!-- FORM -->
-      <form>
-        <!-- FORM ROW -->
-        <div class="form-row">
-          <label for="username" class="rl-label">Username</label>
-          <input type="text" id="username" name="username" placeholder="Enter your username...">
-        </div>
-        <!-- /FORM ROW -->
-
-        <!-- FORM ROW -->
-        <div class="form-row">
-          <label for="password2" class="rl-label">Password</label>
-          <input type="password" id="password2" name="password2" placeholder="Enter your password...">
-        </div>
-        <!-- /FORM ROW -->
-
-        <!-- FORM ROW -->
-        <div class="form-row">
-          <!-- CHECKBOX -->
-					<input type="checkbox" id="keep_logged" name="keep_logged" checked>
-					<label class="checkbox" for="keep_logged">
-						<span class="box">
-              <!-- SVG CHECK -->
-						  <svg class="svg-check">
-						    <use xlink:href="#svg-check"></use>
-						  </svg>
-              <!-- /SVG CHECK -->
-						</span>
-						Keep me logged in
-					</label>
-					<!-- /CHECKBOX -->
-
-          <a href="aboutus.html#" class="link">Forgot password?</a>
-        </div>
-        <!-- /FORM ROW -->
-
-        <!-- FORM ROW -->
-        <div class="form-row short-space separated">
-          <button class="button full">Login to your Account</button>
-        </div>
-        <!-- /FORM ROW -->
-
-        <!-- FORM ROW -->
-        <div class="form-row">
-          <div class="half">
-            <a href="aboutus.html#" class="button blue full">Facebook Login</a>
-          </div>
-          <div class="half">
-            <a href="aboutus.html#" class="button lightblue full">Twitter Login</a>
-          </div>
-        </div>
-        <!-- /FORM ROW -->
-      </form>
-      <!-- /FORM -->
-    </div>
-    <!-- /FORM POPUP COLUMN -->
-  </div>
-  <!-- /FORM POPUP -->
-
-  <!-- WIDGET LINE WRAP -->
-  <div class="widget-line-wrap widget-line-1">
-    <!-- WIDGET LINE -->
-    <div class="widget-line">
-      <!-- ACTIONS LIST -->
-      <ul class="actions-list left">
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-facebook"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-rss"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-vimeo"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-      </ul>
-      <!-- ACTIONS LIST -->
-
-      <!-- ACTIONS LIST -->
-      <ul class="actions-list right">
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <a class="action-button options-dropdown dropdown-control click-closable" href="aboutus.html#">
-            <span class="language-selected-option">eng</span>
-            <!-- SVG ARROW -->
-  					<svg class="svg-arrow small face-down">
-  						<use xlink:href="#svg-arrow"></use>
-  					</svg>
-  					<!-- /SVG ARROW -->
-          </a>
-
-          <!-- DROPDOWN LIST -->
-          <ul class="dropdown-list dropdown">
-            <li data-language="eng" class="dropdown-list-item language-option selected">
-              <a href="aboutus.html#">eng</a>
-            </li>
-            <li data-language="spa" class="dropdown-list-item language-option">
-              <a href="aboutus.html#">spa</a>
-            </li>
-            <li data-language="ger" class="dropdown-list-item language-option">
-              <a href="aboutus.html#">ger</a>
-            </li>
-          </ul>
-          <!-- /DROPDOWN LIST -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <a class="action-button options-dropdown dropdown-control click-closable" href="aboutus.html#">
-            <span class="currency-selected-option">usd</span>
-            <!-- SVG ARROW -->
-  					<svg class="svg-arrow small face-down">
-  						<use xlink:href="#svg-arrow"></use>
-  					</svg>
-  					<!-- /SVG ARROW -->
-          </a>
-
-          <!-- DROPDOWN LIST -->
-          <ul class="dropdown-list dropdown">
-            <li data-currency="usd" class="dropdown-list-item currency-option selected">
-              <a href="aboutus.html#">usd</a>
-            </li>
-            <li data-currency="euro" class="dropdown-list-item currency-option">
-              <a href="aboutus.html#">euro</a>
-            </li>
-          </ul>
-          <!-- /DROPDOWN LIST -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <a class="action-button" href="profile.html">My Account</a>
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <a class="action-button" href="wishlist.html">Wishlist<span class="bold">4</span></a>
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <a class="action-button regular popup-trigger" href="aboutus.html#login-popup">Logout</a>
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SEARCH FORM -->
-          <form class="search-form">
-            <input type="text" name="search" autocomplete="off" placeholder="Search products here...">
-            <!-- SEARCH SUBMIT -->
-            <div class="search-submit">
-              <!-- SVG MAG GLASS -->
-    					<svg class="svg-mag-glass">
-    						<use xlink:href="#svg-mag-glass"></use>
-    					</svg>
-    					<!-- /SVG MAG GLASS -->
-            </div>
-            <!-- /SEARCH SUBMIT -->
-
-            <!-- SEARCH CANCEL -->
-            <div class="search-cancel hidden">
-              <!-- SVG CROSS -->
-    					<svg class="svg-cross">
-    						<use xlink:href="#svg-cross"></use>
-    					</svg>
-    					<!-- /SVG CROSS -->
-            </div>
-            <!-- /SEARCH CANCEL -->
-          </form>
-          <!-- /SEARCH FORM -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-      </ul>
-      <!-- ACTIONS LIST -->
-    </div>
-    <!-- WIDGET LINE -->
-  </div>
-  <!-- WIDGET LINE WRAP -->
-
-  <!-- WIDGET LINE WRAP -->
-  <div class="widget-line-wrap widget-line-2">
-    <!-- WIDGET LINE -->
-    <div class="widget-line">
-      <!-- ACTIONS LIST -->
-      <ul class="actions-list">
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item full void">
-          <!-- SEARCH FORM -->
-          <form class="search-form">
-            <input type="text" name="search" autocomplete="off" placeholder="Search products here...">
-            <!-- SEARCH SUBMIT -->
-            <div class="search-submit">
-              <!-- SVG MAG GLASS -->
-    					<svg class="svg-mag-glass">
-    						<use xlink:href="#svg-mag-glass"></use>
-    					</svg>
-    					<!-- /SVG MAG GLASS -->
-            </div>
-            <!-- /SEARCH SUBMIT -->
-
-            <!-- SEARCH CANCEL -->
-            <div class="search-cancel hidden">
-              <!-- SVG CROSS -->
-    					<svg class="svg-cross">
-    						<use xlink:href="#svg-cross"></use>
-    					</svg>
-    					<!-- /SVG CROSS -->
-            </div>
-            <!-- /SEARCH CANCEL -->
-          </form>
-          <!-- /SEARCH FORM -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-      </ul>
-      <!-- ACTIONS LIST -->
-    </div>
-    <!-- WIDGET LINE -->
-  </div>
-  <!-- WIDGET LINE WRAP -->
-
-  <!-- NAVIGATION WRAP -->
-  <div class="navigation-wrap">
-    <!-- NAVIGATION -->
-    <nav class="navigation">
-      <!-- LOGO -->
-      <figure class="logo">
-        <img src="img/logo.png" alt="logo">
-        <figcaption>The Trickster</figcaption>
-      </figure>
-      <!-- /LOGO -->
-
-      <!-- CART DROPDOWN WRAP -->
-      <div class="cart-dropdown-wrap">
-        <!-- CART DROPDOWN CONTROL -->
-        <div class="cart-dropdown-control">
-          <!-- SVG CART -->
-          <svg class="svg-cart">
-            <use xlink:href="#svg-cart"></use>
-          </svg>
-          <!-- /SVG CART -->
-
-          <!-- SVG CROSS -->
-          <svg class="svg-cross medium hidden">
-            <use xlink:href="#svg-cross"></use>
-          </svg>
-          <!-- /SVG CROSS -->
-
-          <!-- CART ITEM QUANTITY -->
-          <div class="cart-item-quantity">
-            <p>8</p>
-          </div>
-          <!-- /CART ITEM QUANTITY -->
-        </div>
-        <!-- /CART DROPDOWN CONTROL -->
-
-        <!-- CART DROPDOWN -->
-        <div class="cart-dropdown">
-          <!-- CART DROPDOWN ITEMS -->
-          <div class="cart-dropdown-items">
-            <!-- CART DROPDOWN ITEM -->
-            <div class="cart-dropdown-item">
-              <!-- PRODUCT IMG -->
-              <a href="product-page-v1.html">
-                <figure class="product-img small">
-                  <img src="img/products/02.jpg" alt="02">
-                </figure>
+<!-- ══════════════════════════════════════ NAVBAR ══════════════════════════════════════ -->
+   <!-- WIDGET LINE WRAP -->
+    <div class="widget-line-wrap widget-line-1">
+      <!-- WIDGET LINE -->
+      <div class="widget-line">
+        <!-- ACTIONS LIST -->
+        <ul class="actions-list left">
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <!-- SOCIAL LINK -->
+            <div class="social-link">
+              <a href="aboutus.html#">
+                <i class="fa fa-facebook"></i>
               </a>
-              <!-- /PRODUCT IMG -->
-
-              <!-- CART DROPDOWN ITEM INFO -->
-              <div class="cart-dropdown-item-info">
-                <a href="product-page-v1.html"><h6 class="title small">Poisonous Frog</h6></a>
-                <p class="product-description small">For Outdoor Sports</p>
-                <!-- RATING -->
-                <ul class="rating small">
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-                </ul>
-                <!-- /RATING -->
-                <p class="product-quantity">x4</p>
-                <p class="product-price">$600</p>
-              </div>
-              <!-- /CART DROPDOWN ITEM INFO -->
-
-              <!-- SVG CROSS -->
-              <svg class="svg-cross medium">
-                <use xlink:href="#svg-cross"></use>
-              </svg>
-              <!-- /SVG CROSS -->
             </div>
-            <!-- /CART DROPDOWN ITEM -->
+            <!-- /SOCIAL LINK -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
 
-            <!-- CART DROPDOWN ITEM -->
-            <div class="cart-dropdown-item">
-              <!-- PRODUCT IMG -->
-              <a href="product-page-v1.html">
-                <figure class="product-img small">
-                  <img src="img/products/06.jpg" alt="06">
-                </figure>
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <!-- SOCIAL LINK -->
+            <div class="social-link">
+              <a href="aboutus.html#">
+                <i class="fa fa-twitter"></i>
               </a>
-              <!-- /PRODUCT IMG -->
-
-              <!-- CART DROPDOWN ITEM INFO -->
-              <div class="cart-dropdown-item-info">
-                <a href="product-page-v1.html"><h6 class="title small">Crashing Wave</h6></a>
-                <p class="product-description small">Water Resistant</p>
-                <!-- RATING -->
-                <ul class="rating small">
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-                </ul>
-                <!-- /RATING -->
-                <p class="product-quantity">x2</p>
-                <p class="product-price">$360</p>
-              </div>
-              <!-- /CART DROPDOWN ITEM INFO -->
-
-              <!-- SVG CROSS -->
-              <svg class="svg-cross medium">
-                <use xlink:href="#svg-cross"></use>
-              </svg>
-              <!-- /SVG CROSS -->
             </div>
-            <!-- /CART DROPDOWN ITEM -->
+            <!-- /SOCIAL LINK -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
 
-            <!-- CART DROPDOWN ITEM -->
-            <div class="cart-dropdown-item">
-              <!-- PRODUCT IMG -->
-              <a href="product-page-v1.html">
-                <figure class="product-img small">
-                  <img src="img/products/05.jpg" alt="05">
-                </figure>
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <!-- SOCIAL LINK -->
+            <div class="social-link">
+              <a href="aboutus.html#">
+                <i class="fa fa-google-plus"></i>
               </a>
-              <!-- /PRODUCT IMG -->
-
-              <!-- CART DROPDOWN ITEM INFO -->
-              <div class="cart-dropdown-item-info">
-                <a href="product-page-v1.html"><h6 class="title small">The Patriot</h6></a>
-                <p class="product-description small">By Spiegel</p>
-                <!-- RATING -->
-                <ul class="rating small">
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item filled">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-
-                  <!-- RATING ITEM -->
-                  <li class="rating-item">
-                    <!-- SVG STAR -->
-                    <svg class="svg-star">
-                      <use xlink:href="#svg-star"></use>
-                    </svg>
-                    <!-- /SVG STAR -->
-                  </li>
-                  <!-- /RATING ITEM -->
-                </ul>
-                <!-- /RATING -->
-                <p class="product-quantity">x1</p>
-                <p class="product-price">$185</p>
-              </div>
-              <!-- /CART DROPDOWN ITEM INFO -->
-
-              <!-- SVG CROSS -->
-              <svg class="svg-cross medium">
-                <use xlink:href="#svg-cross"></use>
-              </svg>
-              <!-- /SVG CROSS -->
             </div>
-            <!-- /CART DROPDOWN ITEM -->
-          </div>
-          <!-- CART DROPDOWN ITEMS -->
+            <!-- /SOCIAL LINK -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
 
-          <!-- CART DROPDOWN SUBTOTAL -->
-          <div class="cart-dropdown-subtotal">
-            <p class="title small">Cart Subtotal</p>
-            <p class="product-price">$1145</p>
-          </div>
-          <!-- /CART DROPDOWN SUBTOTAL -->
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <!-- SOCIAL LINK -->
+            <div class="social-link">
+              <a href="aboutus.html#">
+                <i class="fa fa-rss"></i>
+              </a>
+            </div>
+            <!-- /SOCIAL LINK -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
 
-          <!-- CART DROPDOWN ACTIONS -->
-          <div class="cart-dropdown-actions">
-            <a href="cart.html" class="button dark large">Go to the Cart</a>
-            <a href="identification.html" class="button large">Go to Checkout</a>
-          </div>
-          <!-- /CART DROPDOWN ACTIONS -->
-        </div>
-        <!-- /CART DROPDOWN -->
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <!-- SOCIAL LINK -->
+            <div class="social-link">
+              <a href="aboutus.html#">
+                <i class="fa fa-vimeo"></i>
+              </a>
+            </div>
+            <!-- /SOCIAL LINK -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
+        </ul>
+        <!-- ACTIONS LIST -->
+
+        <!-- ACTIONS LIST -->
+        <ul class="actions-list right">
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <a
+              class="action-button options-dropdown dropdown-control click-closable"
+              href="aboutus.html#"
+            >
+              <span class="language-selected-option">eng</span>
+              <!-- SVG ARROW -->
+              <svg class="svg-arrow small face-down">
+                <use xlink:href="#svg-arrow"></use>
+              </svg>
+              <!-- /SVG ARROW -->
+            </a>
+
+            <!-- DROPDOWN LIST -->
+            <ul class="dropdown-list dropdown">
+              <li
+                data-language="eng"
+                class="dropdown-list-item language-option selected"
+              >
+                <a href="aboutus.html#">eng</a>
+              </li>
+              <li
+                data-language="spa"
+                class="dropdown-list-item language-option"
+              >
+                <a href="aboutus.html#">spa</a>
+              </li>
+              <li
+                data-language="ger"
+                class="dropdown-list-item language-option"
+              >
+                <a href="aboutus.html#">ger</a>
+              </li>
+            </ul>
+            <!-- /DROPDOWN LIST -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
+
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <a
+              class="action-button options-dropdown dropdown-control click-closable"
+              href="aboutus.html#"
+            >
+              <span class="currency-selected-option">usd</span>
+              <!-- SVG ARROW -->
+              <svg class="svg-arrow small face-down">
+                <use xlink:href="#svg-arrow"></use>
+              </svg>
+              <!-- /SVG ARROW -->
+            </a>
+
+            <!-- DROPDOWN LIST -->
+            <ul class="dropdown-list dropdown">
+              <li
+                data-currency="usd"
+                class="dropdown-list-item currency-option selected"
+              >
+                <a href="aboutus.html#">usd</a>
+              </li>
+              <li
+                data-currency="euro"
+                class="dropdown-list-item currency-option"
+              >
+                <a href="aboutus.html#">euro</a>
+              </li>
+            </ul>
+            <!-- /DROPDOWN LIST -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
+
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <a class="action-button" href="profile.html">My Account</a>
+          </li>
+          <!-- ACTIONS LIST ITEM -->
+
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <a class="action-button" href="wishlist.html"
+              >Wishlist<span class="bold">4</span></a
+            >
+          </li>
+          <!-- ACTIONS LIST ITEM -->
+
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <a
+              class="action-button regular popup-trigger"
+              href="aboutus.html#login-popup"
+              >Logout</a
+            >
+          </li>
+          <!-- ACTIONS LIST ITEM -->
+
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item">
+            <!-- SEARCH FORM -->
+            <form class="search-form">
+              <input
+                type="text"
+                name="search"
+                autocomplete="off"
+                placeholder="Search products here..."
+              />
+              <!-- SEARCH SUBMIT -->
+              <div class="search-submit">
+                <!-- SVG MAG GLASS -->
+                <svg class="svg-mag-glass">
+                  <use xlink:href="#svg-mag-glass"></use>
+                </svg>
+                <!-- /SVG MAG GLASS -->
+              </div>
+              <!-- /SEARCH SUBMIT -->
+
+              <!-- SEARCH CANCEL -->
+              <div class="search-cancel hidden">
+                <!-- SVG CROSS -->
+                <svg class="svg-cross">
+                  <use xlink:href="#svg-cross"></use>
+                </svg>
+                <!-- /SVG CROSS -->
+              </div>
+              <!-- /SEARCH CANCEL -->
+            </form>
+            <!-- /SEARCH FORM -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
+        </ul>
+        <!-- ACTIONS LIST -->
       </div>
-      <!-- /CART DROPDOWN WRAP -->
+      <!-- WIDGET LINE -->
+    </div>
+    <!-- WIDGET LINE WRAP -->
 
-      <!-- MAIN MENU -->
-      <ul class="main-menu">
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item">
+    <!-- WIDGET LINE WRAP -->
+    <div class="widget-line-wrap widget-line-2">
+      <!-- WIDGET LINE -->
+      <div class="widget-line">
+        <!-- ACTIONS LIST -->
+        <ul class="actions-list">
+          <!-- ACTIONS LIST ITEM -->
+          <li class="actions-list-item full void">
+            <!-- SEARCH FORM -->
+            <form class="search-form">
+              <input
+                type="text"
+                name="search"
+                autocomplete="off"
+                placeholder="Search products here..."
+              />
+              <!-- SEARCH SUBMIT -->
+              <div class="search-submit">
+                <!-- SVG MAG GLASS -->
+                <svg class="svg-mag-glass">
+                  <use xlink:href="#svg-mag-glass"></use>
+                </svg>
+                <!-- /SVG MAG GLASS -->
+              </div>
+              <!-- /SEARCH SUBMIT -->
+
+              <!-- SEARCH CANCEL -->
+              <div class="search-cancel hidden">
+                <!-- SVG CROSS -->
+                <svg class="svg-cross">
+                  <use xlink:href="#svg-cross"></use>
+                </svg>
+                <!-- /SVG CROSS -->
+              </div>
+              <!-- /SEARCH CANCEL -->
+            </form>
+            <!-- /SEARCH FORM -->
+          </li>
+          <!-- ACTIONS LIST ITEM -->
+        </ul>
+        <!-- ACTIONS LIST -->
+      </div>
+      <!-- WIDGET LINE -->
+    </div>
+    <!-- WIDGET LINE WRAP -->
+
+    <!-- NAVIGATION WRAP -->
+<div class="navigation-wrap" style="background:#fff; border-bottom:1px solid rgba(0,0,0,0.08); position:sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+  <nav class="navigation" style="display:flex; align-items:center; justify-content:space-between; height:100px; max-width:1170px; margin:0 auto; padding:0;">
+
+    <div class="logo-wrapper" style="display:flex; align-items:center; padding-left:15px; flex-shrink:0;">
+      <a href="index.html">
+        <img src="img/logo.png" alt="logo" style="height:45px; width:auto; display:block;" />
+      </a>
+    </div>
+
+    <ul class="main-menu" style="display:flex; align-items:center; list-style:none; margin:0 20px 0 auto; padding:0; gap:10px;">
+      <li class="main-menu-item">
+        <a href="index.html" style="padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#242935; letter-spacing:0.05em; text-decoration:none;">Home</a>
+      </li>
+      <li class="main-menu-item">
+        <a href="aboutus.html" style="padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#e4380f; letter-spacing:0.05em; text-decoration:none;">About</a>
+      </li>
+      
+      <li class="main-menu-item" style="position:relative; height:100px; display:flex; align-items:center;" onmouseenter="this.querySelector('.menu-dropdown').style.display='block'" onmouseleave="this.querySelector('.menu-dropdown').style.display='none'">
+        <a href="#" style="display:flex; align-items:center; gap:8px; padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#242935; text-decoration:none;">
+          Shop
+          <svg style="width:8px; height:8px; fill:currentColor; transform: rotate(180deg); transition: transform 0.3s;">
+            <use xlink:href="#svg-arrow"></use>
+          </svg>
+        </a>
+        
+        <ul class="menu-dropdown" style="display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:#1a1f29; min-width:210px; padding:10px 0; list-style:none; box-shadow:0 10px 30px rgba(0,0,0,0.3); z-index:1001;">
+          <li><a href="shop-grid.html" style="display:block; padding:12px 20px; color:rgba(255,255,255,0.8); font-size:12px; text-transform:uppercase; font-weight:700; text-decoration:none;">4 Columns Grid</a></li>
+          <li><a href="shop-list.html" style="display:block; padding:12px 20px; color:rgba(255,255,255,0.8); font-size:12px; text-transform:uppercase; font-weight:700; text-decoration:none;">4 Columns List</a></li>
+        </ul>
+      </li>
+
+      <li class="main-menu-item">
+        <a href="blog.html" style="padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#242935; text-decoration:none;">Our Blog</a>
+      </li>
+      <li class="main-menu-item">
+        <a href="contactus.html" style="padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#242935; text-decoration:none;">Contact</a>
+      </li>
+    </ul>
+
+    
+
+  </nav>
+</div>
+    <!-- /NAVIGATION WRAP -->
+
+    <!-- MOBILE MENU WRAP -->
+    <div class="mobile-menu-wrap">
+      <!-- MOBILE MENU CONTROL -->
+      <div class="mobile-menu-control dropdown-control">
+        <!-- SVG BURGER -->
+        <svg class="svg-burger">
+          <use xlink:href="#svg-burger"></use>
+        </svg>
+        <!-- /SVG BURGER -->
+      </div>
+      <!-- /MOBILE MENU CONTROL -->
+
+      <!-- MOBILE MENU -->
+      <ul class="mobile-menu dropdown">
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
           <a href="index.html">Home</a>
         </li>
-        <!-- /MAIN MENU ITEM -->
+        <!-- /MOBILE MENU ITEM -->
 
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item">
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
           <a href="aboutus.html">About</a>
         </li>
-        <!-- /MAIN MENU ITEM -->
+        <!-- /MOBILE MENU ITEM -->
 
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item">
-          <a href="aboutus.html#">
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
+          <a href="aboutus.html#" class="dropdown-control">
             Shop
             <!-- SVG ARROW -->
-            <svg class="svg-arrow face-down">
+            <svg class="svg-arrow medium rotable">
               <use xlink:href="#svg-arrow"></use>
             </svg>
             <!-- /SVG ARROW -->
           </a>
 
-          <!-- MENU DROPDOWN -->
-          <ul class="menu-dropdown">
-            <!-- MENU DROPDOWN ITEM -->
-            <li class="menu-dropdown-item">
+          <!-- MOBILE MENU DROPDOWN -->
+          <ul class="mobile-menu-dropdown dropdown">
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
               <a href="shop-sidebar-grid.html">Sidebar 3 Col Grid</a>
             </li>
-            <!-- /MENU DROPDOWN ITEM -->
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-            <!-- MENU DROPDOWN ITEM -->
-            <li class="menu-dropdown-item">
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
               <a href="shop-grid.html">4 Columns Grid</a>
             </li>
-            <!-- /MENU DROPDOWN ITEM -->
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-            <!-- MENU DROPDOWN ITEM -->
-            <li class="menu-dropdown-item">
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
               <a href="shop-sidebar-list.html">Sidebar 3 Col List</a>
             </li>
-            <!-- /MENU DROPDOWN ITEM -->
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-            <!-- MENU DROPDOWN ITEM -->
-            <li class="menu-dropdown-item">
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
               <a href="shop-list.html">4 Columns List</a>
             </li>
-            <!-- /MENU DROPDOWN ITEM -->
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-            <!-- MENU DROPDOWN ITEM -->
-            <li class="menu-dropdown-item">
-              <a href="aboutus.html#">Product Pages</a>
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-
-              <!-- MENU DROPDOWN -->
-              <ul class="menu-dropdown">
-                <!-- MENU DROPDOWN ITEM -->
-                <li class="menu-dropdown-item">
-                  <a href="product-page-v1.html">Product Page V1</a>
-                </li>
-                <!-- /MENU DROPDOWN ITEM -->
-
-                <!-- MENU DROPDOWN ITEM -->
-                <li class="menu-dropdown-item">
-                  <a href="product-page-v2.html">Product Page V2</a>
-                </li>
-                <!-- /MENU DROPDOWN ITEM -->
-              </ul>
-              <!-- /MENU DROPDOWN -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="product-page-v1.html">Product Page V1</a>
             </li>
-            <!-- /MENU DROPDOWN ITEM -->
-          </ul>
-          <!-- /MENU DROPDOWN -->
-        </li>
-        <!-- /MAIN MENU ITEM -->
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item">
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="product-page-v2.html">Product Page V2</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
+          </ul>
+          <!-- /MOBILE MENU DROPDOWN -->
+        </li>
+        <!-- /MOBILE MENU ITEM -->
+
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
           <a href="blog.html">Our Blog</a>
         </li>
-        <!-- /MAIN MENU ITEM -->
+        <!-- /MOBILE MENU ITEM -->
 
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item sub">
-          <a href="aboutus.html#">
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
+          <a href="aboutus.html#" class="dropdown-control">
             Features
             <!-- SVG ARROW -->
-            <svg class="svg-arrow face-down">
+            <svg class="svg-arrow medium rotable">
               <use xlink:href="#svg-arrow"></use>
             </svg>
             <!-- /SVG ARROW -->
           </a>
 
-          <!-- CONTENT DROPDOWN -->
-          <div class="content-dropdown with-bg">
-            <!-- CONTENT DROPDOWN COLUMN -->
-            <div class="content-dropdown-column">
-              <h6 class="title tiny secondary">Main Features</h6>
-              <hr class="line-separator">
-              <!-- LINK LIST -->
-              <ul class="link-list simple">
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="index.html">Trickster Home</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+          <!-- MOBILE MENU DROPDOWN -->
+          <ul class="mobile-menu-dropdown dropdown">
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="index.html">Trickster Home</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="product-builder-v1.html">Product Builder V1</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="product-builder-v1.html">Product Builder V1</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="product-builder-v2.html">Product Builder V2</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="product-builder-v2.html">Product Builder V2</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="blog.html">Trickster Blog</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="blog.html">Trickster Blog</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="post.html">Blog Post</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="post.html">Blog Post</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="contactus.html">Contact Page</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
-              </ul>
-              <!-- /LINK LIST -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="contactus.html">Contact Page</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-              <!-- LINK LIST -->
-              <ul class="link-list simple">
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="404.html">Error Page</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="404.html">Error Page</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="aboutus.html">About Us</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="aboutus.html">About Us</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="menu-dropdowns.html">Menu &amp; DDowns</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="menu-dropdowns.html">Menu &amp; DDowns</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="shortcodes.html">Shortcodes</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="shortcodes.html">Shortcodes</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="login-popup.html">Login Popup</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="login-popup.html">Login Popup</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="ratings-popup.html">Ratings Popup</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
-              </ul>
-              <!-- /LINK LIST -->
-            </div>
-            <!-- /CONTENT DROPDOWN COLUMN -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="ratings-popup.html">Ratings Popup</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-            <!-- CONTENT DROPDOWN COLUMN -->
-            <div class="content-dropdown-column">
-              <h6 class="title tiny secondary">Shop</h6>
-              <hr class="line-separator">
-              <!-- LINK LIST -->
-              <ul class="link-list simple">
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="shop-sidebar-grid.html">Sidebar 3 Col Grid</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="shop-sidebar-grid.html">Sidebar 3 Col Grid</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="shop-grid.html">4 Columns Grid</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="shop-grid.html">4 Columns Grid</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="shop-sidebar-list.html">Sidebar 3 Col List</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="shop-sidebar-list.html">Sidebar 3 Col List</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="shop-list.html">4 Columns List</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="shop-list.html">4 Columns List</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="product-page-v1.html">Product Page V1</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="product-page-v1.html">Product Page V1</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="product-page-v1.html">Product Page V2</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
-              </ul>
-              <!-- /LINK LIST -->
-            </div>
-            <!-- /CONTENT DROPDOWN COLUMN -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="product-page-v1.html">Product Page V2</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-            <!-- CONTENT DROPDOWN COLUMN -->
-            <div class="content-dropdown-column">
-              <h6 class="title tiny secondary">Account</h6>
-              <hr class="line-separator">
-              <!-- LINK LIST -->
-              <ul class="link-list simple">
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="identification.html">Identification</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="identification.html">Identification</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="billing-shipping.html">Billing and Shipping</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="billing-shipping.html">Billing and Shipping</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="confirmation.html">Confirmation</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="confirmation.html">Confirmation</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="cart.html">Shopping Cart</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="cart.html">Shopping Cart</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="wishlist.html">Wishlist</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="wishlist.html">Wishlist</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
 
-                <!-- LINK LIST ITEM -->
-                <li class="link-list-item">
-                  <a href="profile.html">Your Account</a>
-                </li>
-                <!-- /LINK LIST ITEM -->
-              </ul>
-              <!-- /LINK LIST -->
-            </div>
-            <!-- /CONTENT DROPDOWN COLUMN -->
-          </div>
-          <!-- /CONTENT DROPDOWN -->
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li class="mobile-menu-dropdown-item">
+              <a href="profile.html">Your Account</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
+          </ul>
+          <!-- /MOBILE MENU DROPDOWN -->
         </li>
-        <!-- /MAIN MENU ITEM -->
+        <!-- /MOBILE MENU ITEM -->
 
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item">
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
           <a href="contactus.html">Contact</a>
         </li>
-        <!-- /MAIN MENU ITEM -->
+        <!-- /MOBILE MENU ITEM -->
+
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
+          <a href="profile.html">My Account</a>
+        </li>
+        <!-- /MOBILE MENU ITEM -->
+
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
+          <a href="wishlist.html">
+            Wishlist
+            <span class="bold">4</span>
+          </a>
+        </li>
+        <!-- /MOBILE MENU ITEM -->
+
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
+          <a href="aboutus.html#" class="dropdown-control">
+            Language:
+            <span class="selected-option language-selected-option">eng</span>
+            <!-- SVG ARROW -->
+            <svg class="svg-arrow medium rotable">
+              <use xlink:href="#svg-arrow"></use>
+            </svg>
+            <!-- /SVG ARROW -->
+          </a>
+
+          <!-- MOBILE MENU DROPDOWN -->
+          <ul class="mobile-menu-dropdown dropdown">
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li
+              data-language="eng"
+              class="mobile-menu-dropdown-item language-option selected"
+            >
+              <a href="aboutus.html#">eng</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
+
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li
+              data-language="spa"
+              class="mobile-menu-dropdown-item language-option"
+            >
+              <a href="aboutus.html#">spa</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
+
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li
+              data-language="ger"
+              class="mobile-menu-dropdown-item language-option"
+            >
+              <a href="aboutus.html#">ger</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
+          </ul>
+          <!-- /MOBILE MENU DROPDOWN -->
+        </li>
+        <!-- /MOBILE MENU ITEM -->
+
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item">
+          <a href="aboutus.html#" class="dropdown-control">
+            Currency:
+            <span class="selected-option currency-selected-option">usd</span>
+            <!-- SVG ARROW -->
+            <svg class="svg-arrow medium rotable">
+              <use xlink:href="#svg-arrow"></use>
+            </svg>
+            <!-- /SVG ARROW -->
+          </a>
+
+          <!-- MOBILE MENU DROPDOWN -->
+          <ul class="mobile-menu-dropdown dropdown">
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li
+              data-currency="usd"
+              class="mobile-menu-dropdown-item currency-option selected"
+            >
+              <a href="aboutus.html#">usd</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
+
+            <!-- MOBILE MENU DROPDOWN ITEM -->
+            <li
+              data-currency="euro"
+              class="mobile-menu-dropdown-item currency-option"
+            >
+              <a href="aboutus.html#">euro</a>
+            </li>
+            <!-- /MOBILE MENU DROPDOWN ITEM -->
+          </ul>
+          <!-- /MOBILE MENU DROPDOWN -->
+        </li>
+        <!-- /MOBILE MENU ITEM -->
+
+        <!-- MOBILE MENU ITEM -->
+        <li class="mobile-menu-item void">
+          <a href="aboutus.html#">Logout</a>
+        </li>
+        <!-- /MOBILE MENU ITEM -->
       </ul>
-      <!-- /MAIN MENU -->
-    </nav>
-    <!-- /NAVIGATION -->
-  </div>
-  <!-- /NAVIGATION WRAP -->
-
-  <!-- MOBILE MENU WRAP -->
-  <div class="mobile-menu-wrap">
-    <!-- MOBILE MENU CONTROL -->
-    <div class="mobile-menu-control dropdown-control">
-      <!-- SVG BURGER -->
-      <svg class="svg-burger">
-        <use xlink:href="#svg-burger"></use>
-      </svg>
-      <!-- /SVG BURGER -->
+      <!-- /MOBILE MENU -->
     </div>
-    <!-- /MOBILE MENU CONTROL -->
+    <!-- /MOBILE MENU WRAP -->
 
-    <!-- MOBILE MENU -->
-    <ul class="mobile-menu dropdown">
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="index.html">Home</a>
-      </li>
-      <!-- /MOBILE MENU ITEM -->
+    
 
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="aboutus.html">About</a>
-      </li>
-      <!-- /MOBILE MENU ITEM -->
+<!-- ══════════════════════════════════════ PAGE HERO ══════════════════════════════════════ -->
+<section class="page-hero pt-16">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-glow-2"></div>
 
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="aboutus.html#" class="dropdown-control">
-          Shop
-          <!-- SVG ARROW -->
-          <svg class="svg-arrow medium rotable">
-            <use xlink:href="#svg-arrow"></use>
-          </svg>
-          <!-- /SVG ARROW -->
-        </a>
-
-        <!-- MOBILE MENU DROPDOWN -->
-        <ul class="mobile-menu-dropdown dropdown">
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shop-sidebar-grid.html">Sidebar 3 Col Grid</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shop-grid.html">4 Columns Grid</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shop-sidebar-list.html">Sidebar 3 Col List</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shop-list.html">4 Columns List</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="product-page-v1.html">Product Page V1</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="product-page-v2.html">Product Page V2</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-        </ul>
-        <!-- /MOBILE MENU DROPDOWN -->
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="blog.html">Our Blog</a>
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="aboutus.html#" class="dropdown-control">
-          Features
-          <!-- SVG ARROW -->
-          <svg class="svg-arrow medium rotable">
-            <use xlink:href="#svg-arrow"></use>
-          </svg>
-          <!-- /SVG ARROW -->
-        </a>
-
-        <!-- MOBILE MENU DROPDOWN -->
-        <ul class="mobile-menu-dropdown dropdown">
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="index.html">Trickster Home</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="product-builder-v1.html">Product Builder V1</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="product-builder-v2.html">Product Builder V2</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="blog.html">Trickster Blog</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="post.html">Blog Post</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="contactus.html">Contact Page</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="404.html">Error Page</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="aboutus.html">About Us</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="menu-dropdowns.html">Menu &amp; DDowns</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shortcodes.html">Shortcodes</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="login-popup.html">Login Popup</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="ratings-popup.html">Ratings Popup</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shop-sidebar-grid.html">Sidebar 3 Col Grid</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shop-grid.html">4 Columns Grid</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shop-sidebar-list.html">Sidebar 3 Col List</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="shop-list.html">4 Columns List</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="product-page-v1.html">Product Page V1</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="product-page-v1.html">Product Page V2</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="identification.html">Identification</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="billing-shipping.html">Billing and Shipping</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="confirmation.html">Confirmation</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="cart.html">Shopping Cart</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="wishlist.html">Wishlist</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li class="mobile-menu-dropdown-item">
-            <a href="profile.html">Your Account</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-        </ul>
-        <!-- /MOBILE MENU DROPDOWN -->
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="contactus.html">Contact</a>
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="profile.html">My Account</a>
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="wishlist.html">
-          Wishlist
-          <span class="bold">4</span>
-        </a>
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="aboutus.html#" class="dropdown-control">
-          Language:
-          <span class="selected-option language-selected-option">eng</span>
-          <!-- SVG ARROW -->
-          <svg class="svg-arrow medium rotable">
-            <use xlink:href="#svg-arrow"></use>
-          </svg>
-          <!-- /SVG ARROW -->
-        </a>
-
-        <!-- MOBILE MENU DROPDOWN -->
-        <ul class="mobile-menu-dropdown dropdown">
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li data-language="eng" class="mobile-menu-dropdown-item language-option selected">
-            <a href="aboutus.html#">eng</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li data-language="spa" class="mobile-menu-dropdown-item language-option">
-            <a href="aboutus.html#">spa</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li data-language="ger" class="mobile-menu-dropdown-item language-option">
-            <a href="aboutus.html#">ger</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-        </ul>
-        <!-- /MOBILE MENU DROPDOWN -->
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item">
-        <a href="aboutus.html#" class="dropdown-control">
-          Currency:
-          <span class="selected-option currency-selected-option">usd</span>
-          <!-- SVG ARROW -->
-          <svg class="svg-arrow medium rotable">
-            <use xlink:href="#svg-arrow"></use>
-          </svg>
-          <!-- /SVG ARROW -->
-        </a>
-
-        <!-- MOBILE MENU DROPDOWN -->
-        <ul class="mobile-menu-dropdown dropdown">
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li data-currency="usd" class="mobile-menu-dropdown-item currency-option selected">
-            <a href="aboutus.html#">usd</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-          <!-- MOBILE MENU DROPDOWN ITEM -->
-          <li data-currency="euro" class="mobile-menu-dropdown-item currency-option">
-            <a href="aboutus.html#">euro</a>
-          </li>
-          <!-- /MOBILE MENU DROPDOWN ITEM -->
-        </ul>
-        <!-- /MOBILE MENU DROPDOWN -->
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-
-      <!-- MOBILE MENU ITEM -->
-      <li class="mobile-menu-item void">
-        <a href="aboutus.html#">Logout</a>
-      </li>
-      <!-- /MOBILE MENU ITEM -->
-    </ul>
-    <!-- /MOBILE MENU -->
+  <div class="absolute right-0 bottom-0 font-heading font-black text-[12rem] md:text-[16rem] leading-none text-white/[.025] select-none pointer-events-none translate-x-8 translate-y-8">
+    ABOUT
   </div>
-  <!-- /MOBILE MENU WRAP -->
 
-  <!-- SECTION NAVIGATION WRAP -->
-  <div class="section-navigation-wrap">
-    <!-- SECTION NAVIGATION -->
-    <div class="section-navigation">
-      <!-- SECTION NAVIGATION PATH -->
-      <p class="section-navigation-path">
-        <span class="path">Home</span>
-        <span class="path bold">
-          <!-- SVG ARROW -->
-          <svg class="svg-arrow tiny">
-            <use xlink:href="#svg-arrow"></use>
-          </svg>
-          <!-- /SVG ARROW -->
-        </span>
-        <span class="path current">About Us</span>
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10 w-full pb-32 md:pb-48 relative z-10">
+
+    <div class="flex items-center gap-2 mb-8 pt-10" id="hero-breadcrumb">
+      <a href="index.html" class="breadcrumb-link">Home</a>
+      <span class="text-white/20 text-xs">›</span>
+      <span class="font-heading font-semibold text-[.75rem] tracking-[.15em] uppercase text-accent">About Us</span>
+    </div>
+
+   <div class="max-w-4xl text-center mx-auto" id="hero-text">
+  <p class="section-kicker text-accent mb-3">Our Story</p>
+
+  <h1 class="font-heading font-black text-white uppercase leading-none whitespace-nowrap"
+      style="font-size:clamp(1.8rem, 4.5vw, 4rem); letter-spacing:.02em; line-height:1">
+    BUILT BY DENTISTS,<br>
+    <span style="color:#e4380f">TRUSTED</span> BY DENTISTS.
+  </h1>
+
+  <div class="mt-5 max-w-xl mx-auto">
+    <p class="text-white/50 text-sm md:text-base leading-relaxed">
+      Dentessa was founded with a simple yet meaningful intention — to support dentistry with materials that clinicians can truly trust. Every product reflects a commitment to integrity, thoughtful innovation, and respect for the profession.
+    </p>
+  </div>
+</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ BRAND STORY ══════════════════════════════════════ -->
+<section id="story" class="relative pb-20 md:pb-28 z-20">
+  
+  <div class="absolute left-0 right-0 bottom-0 top-24 md:top-32 bg-white -z-10"></div>
+
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10">
+    
+    <div class="bg-white rounded-t-xl shadow-[0_-15px_50px_rgba(0,0,0,0.15)] relative z-10 -mt-20 md:-mt-32 p-8 md:p-12 lg:p-16 border-t-[5px] border-accent">
+
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        <div class="reveal-left">
+          <div class="bg-[#f7f8fa] p-8 md:p-12 relative overflow-hidden" style="min-height:380px">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-accent-light"></div>
+            <div class="absolute bottom-4 right-4 font-heading font-black text-[5rem] md:text-[7rem] text-navy/[.04] leading-none select-none pointer-events-none">STORY</div>
+
+            <p class="section-kicker mb-4">Our Foundation</p>
+            <h2 class="section-title mb-4">BRAND<br/>STORY</h2>
+            <div class="title-line"></div>
+
+            <div class="relative mt-6 pl-5 border-l-2 border-accent">
+              <p class="text-gray-600 text-base leading-relaxed italic font-serif">
+                "When dentists are supported with reliable materials, they can focus on what matters most — delivering the best care to their patients."
+              </p>
+            </div>
+
+            <div class="mt-8 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-white font-heading font-black text-sm">D</div>
+              <div>
+                <div class="font-heading font-bold text-sm text-navy uppercase tracking-wide">Dentessa Founders</div>
+                <div class="text-gray-400 text-xs">Clinical Practitioners & Innovators</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <div class="relative pl-0 lg:pl-6">
+            <div class="story-quote-mark hidden lg:block">"</div>
+            <p class="text-gray-600 text-base leading-relaxed mb-5">
+              Dentessa was founded with a simple yet meaningful intention — to support dentistry with materials that clinicians can truly trust. Born from the collective experience of dentists who understand the realities of clinical practice, the brand was created to bridge the gap between scientific research and everyday dentistry.
+            </p>
+            <p class="text-gray-600 text-base leading-relaxed mb-5">
+              Every Dentessa product reflects a commitment to integrity, thoughtful innovation, and respect for the profession. We understand that behind every instrument and material is a clinician striving to make a real difference in a patient's life.
+            </p>
+            <p class="text-gray-600 text-base leading-relaxed">
+              Our journey is guided by the belief that when dentists are supported with reliable materials, they can focus on what matters most — delivering the best care to their patients.
+            </p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3 lg:pl-6">
+            <a href="index.html#products" class="btn-primary">
+              Explore Products
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="#philosophy" class="btn-outline-dark">
+              Our Philosophy
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ VISION & MISSION ══════════════════════════════════════ -->
+<section id="vision" class="py-20 md:py-28 bg-[#f7f8fa]">
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10">
+
+    <div class="text-center mb-14 reveal">
+      <p class="section-kicker">Where We're Headed</p>
+      <h2 class="section-title mt-1">VISION &amp; MISSION</h2>
+      <div class="title-line centered"></div>
+      <p class="text-gray-500 text-sm max-w-lg mx-auto mt-4 leading-relaxed">
+        Two guiding principles that shape every decision we make — from the materials we develop to the relationships we build with the clinical community.
       </p>
-      <!-- SECTION NAVIGATION PATH -->
     </div>
-    <!-- /SECTION NAVIGATION -->
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Vision -->
+      <div class="vm-card bg-white reveal-left" style="border:1px solid rgba(36,41,53,.08)">
+        <div class="vm-number">01</div>
+        <div class="flex items-center gap-3 mb-5">
+          <div>
+            <p class="section-kicker" style="font-size:.7rem">Long-Term Direction</p>
+            <h3 class="font-heading font-black text-2xl text-navy uppercase tracking-wide">Vision</h3>
+          </div>
+        </div>
+        <div class="h-px bg-gradient-to-r from-accent/30 to-transparent mb-5"></div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          To contribute meaningfully to the advancement of dentistry by developing materials that combine scientific integrity, clinical reliability, and thoughtful innovation.
+        </p>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Dentessa envisions a future where dentists across the world can rely on materials that support precision, confidence, and consistently predictable outcomes in everyday clinical practice.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="font-heading font-semibold text-xs tracking-widest uppercase text-accent border border-accent/25 px-2.5 py-1">Scientific Integrity</span>
+          <span class="font-heading font-semibold text-xs tracking-widest uppercase text-accent border border-accent/25 px-2.5 py-1">Precision</span>
+          <span class="font-heading font-semibold text-xs tracking-widest uppercase text-accent border border-accent/25 px-2.5 py-1">Global Reach</span>
+        </div>
+      </div>
+
+      <!-- Mission -->
+      <div class="vm-card bg-navy reveal-right" style="border:1px solid rgba(228,56,15,.12)">
+        <div class="vm-number" style="color:rgba(228,56,15,.08)">02</div>
+        <div class="flex items-center gap-3 mb-5">
+          <div>
+            <p class="font-heading font-semibold text-[.7rem] tracking-[.2em] uppercase text-accent/70">Day-to-Day Purpose</p>
+            <h3 class="font-heading font-black text-2xl text-white uppercase tracking-wide">Mission</h3>
+          </div>
+        </div>
+        <div class="h-px bg-gradient-to-r from-accent/40 to-transparent mb-5"></div>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">
+          Our mission is to create dental materials grounded in strong scientific principles and practical clinical understanding.
+        </p>
+        <p class="text-white/60 text-sm leading-relaxed">
+          By working closely with clinicians and respecting the realities of dental practice, Dentessa aims to provide solutions that are reliable, thoughtfully designed, and supportive of the dentist's commitment to delivering the highest standard of patient care.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="font-heading font-semibold text-xs tracking-widest uppercase text-accent border border-accent/25 px-2.5 py-1">Clinical Partnership</span>
+          <span class="font-heading font-semibold text-xs tracking-widest uppercase text-accent border border-accent/25 px-2.5 py-1">Reliability</span>
+          <span class="font-heading font-semibold text-xs tracking-widest uppercase text-accent border border-accent/25 px-2.5 py-1">Quality Care</span>
+        </div>
+      </div>
+
+    </div>
   </div>
-  <!-- /SECTION NAVIGATION WRAP -->
+</section>
 
-  <!-- ABOUTUS BANNER WRAP -->
-  <div class="aboutus-banner-wrap">
-    <div class="aboutus-banner-bg-fill"></div>
-    <!-- ABOUTUS BANNER -->
-    <div class="aboutus-banner">
-      <!-- ABOUTUS BANNER CONTENT -->
-      <div class="aboutus-banner-content">
-        <h6 class="title secondary">We have<br><span class="bold">the best helmets</span></h6>
-        <p class="title">More than 20 Years of Experience</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat. Duis aute irure dolor in reprehenderit in tate velit esse cillum dolore.</p>
-        <a href="aboutus.html#" class="button medium">Search Designs</a>
+
+<!-- ══════════════════════════════════════ BRAND PHILOSOPHY ══════════════════════════════════════ -->
+<section id="philosophy" class="philosophy-bg py-20 md:py-28">
+  <div class="philosophy-pattern"></div>
+  <div class="philosophy-glow"></div>
+
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <div class="reveal-left">
+        <p class="section-kicker mb-3">How We Think</p>
+        <h2 class="section-title light mb-4">BRAND<br/>PHILOSOPHY</h2>
+        <div class="title-line"></div>
+
+        <div class="mt-6">
+          <p class="philosophy-quote">
+            "Dentistry deserves materials built on <em style="color: #ff4a20; font-style: normal;">science</em>, and <em style="color: #ff4a20; font-style: normal;">clinical respect</em>."
+          </p>
+        </div>
       </div>
-      <!-- /ABOUTUS BANNER CONTENT -->
+
+      <div class="reveal-right">
+        <p class="text-white/80 text-base leading-relaxed mb-5">
+          Dentessa is guided by the belief that dentistry deserves materials built on science and clinical respect. Our philosophy is to develop solutions that genuinely support the dentist's skill rather than complicate it.
+        </p>
+        <p class="text-white/80 text-base leading-relaxed mb-5">
+          Every product is approached with careful research, thoughtful design, and a deep understanding of real clinical challenges. We don't rush to launch — we iterate until we're confident a product truly serves the practitioner.
+        </p>
+        <p class="text-white/80 text-base leading-relaxed">
+          For us, success is not measured by volume, but by the trust dentists place in our materials and the confidence they bring to everyday clinical practice.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+          <div class="bg-white/5 border border-white/10 p-5 text-center rounded hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 shadow-sm">
+            <div class="text-white font-heading font-black text-xl md:text-2xl uppercase tracking-wider mb-1">Science</div>
+            <div class="text-accent font-bold text-[.7rem] uppercase tracking-widest">Foundation</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 p-5 text-center rounded hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 shadow-sm">
+            <div class="text-white font-heading font-black text-xl md:text-2xl uppercase tracking-wider mb-1">Respect</div>
+            <div class="text-accent font-bold text-[.7rem] uppercase tracking-widest">For Clinicians</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 p-5 text-center rounded hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 shadow-sm">
+            <div class="text-white font-heading font-black text-xl md:text-2xl uppercase tracking-wider mb-1">Trust</div>
+            <div class="text-accent font-bold text-[.7rem] uppercase tracking-widest">Above All</div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <!-- /ABOUTUS BANNER -->
   </div>
-  <!-- /ABOUTUS BANNER WRAP -->
+</section>
 
-  <!-- SECTION WRAP -->
-  <div class="section-wrap">
-    <!-- FEATURES SECTION -->
-    <div class="features-section section">
-      <h6 class="pretitle">Look at all the</h6>
-      <h3 class="title large">Helmet Features</h3>
-      <hr class="line-separator short">
 
-      <!-- FEATURE LIST -->
-      <ul class="feature-list big">
-        <!-- FEATURE LIST ITEM -->
-        <li class="feature-list-item">
-          <i class="s-icon icon-energy"></i>
-          <p class="title">Ultra Durability</p>
-          <p>Lorem ipsum dolor sit amet, consecteture ipisicing elit, sed dorem eiusmod tempor incididunt ut labore et dolore.</p>
-        </li>
-        <!-- /FEATURE LIST ITEM -->
+<!-- ══════════════════════════════════════ KEY BRAND VALUES ══════════════════════════════════════ -->
+<section id="values" class="py-20 md:py-28 bg-white">
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10">
 
-        <!-- FEATURE LIST ITEM -->
-        <li class="feature-list-item">
-          <i class="s-icon icon-drop"></i>
-          <p class="title">Water Resistant</p>
-          <p>Lorem ipsum dolor sit amet, consecteture ipisicing elit, sed dorem eiusmod tempor incididunt ut labore et dolore.</p>
-        </li>
-        <!-- /FEATURE LIST ITEM -->
-
-        <!-- FEATURE LIST ITEM -->
-        <li class="feature-list-item">
-          <i class="s-icon icon-star"></i>
-          <p class="title">Super Comfort</p>
-          <p>Lorem ipsum dolor sit amet, consecteture ipisicing elit, sed dorem eiusmod tempor incididunt ut labore et dolore.</p>
-        </li>
-        <!-- /FEATURE LIST ITEM -->
-
-        <!-- FEATURE LIST ITEM -->
-        <li class="feature-list-item">
-          <i class="s-icon icon-rocket"></i>
-          <p class="title">Special Designs</p>
-          <p>Lorem ipsum dolor sit amet, consecteture ipisicing elit, sed dorem eiusmod tempor incididunt ut labore et dolore.</p>
-        </li>
-        <!-- /FEATURE LIST ITEM -->
-
-        <!-- FEATURE LIST ITEM -->
-        <li class="feature-list-item">
-          <i class="s-icon icon-like"></i>
-          <p class="title">Quality Warranty</p>
-          <p>Lorem ipsum dolor sit amet, consecteture ipisicing elit, sed dorem eiusmod tempor incididunt ut labore et dolore.</p>
-        </li>
-        <!-- /FEATURE LIST ITEM -->
-
-        <!-- FEATURE LIST ITEM -->
-        <li class="feature-list-item">
-          <i class="s-icon icon-wrench"></i>
-          <p class="title">Product Builder</p>
-          <p>Lorem ipsum dolor sit amet, consecteture ipisicing elit, sed dorem eiusmod tempor incididunt ut labore et dolore.</p>
-        </li>
-        <!-- /FEATURE LIST ITEM -->
-      </ul>
-      <!-- /FEATURE LIST -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div class="reveal-left">
+        <p class="section-kicker">What We Stand For</p>
+        <h2 class="section-title mt-1">KEY BRAND<br/>VALUES</h2>
+        <div class="title-line"></div>
+      </div>
     </div>
-    <!-- /FEATURES SECTION -->
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="value-card reveal-scale">
+        <div class="value-title">Scientific Integrity</div>
+        <p class="value-desc">Every Dentessa material is developed on strong academic foundations, supported by research and evidence-based dentistry. We do not cut corners on science.</p>
+      </div>
+
+      <div class="value-card reveal-scale" style="transition-delay:.08s">
+        <div class="value-title">Clinical Reliability</div>
+        <p class="value-desc">Our products are designed to perform predictably in real clinical situations, giving dentists the confidence they need in everyday practice — not just in lab settings.</p>
+      </div>
+
+      <div class="value-card reveal-scale" style="transition-delay:.16s">
+        <div class="value-title">Respect for the Profession</div>
+        <p class="value-desc">Dentessa is built by dentists who understand the responsibility and precision that dentistry demands. Every material we create honours that commitment.</p>
+      </div>
+
+      <div class="value-card reveal-scale" style="transition-delay:.08s">
+        <div class="value-title">Thoughtful Innovation</div>
+        <p class="value-desc">Innovation at Dentessa focuses on improving clinical outcomes rather than introducing unnecessary complexity. Every change must serve the clinician, not showcase technology.</p>
+      </div>
+
+      <div class="value-card reveal-scale" style="transition-delay:.16s">
+        <div class="value-title">Trust &amp; Long-Term Relationships</div>
+        <p class="value-desc">We believe lasting partnerships with clinicians are built through honesty, consistency, and genuine support — not just transactions or marketing claims.</p>
+      </div>
+
+      <div class="value-card reveal-scale" style="transition-delay:.24s">
+        <div class="value-title">Commitment to Quality</div>
+        <p class="value-desc">Every product reflects our dedication to precision, reliability, and responsible manufacturing. Quality is not a feature we promote — it is the standard we uphold.</p>
+      </div>
+
+    </div>
   </div>
-  <!-- /SECTION WRAP -->
+</section>
 
-  <!-- FOOTER WRAP -->
-  <footer class="footer-wrap">
-    <!-- FOOTER TOP -->
-    <div class="footer-top">
-      <!-- ABOUTUS PREVIEW -->
-      <div class="aboutus-preview">
-        <!-- LOGO -->
-        <figure class="logo">
-          <img src="img/logo-footer.png" alt="logo">
-          <figcaption>The Trickster</figcaption>
-        </figure>
-        <!-- /LOGO -->
-        <p class="description">Lorem ipsum dolor sit amet, sectetur sicing elit, sed do eiusmod. Ut enim ad minim iam, quis trud exercitation laboris. En derum de lorem sectum eusidim en amet.</p>
 
-        <!-- CONTACTUS LIST -->
-        <ul class="contactus-list">
-          <!-- CONTACTUS LIST ITEM -->
-          <li class="contactus-list-item">
-            <i class="s-icon icon-location-pin"></i>
-            <p>568 The Bebop Avenue, CA</p>
-          </li>
-          <!-- /CONTACTUS LIST ITEM -->
+<!-- ══════════════════════════════════════ WHY DENTESSA IS DIFFERENT ══════════════════════════════════════ -->
+<section id="different" class="py-20 md:py-28 bg-[#f7f8fa]">
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10">
 
-          <!-- CONTACTUS LIST ITEM -->
-          <li class="contactus-list-item">
-            <i class="s-icon icon-envelope"></i>
-            <a href="mailto:info@tricksterhelmets.com" class="link">info@tricksterhelmets.com</a>
-          </li>
-          <!-- /CONTACTUS LIST ITEM -->
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
 
-          <!-- CONTACTUS LIST ITEM -->
-          <li class="contactus-list-item">
-            <i class="s-icon icon-phone"></i>
-            <p>044 - 555 - 123 - 1234</p>
-          </li>
-          <!-- /CONTACTUS LIST ITEM -->
-        </ul>
-        <!-- /CONTACTUS LIST -->
+      <!-- Left: section header -->
+      <div>
+        <div class="reveal-left">
+          <p class="section-kicker mb-3">Our Differentiators</p>
+          <h2 class="section-title mb-4">WHY DENTESSA<br/>IS DIFFERENT</h2>
+          <div class="title-line"></div>
+          <p class="text-gray-500 text-sm leading-relaxed mt-4 max-w-sm">
+            Dentessa stands apart because it is shaped by the perspectives of clinicians who understand both the science and the realities of everyday dental practice.
+          </p>
+        </div>
+
+
       </div>
-      <!-- /ABOUTUS PREVIEW -->
 
-      <!-- CONTENT DROPDOWN COLUMN -->
-      <div class="content-dropdown-column">
-        <h6 class="title small secondary">Sitemap</h6>
-        <hr class="line-separator">
-        <!-- LINK LIST -->
-        <ul class="link-list decorated">
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="index.html">
-              Home
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
+      <!-- Right: timeline items -->
+      <div class="space-y-0">
 
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html">
-              About Us
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
+        <div class="timeline-item reveal-right">
+          <div class="timeline-left">
+            <div class="timeline-dot">01</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="pb-10">
+            <h4 class="font-heading font-black text-lg uppercase tracking-wide text-navy mb-2">Clinician-Shaped Perspective</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">Our materials are shaped by dentists who have faced the same chairside challenges your patients present. This isn't marketing language — it's how we develop every formula.</p>
+          </div>
+        </div>
 
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="shop-grid.html">
-              Shop
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
+        <div class="timeline-item reveal-right" style="transition-delay:.1s">
+          <div class="timeline-left">
+            <div class="timeline-dot">02</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="pb-10">
+            <h4 class="font-heading font-black text-lg uppercase tracking-wide text-navy mb-2">Research Meets Reality</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">We balance strong research foundations with practical clinical insight — ensuring our products don't just perform in the lab, but are reliable where it matters most: chairside.</p>
+          </div>
+        </div>
 
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="blog.html">
-              Our Blog
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
+        <div class="timeline-item reveal-right" style="transition-delay:.2s">
+          <div class="timeline-left">
+            <div class="timeline-dot">03</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="pb-10">
+            <h4 class="font-heading font-black text-lg uppercase tracking-wide text-navy mb-2">Consistency Over Hype</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">We don't introduce new products to create buzz. We launch when we're genuinely confident a material adds meaningful value to clinical outcomes.</p>
+          </div>
+        </div>
 
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="contactus.html">
-              Contact
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
+        <div class="timeline-item reveal-right" style="transition-delay:.3s">
+          <div class="timeline-left">
+            <div class="timeline-dot">04</div>
+            <div style="height:0"></div>
+          </div>
+          <div class="pb-4">
+            <h4 class="font-heading font-black text-lg uppercase tracking-wide text-navy mb-2">Genuine Trust</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">We build trust by being honest about what our products can and cannot do — and by standing behind every material we sell with clinical support and a quality guarantee.</p>
+          </div>
+        </div>
 
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="profile.html">
-              Your Account
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              FAQs
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              Our Guarantee
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-        </ul>
-        <!-- /LINK LIST -->
       </div>
-      <!-- /CONTENT DROPDOWN COLUMN -->
-
-      <!-- CONTENT DROPDOWN COLUMN -->
-      <div class="content-dropdown-column">
-        <h6 class="title small secondary">Company</h6>
-        <hr class="line-separator">
-        <!-- LINK LIST -->
-        <ul class="link-list decorated">
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              Shipping Policy
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              International Shipping
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              Affiliates
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              Our Sponsors
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              Privacy Policy
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              Terms and Conditions
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-
-          <!-- LINK LIST ITEM -->
-          <li class="link-list-item">
-            <a href="aboutus.html#">
-              Pay on Arrival
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow tiny">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-          </li>
-          <!-- /LINK LIST ITEM -->
-        </ul>
-        <!-- /LINK LIST -->
-      </div>
-      <!-- /CONTENT DROPDOWN COLUMN -->
-
-      <!-- CONTENT DROPDOWN COLUMN -->
-      <div class="content-dropdown-column full">
-        <h6 class="title small secondary">Quick Contact</h6>
-        <hr class="line-separator">
-        <p class="description">Lorem ipsum dolor sit amet, sectetur adipisicing elit, sed do eiusmod en derum der trenser lorem.</p>
-        <form class="quick-contact-form">
-          <input type="text" class="dark" name="qc_email" placeholder="Email">
-          <textarea name="qc_message" class="dark" placeholder="Message"></textarea>
-          <button class="button small">Send Message</button>
-        </form>
-      </div>
-      <!-- /CONTENT DROPDOWN COLUMN -->
     </div>
-    <!-- /FOOTER TOP -->
-
-    <!-- FOOTER BOTTOM -->
-    <div class="footer-bottom">
-      <h6 class="title tiny secondary">Payment Methods:</h6>
-      <!-- PAYMENT LIST -->
-      <ul class="payment-list">
-        <!-- PAYMENT LIST ITEM -->
-        <li class="payment-list-item">
-          <a href="aboutus.html#">
-            <img src="img/home/card_01.png" alt="card01">
-          </a>
-        </li>
-        <!-- PAYMENT LIST ITEM -->
-
-        <!-- PAYMENT LIST ITEM -->
-        <li class="payment-list-item">
-          <a href="aboutus.html#">
-            <img src="img/home/card_02.png" alt="card02">
-          </a>
-        </li>
-        <!-- PAYMENT LIST ITEM -->
-
-        <!-- PAYMENT LIST ITEM -->
-        <li class="payment-list-item">
-          <a href="aboutus.html#">
-            <img src="img/home/card_03.png" alt="card03">
-          </a>
-        </li>
-        <!-- PAYMENT LIST ITEM -->
-
-        <!-- PAYMENT LIST ITEM -->
-        <li class="payment-list-item">
-          <a href="aboutus.html#">
-            <img src="img/home/card_04.png" alt="card04">
-          </a>
-        </li>
-        <!-- PAYMENT LIST ITEM -->
-
-        <!-- PAYMENT LIST ITEM -->
-        <li class="payment-list-item">
-          <a href="aboutus.html#">
-            <img src="img/home/card_05.png" alt="card05">
-          </a>
-        </li>
-        <!-- PAYMENT LIST ITEM -->
-
-        <!-- PAYMENT LIST ITEM -->
-        <li class="payment-list-item">
-          <a href="aboutus.html#">
-            <img src="img/home/card_06.png" alt="card06">
-          </a>
-        </li>
-        <!-- PAYMENT LIST ITEM -->
-      </ul>
-      <!-- /PAYMENT LIST -->
-    </div>
-    <!-- /FOOTER BOTTOM -->
-  </footer>
-  <!-- /FOOTER WRAP -->
-
-  <!-- WIDGET LINE WRAP -->
-  <div class="widget-line-wrap dark widget-line-copy">
-    <!-- WIDGET LINE -->
-    <div class="widget-line big">
-      <p class="copyright"><span class="bold">The Trickster</span> | All Rights Reserved 2016</p>
-      <!-- ACTIONS LIST -->
-      <ul class="actions-list right">
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-facebook"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-rss"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-
-        <!-- ACTIONS LIST ITEM -->
-        <li class="actions-list-item">
-          <!-- SOCIAL LINK -->
-          <div class="social-link">
-            <a href="aboutus.html#">
-              <i class="fa fa-vimeo"></i>
-            </a>
-          </div>
-          <!-- /SOCIAL LINK -->
-        </li>
-        <!-- ACTIONS LIST ITEM -->
-      </ul>
-      <!-- ACTIONS LIST -->
-    </div>
-    <!-- WIDGET LINE -->
   </div>
-  <!-- WIDGET LINE WRAP -->
+</section>
 
-<!-- SVG ICONS -->
-  <!-- SVG ARROW -->
-  <svg style="display: none;">
-  	<symbol id="svg-arrow" viewBox="0 0 3.923 6.64014" preserveAspectRatio="xMinYMin meet">
-  		<path d="M3.711,2.92L0.994,0.202c-0.215-0.213-0.562-0.213-0.776,0c-0.215,0.215-0.215,0.562,0,0.777l2.329,2.329
-  			L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.717-2.718C3.925,3.482,3.925,3.135,3.711,2.92z"/>
-  	</symbol>
-  </svg>
-  <!-- /SVG ARROW -->
 
-  <!-- SVG CHECK -->
-  <svg style="display: none;">
-    <symbol id="svg-check" viewBox="0 0 20 16" preserveAspectRatio="xMinYMin meet">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M19.692,3.398L7.764,15.669c-0.412,0.424-1.08,0.424-1.491,0
-    	L0.308,9.534C-0.104,9.11-0.104,8.423,0.308,8l1.491-1.534c0.412-0.424,1.08-0.424,1.491,0l3.728,3.834L16.71,0.33
-    	c0.412-0.423,1.08-0.423,1.491,0l1.491,1.534C20.104,2.288,20.104,2.975,19.692,3.398z"/>
-    </symbol>
-  </svg>
-  <!-- /SVG CHECK -->
+<!-- ══════════════════════════════════════ TARGET AUDIENCE ══════════════════════════════════════ -->
+<section id="audience" class="py-20 md:py-28 bg-white">
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10">
 
-  <!-- SVG MAG GLASS -->
-  <svg style="display: none;">
-    <symbol id="svg-mag-glass" viewBox="0 0 12 12" preserveAspectRatio="xMinYMin meet">
-      <path d="M3.094,6.916c-0.275-0.269-0.482-0.573-0.62-0.912C2.336,5.666,2.267,5.32,2.267,4.968
-      	c0-0.351,0.069-0.699,0.207-1.041c0.138-0.344,0.345-0.65,0.62-0.92c0.275-0.269,0.587-0.468,0.934-0.599
-      	c0.347-0.13,0.702-0.195,1.066-0.195s0.72,0.064,1.067,0.195c0.346,0.131,0.657,0.331,0.933,0.599c0.275,0.27,0.482,0.576,0.62,0.92
-      	c0.139,0.342,0.207,0.69,0.207,1.041c0,0.353-0.068,0.698-0.207,1.036c-0.138,0.339-0.345,0.644-0.62,0.912
-      	c-0.275,0.27-0.587,0.471-0.933,0.605C5.813,7.657,5.458,7.724,5.094,7.724s-0.72-0.066-1.066-0.202
-      	C3.681,7.387,3.369,7.186,3.094,6.916z M1.494,1.443C0.996,1.93,0.622,2.479,0.374,3.092C0.125,3.705,0,4.328,0,4.962
-      	s0.125,1.257,0.374,1.87c0.248,0.611,0.622,1.161,1.12,1.648c0.399,0.391,0.844,0.703,1.333,0.938
-      	c0.488,0.234,0.995,0.391,1.52,0.469c0.525,0.078,1.052,0.074,1.58-0.013C6.456,9.786,6.961,9.621,7.44,9.379l2.294,2.241
-      	c0.133,0.13,0.28,0.226,0.44,0.286c0.159,0.061,0.326,0.091,0.5,0.091c0.173,0,0.34-0.03,0.5-0.091s0.307-0.156,0.439-0.286
-      	c0.134-0.13,0.231-0.274,0.293-0.431c0.063-0.156,0.094-0.318,0.094-0.488s-0.031-0.332-0.094-0.488
-      	c-0.062-0.157-0.159-0.301-0.293-0.431L9.401,7.619C9.712,7.143,9.93,6.63,10.055,6.082c0.124-0.547,0.157-1.094,0.1-1.641
-      	c-0.058-0.547-0.209-1.08-0.453-1.596c-0.245-0.517-0.58-0.983-1.007-1.401C8.196,0.967,7.634,0.605,7.008,0.363
-      	C6.381,0.119,5.743-0.003,5.094-0.003S3.808,0.119,3.181,0.363C2.554,0.605,1.991,0.967,1.494,1.443z"/>
-    </symbol>
-  </svg>
-  <!-- /SVG MAG GLASS -->
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
 
-  <!-- SVG CROSS -->
-  <svg style="display: none;">
-   <symbol id="svg-cross" viewBox="0 0 10 10" preserveAspectRatio="xMinYMin meet">
-      <g>
-      	<g>
-      		<polygon fill-rule="evenodd" clip-rule="evenodd" points="9.949,1.465 8.535,0.051 5,3.586 1.465,0.051
-      			0.051,1.465 3.586,5 0.051,8.535 1.465,9.949 5,6.414 8.535,9.949 9.949,8.535 6.414,5 		"/>
-      	</g>
-      </g>
-    </symbol>
-  </svg>
-  <!-- /SVG CROSS -->
+      <!-- Left: content -->
+      <div class="reveal-left">
+        <p class="section-kicker mb-3">Who We Serve</p>
+        <h2 class="section-title mb-4">TARGET<br/>AUDIENCE</h2>
+        <div class="title-line"></div>
+        <p class="text-gray-600 text-base leading-relaxed mt-5 mb-6">
+          Dentessa is designed for dental professionals who value scientific credibility, clinical reliability, and thoughtful material design. Our products serve practitioners who are committed to delivering precise, predictable, and high-quality patient care.
+        </p>
+        <p class="text-gray-600 text-base leading-relaxed mb-8">
+          By understanding the challenges clinicians face chairside, Dentessa aims to support every specialist in delivering the outcomes their patients deserve.
+        </p>
 
-  <!-- SVG CART -->
-  <svg style="display: none;">
-   <symbol id="svg-cart" viewBox="0 0 22 18" preserveAspectRatio="xMinYMin meet">
-      <g>
-      	<g>
-      		<path fill-rule="evenodd" clip-rule="evenodd" d="M16.991,13.991c-1.106,0-2.003,0.896-2.003,2.003s0.896,2.003,2.003,2.003
-      			s2.003-0.896,2.003-2.003S18.098,13.991,16.991,13.991z M8.012,13.991c-1.105,0-2.003,0.896-2.003,2.003s0.897,2.003,2.003,2.003
-      			c1.106,0,2.003-0.896,2.003-2.003S9.118,13.991,8.012,13.991z M5,2V1c0-0.552-0.447-1-1-1H1C0.447,0,0,0.448,0,1v1
-      			c0,0.553,0.447,1,1,1h2.182L5,13h15l2-11H5z M18.331,11H6.669L5.396,4h14.207L18.331,11z"/>
-      	</g>
-      </g>
-      <rect x="3.734" fill-rule="evenodd" clip-rule="evenodd" width="1.266" height="3"/>
-    </symbol>
-  </svg>
-  <!-- /SVG CART -->
+        <!-- Audience tags -->
+        <div class="flex flex-wrap gap-2">
+          <span class="audience-tag">
+            General Dentists
+          </span>
+          <span class="audience-tag">
+            Endodontists
+          </span>
+          <span class="audience-tag">
+            Restorative Specialists
+          </span>
+          <span class="audience-tag">
+            Dental Institutions
+          </span>
+          <span class="audience-tag">
+            Dental Colleges
+          </span>
+        </div>
+      </div>
 
-  <!-- SVG STAR -->
-  <svg style="display: none;">
-    <symbol id="svg-star" viewBox="0 0 15 14" preserveAspectRatio="xMinYMin meet">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5-0.002l2.473,4.399L15,5.345l-3.5,3.667l0.636,4.985
-    	L7.5,11.863l-4.635,2.134L3.5,9.012L0,5.345l5.028-0.948L7.5-0.002"/>
-    </symbol>
-  </svg>
-  <!-- /SVG STAR -->
+      <!-- Right: highlight cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal-right">
 
-  <!-- SVG BURGER -->
-  <svg style="display: none;">
-    <symbol id="svg-burger" viewBox="0 0 22 14" preserveAspectRatio="xMinYMin meet">
-      <g>
-      	<g>
-      		<path fill-rule="evenodd" clip-rule="evenodd" d="M1,2h20c0.553,0,1-0.448,1-1s-0.447-1-1-1H1C0.448,0,0,0.448,0,1
-      			S0.448,2,1,2z M21,6H1C0.448,6,0,6.448,0,7c0,0.553,0.448,1,1,1h20c0.553,0,1-0.447,1-1C22,6.448,21.553,6,21,6z M21,12H1
-      			c-0.552,0-1,0.447-1,1s0.448,1,1,1h20c0.553,0,1-0.447,1-1S21.553,12,21,12z"/>
-      	</g>
-      </g>
-    </symbol>
-  </svg>
-  <!-- /SVG BURGER -->
-<!-- /SVG ICONS -->
+        <div class="bg-[#f7f8fa] p-6 border border-transparent hover:border-accent/20 transition-colors">
+          <h4 class="font-heading font-black text-base uppercase tracking-wide text-navy mb-2">Academic Institutions</h4>
+          <p class="text-gray-500 text-xs leading-relaxed">Dental colleges and universities seeking research-backed materials for education and clinical training programs.</p>
+        </div>
 
-<!-- jQuery -->
-<script src="js/vendor/jquery-3.1.0.min.js"></script>
-<!-- magnificPopup -->
-<script src="js/vendor/jquery.magnific-popup.min.js"></script>
-<!-- imgLiquid -->
-<script src="js/vendor/imgLiquid-min.js"></script>
-<!-- liquid -->
-<script src="js/liquid.js"></script>
-<!-- dropdowns -->
-<script src="js/dropdowns.js"></script>
-<!-- popups -->
-<script src="js/popups.js"></script>
+        <div class="bg-navy p-6">
+          <h4 class="font-heading font-black text-base uppercase tracking-wide text-white mb-2">Multi-Chair Clinics</h4>
+          <p class="text-white/45 text-xs leading-relaxed">High-volume practices that demand consistent quality, dependable supply chains, and dedicated account support.</p>
+        </div>
+
+        <div class="bg-navy p-6">
+          <h4 class="font-heading font-black text-base uppercase tracking-wide text-white mb-2">Solo Practitioners</h4>
+          <p class="text-white/45 text-xs leading-relaxed">Independent dentists who want materials that simplify the chairside experience without compromising clinical outcomes.</p>
+        </div>
+
+        <div class="bg-[#f7f8fa] p-6 border border-transparent hover:border-accent/20 transition-colors">
+          <h4 class="font-heading font-black text-base uppercase tracking-wide text-navy mb-2">Specialist Clinicians</h4>
+          <p class="text-gray-500 text-xs leading-relaxed">Endodontists, restorative specialists, and surgical dentists requiring materials engineered for precise, predictable outcomes.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ══════════════════════════════════════ TEAM ══════════════════════════════════════ -->
+<section id="team" class="py-20 md:py-28 bg-[#f7f8fa]">
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+      <div class="reveal-left">
+        <p class="section-kicker mb-3">The People Behind Dentessa</p>
+        <h2 class="section-title mb-0">MEET THE<br/>TEAM</h2>
+        <div class="title-line"></div>
+      </div>
+          </div>
+
+    <!-- Cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Dr. Anand Mohatta -->
+      <div class="team-card reveal-scale">
+        <div class="team-img-wrap">
+          <img src="assets/team/Dr. Anand Mohatta (1).jpeg" alt="Dr. Anand Mohatta"/>
+        </div>
+        <div class="team-body">
+          <div class="team-role">Chief Executive Officer</div>
+          <div class="team-name">Dr. Anand<br/>Mohatta</div>
+          <div class="team-divider"></div>
+          <p class="team-credential">C.E.O &nbsp;·&nbsp; Dentessa by Atyanta</p>
+        </div>
+      </div>
+
+      <!-- Dr. Sheetal Tripathi -->
+      <div class="team-card reveal-scale" style="transition-delay:.12s">
+        <div class="team-img-wrap">
+          <img src="assets/team/Dr. Sheetal Tripathi (1).jpeg" alt="Dr. Sheetal Tripathi"/>
+        </div>
+        <div class="team-body">
+          <div class="team-role">Managing Director</div>
+          <div class="team-name">Dr. Sheetal<br/>Tripathi</div>
+          <div class="team-divider"></div>
+          <p class="team-credential">M.D. &nbsp;·&nbsp; Dentessa by Atyanta</p>
+        </div>
+      </div>
+
+      <!-- Dr. Abhishek Mahajan -->
+      <div class="team-card reveal-scale" style="transition-delay:.24s">
+        <div class="team-img-wrap">
+          <img src="assets/team/Dr Abhishek Mahajan (1).jpeg" alt="Dr. Abhishek Mahajan"/>
+        </div>
+        <div class="team-body">
+          <div class="team-role">Chief Business Officer</div>
+          <div class="team-name">Dr. Abhishek<br/>Mahajan</div>
+          <div class="team-divider"></div>
+          <p class="team-credential">C.B.O &nbsp;·&nbsp; Dentessa by Atyanta</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ FOOTER ══════════════════════════════════════ -->
+ <footer class="py-14 bg-navy">
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-10 border-b border-white/10">
+
+      <div class="col-span-2 md:col-span-1">
+        <div class="footer-logo mb-3">
+          <img src="assets/Dentessa Logo 2.png" alt="Dentessa Logo" class="h-10 w-auto">
+        </div>
+        <p class="text-white/40 text-sm leading-relaxed mb-5">
+          Precision dental instruments for clinical professionals. Quality you can trust at every stage of patient care.
+        </p>
+       <div class="flex gap-3">
+          <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center text-white/40 hover:border-accent hover:text-accent transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center text-white/40 hover:border-accent hover:text-accent transition-colors">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center text-white/40 hover:border-accent hover:text-accent transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-4">Products</div>
+        <a href="shop.html?cat=surgery" class="footer-link">Surgery</a>
+        <a href="shop.html?cat=Diagnosis%20%26%20Prophylaxis" class="footer-link">Diagnosis & Prophylaxis</a>
+        <a href="shop.html?cat=Restorative%20Dentistry" class="footer-link">Restorative Dentistry</a>
+        <a href="shop.html?cat=endodontics" class="footer-link">Endodontics</a>
+      </div>
+
+      <div>
+        <div class="footer-heading font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-4">Company</div>
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="shop.html" class="footer-link">shop</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+       
+      </div>
+
+      <div>
+        <div class="footer-heading font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-4">Support</div>
+        <a href="shipping-policy.html" class="footer-link">Shipping Policy</a>
+         <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+        <a href="return-policy.html" class="footer-link">Return & Refund</a>
+        <a href="cancellation-policy.html" class="footer-link">Cancellation Policy</a>
+        <a href="disclaimer.html" class="footer-link">Disclaimer</a>
+      </div>
+
+    </div>
+
+    <div class="pt-6 flex flex-col sm:flex-row justify-between gap-3 items-center">
+      <p class="text-white/25 text-xs">© 2026 Dentessa. All rights reserved.</p>
+      <p class="text-white/25 text-xs">ISO 13485 Certified · CE Marked · Made with ♥ for dental care</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════ SCRIPTS ══════════════════════════════════════ -->
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ── Navbar scroll */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* ── Mobile menu */
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  /* ── Hero entrance */
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .from('#hero-breadcrumb', { y: 20, opacity: 0, duration: .6 })
+    .from('#hero-text',        { y: 40, opacity: 0, duration: .9 }, '-=.3');
+
+  /* ── Generic scroll reveals */
+  const revealMap = {
+    '.reveal':       { y: 0 },
+    '.reveal-left':  { x: 0 },
+    '.reveal-right': { x: 0 },
+    '.reveal-scale': { scale: 1 },
+    '.reveal-fade':  {},
+  };
+  Object.entries(revealMap).forEach(([sel, toVars]) => {
+    document.querySelectorAll(sel).forEach(el => {
+      gsap.to(el, {
+        ...toVars, opacity: 1, duration: .8,
+        delay: el.style.transitionDelay ? parseFloat(el.style.transitionDelay) : 0,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+  });
+
+  /* ── Timeline line draw */
+  gsap.utils.toArray('.timeline-line').forEach(line => {
+    gsap.from(line, {
+      scaleY: 0, transformOrigin: 'top',
+      duration: .8, ease: 'power2.out',
+      scrollTrigger: { trigger: line, start: 'top 85%', once: true }
+    });
+  });
+
+  /* ── Value cards stagger */
+  gsap.utils.toArray('.value-card').forEach((card, i) => {
+    gsap.from(card, {
+      y: 30, opacity: 0, duration: .65, ease: 'power2.out',
+      delay: (i % 3) * .1,
+      scrollTrigger: { trigger: card, start: 'top 90%', once: true }
+    });
+  });
+
+  /* ── Smooth anchor scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 68, behavior: 'smooth' });
+        document.getElementById('mobile-menu').classList.remove('open');
+      }
+    });
+  });
+
+    window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+</script>
+
 </body>
 </html>
