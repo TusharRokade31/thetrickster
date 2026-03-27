@@ -267,7 +267,7 @@
       ],
       "related_ids": ["fognix", "glanzaa", "markx"]
     },
-      {
+    {
       "id": "statrix",
       "name": "Statrix",
       "category": "Surgery",
@@ -377,8 +377,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Softens GP & Sealers", "Fast Action", "Non-Toxic"],
       "images": {
-        "main": "images/products/solvexa-main.jpg",
-        "gallery": ["images/products/solvexa-1.jpg", "images/products/solvexa-2.jpg", "images/products/solvexa-3.jpg"]
+        "main": "img/products01/Solvexa.png",
+        "gallery": ["img/products01/Solvexa.png"]
       },
       "description": {
         "about": "Solvexa is a sophisticated gutta percha solvent engineered for efficient root canal retreatment. Its rapid softening action combined with controlled evaporation rate provides optimal working time for GP and sealer removal without compromising pulp tissue safety.",
@@ -425,8 +425,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["No Dripping", "Silica Free", "Easy Rinse Off"],
       "images": {
-        "main": "images/products/nexaetch-main.jpg",
-        "gallery": ["images/products/nexaetch-1.jpg", "images/products/nexaetch-2.jpg", "images/products/nexaetch-3.jpg"]
+        "main": "img/products01/Nexa-Etch.png",
+        "gallery": ["img/products01/Nexa-Etch.png"]
       },
       "description": {
         "about": "Nexa-Etch is a premium 37% phosphoric acid gel with optimal concentration and controlled viscosity. The silica-free formulation ensures clean rinse-off while the high visibility formula allows precise application control in both enamel and dentin etching protocols.",
@@ -473,8 +473,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["No Etching or Bonding", "Durable Restorations", "Pediatric Friendly"],
       "images": {
-        "main": "images/products/resinxgic-main.jpg",
-        "gallery": ["images/products/resinxgic-1.jpg", "images/products/resinxgic-2.jpg", "images/products/resinxgic-3.jpg"]
+        "main": "img/products01/ResinX GIC.png",
+        "gallery": ["img/products01/ResinX GIC.png"]
       },
       "description": {
         "about": "Resin X-GIC combines the benefits of light-cured technology with proven glass ionomer properties. This fluoride-releasing cement offers excellent adhesion, low solubility, and high flexural strength, making it ideal for aesthetic restorations across all age groups.",
@@ -522,8 +522,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Pulp Protection", "Promotes Repair", "Controlled Set"],
       "images": {
-        "main": "images/products/linical-main.jpg",
-        "gallery": ["images/products/linical-1.jpg", "images/products/linical-2.jpg", "images/products/linical-3.jpg"]
+        "main": "img/products01/LiniCal.png",
+        "gallery": ["img/products01/LiniCal.png"]
       },
       "description": {
         "about": "Linical is a light-cured calcium hydroxide liner designed for quick, effective pulp capping and protection. Its alkaline pH and moisture-tolerant formula make it ideal for deep cavity preparations, providing reliable dentin-pulp complex protection.",
@@ -571,8 +571,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Easy Removal", "Optimal Seal", "Radio-opaque"],
       "images": {
-        "main": "images/products/interfill-main.jpg",
-        "gallery": ["images/products/interfill-1.jpg", "images/products/interfill-2.jpg", "images/products/interfill-3.jpg"]
+        "main": "img/products01/Inter-Fill.png",
+        "gallery": ["img/products01/Inter-Fill.png"]
       },
       "description": {
         "about": "Inter-Fill is a soft-setting temporary filling material engineered for secure cavity sealing during and after endodontic therapy. Its radio-opaque formulation, quick set time, and easy removal make it the ideal choice for interim restorations.",
@@ -618,8 +618,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Moisture Control", "Light Cured", "Non Dripping"],
       "images": {
-        "main": "images/products/barrixa-main.jpg",
-        "gallery": ["images/products/barrixa-1.jpg", "images/products/barrixa-2.jpg", "images/products/barrixa-3.jpg"]
+        "main": "img/products01/Barrixa.png",
+        "gallery": ["img/products01/Barrixa.png"]
       },
       "description": {
         "about": "Barrixa is a light-cured resin barrier designed for superior soft tissue protection during aesthetic and restorative procedures. Its contrasting colour, excellent tissue isolation, and flexible-yet-strong formulation make it essential for moisture control and chemical protection.",
@@ -667,8 +667,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Fast Acting", "Streak-free", "Clear Vision"],
       "images": {
-        "main": "images/products/fognix-main.jpg",
-        "gallery": ["images/products/fognix-1.jpg", "images/products/fognix-2.jpg", "images/products/fognix-3.jpg"]
+        "main": "img/products01/Fog-Nix.png",
+        "gallery": ["img/products01/Fog-Nix.png"]
       },
       "description": {
         "about": "Fog-Nix is a multi-surface anti-fog spray that provides crystal-clear visibility on all dental equipment surfaces. Its fast-acting, streak-free formula ensures long-lasting clarity even in high-humidity environments, enhancing clinical efficiency and safety.",
@@ -705,7 +705,6 @@
       ],
       "related_ids": ["gleam", "glanzaa", "markx"]
     },
-  
     {
       "id": "glanzaa",
       "name": "Glanzaa",
@@ -717,8 +716,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Enhanced Luster", "Exceptional Polish", "Universal Application"],
       "images": {
-        "main": "images/products/glanzaa-main.jpg",
-        "gallery": ["images/products/glanzaa-1.jpg", "images/products/glanzaa-2.jpg", "images/products/glanzaa-3.jpg"]
+        "main": "img/products01/Glanzaa.png",
+        "gallery": ["img/products01/Glanzaa.png"]
       },
       "description": {
         "about": "Glanzaa is a premium diamond-enhanced polishing paste designed for ultra-high luster on all restoration types. Its micronized particle size and smooth consistency ensure time-efficient polishing of ceramic, metal, zirconia, and composite surfaces with professional results.",
@@ -765,8 +764,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Targets Caries", "Visible Contrast", "Easy to Rinse"],
       "images": {
-        "main": "images/products/markx-main.jpg",
-        "gallery": ["images/products/markx-1.jpg", "images/products/markx-2.jpg", "images/products/markx-3.jpg"]
+        "main": "img/products01/Mark-X.png",
+        "gallery": ["img/products01/Mark-X.png"]
       },
       "description": {
         "about": "Mark X is a diagnostic dye that provides visual identification of infected carious dentin, enabling clinicians to precisely differentiate between infected and affected dentin. Its contrasting colour, quick application, and water-soluble formulation enhance clinical accuracy and confidence.",
@@ -803,7 +802,6 @@
       ],
       "related_ids": ["fognix", "gleam", "glanzaa"]
     },
-  
     {
       "id": "statrixaqua",
       "name": "Statrix Aqua",
@@ -815,8 +813,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Fast Acting Formula", "Buffered Solution", "Effective Hemostasis"],
       "images": {
-        "main": "images/products/statrixaqua-main.jpg",
-        "gallery": ["images/products/statrixaqua-1.jpg", "images/products/statrixaqua-2.jpg", "images/products/statrixaqua-3.jpg"]
+        "main": "img/products01/StatriX Aqua.png",
+        "gallery": ["img/products01/StatriX Aqua.png"]
       },
       "description": {
         "about": "Statrix Aqua is a liquid hemostatic solution formulated as a buffered astringent for rapid bleeding control. Its versatile application in surgical and restorative procedures, combined with excellent tissue tolerance, provides a clear working field with minimal discomfort to patients.",
@@ -865,8 +863,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Excellent Retraction", "Effective Hemostasis", "Precise Application"],
       "images": {
-        "main": "images/products/retrix-main.jpg",
-        "gallery": ["images/products/retrix-1.jpg", "images/products/retrix-2.jpg", "images/products/retrix-3.jpg"]
+        "main": "img/products01/RetriX.png",
+        "gallery": ["img/products01/RetriX.png"]
       },
       "description": {
         "about": "Retrix is an astringent paste formulated for gentle yet effective gingival retraction. Its cordless application technology, combined with hemostatic properties, eliminates the need for retraction cord while providing excellent tissue displacement and moisture control.",
