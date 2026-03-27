@@ -1,48 +1,171 @@
 {
-  "page_meta": {
-    "category_name": "Endodontics",
-    "sub_heading": "Healing Beyond the Surface — Perfect Seal · Efficient Canal Cleaning · Bioactive · Biocompatible",
-    "categories": ["Endodontics", "Restorative Dentistry", "Diagnosis & Prophylaxis", "Surgery"],
-    "product_types": ["Sealers", "Lubricants & Chelants", "Intracanal Dressings", "Solvents"]
-  },
   "products": [
     {
-      "id": "bio-vion",
+      "id": "biovion",
       "name": "Bio-Vion",
       "category": "Endodontics",
+      "type": "Sealers",
+      "pack_size": "2 g × 1 syringe",
       "tagline": "Crafted to Seal, Made to Heal",
       "short_descriptor": "Bioceramic Root Canal Sealer",
       "price": "Enquire for Price",
-      "pack_size": "2 g × 1 syringe",
+      "feature_tags": ["Long Lasting Seal", "No Post Operative Pain", "Unparalleled Flow"],
       "images": {
-        "main": "img/products/bio-vion-main.jpg",
-        "gallery": [
-          "img/products/bio-vion-main.jpg",
-          "img/products/bio-vion-box-front.jpg",
-          "img/products/bio-vion-box-side.jpg",
-          "img/products/bio-vion-xray.jpg"
-        ]
+        "main": "img/products01/BioVio.png",
+        "gallery": ["img/products01/BioVio.png"]
       },
       "description": {
-        "about": "Bio-Vion is Dentessa's next-generation injectable bioceramic root canal sealer, engineered to deliver a superior hermetic seal, excellent biocompatibility, and effortless clinical handling. Developed for the modern endodontist, Bio-Vion's single-component premixed formula eliminates the need for mixing and sets in the presence of moisture — working with the clinical environment rather than against it. Compatible with cold and warm obturation techniques, Bio-Vion integrates seamlessly into single cone, lateral compaction, or thermoplasticised gutta percha workflows, giving clinicians the freedom to work in their preferred technique without compromise.",
+        "about": "Bio-Vion is Dentessa's next-generation injectable bioceramic root canal sealer, engineered to deliver a superior hermetic seal, excellent biocompatibility, and effortless clinical handling. Developed for the modern endodontist, Bio-Vion's single-component premixed formula eliminates the need for mixing and sets in the presence of moisture — working with the clinical environment rather than against it.\n\nCompatible with cold and warm obturation techniques, Bio-Vion integrates seamlessly into single cone, lateral compaction, or thermoplasticised gutta percha workflows, giving clinicians the freedom to work in their preferred technique without compromise.",
         "indications": [
           "Permanent obturation of root canals",
           "Compatible with both cold and warm obturation techniques",
           "Suitable for use with single cone, lateral compaction, or thermoplasticised gutta percha techniques"
-        ],
-        "benefits": [
-          {"title": "Bioactivity", "detail": "Promotes hard tissue formation, supporting natural periapical healing."},
-          {"title": "Superior Seal", "detail": "Excellent sealing ability — adapts to canal anatomy and fills accessory canals."},
-          {"title": "Radiopaque", "detail": "Clearly visible on X-rays for accurate clinical assessment post-obturation."}
+        ]
+      },
+      "key_benefits": [
+        {
+          "benefit": "Bioactivity",
+          "detail": "Promotes hard tissue formation, supporting natural periapical healing."
+        },
+        {
+          "benefit": "Superior Seal",
+          "detail": "Excellent sealing ability — adapts to canal anatomy and fills accessory canals."
+        },
+        {
+          "benefit": "Radiopaque",
+          "detail": "Clearly visible on X-rays for accurate clinical assessment post-obturation."
+        },
+        {
+          "benefit": "Premixed Syringe",
+          "detail": "Ready-to-use — no mixing, no waste, consistent dose every time."
+        },
+        {
+          "benefit": "Moisture-Activated Set",
+          "detail": "Sets in the presence of moisture, eliminating sensitivity to a wet canal environment."
+        },
+        {
+          "benefit": "High pH (>12)",
+          "detail": "Antimicrobial alkaline environment inhibits residual bacterial activity."
+        },
+        {
+          "benefit": "Non-Shrinking",
+          "detail": "Dimensionally stable on setting — no shrinkage, no microleakage gaps."
+        }
+      ],
+      "comparison_table": {
+        "headers": ["PARAMETER", "BIO-VION", "ZOE SEALER", "EPOXY RESIN"],
+        "rows": [
+          {
+            "parameter": "Biocompatibility",
+            "biovion": "✓ ✓ ✓",
+            "zoersealer": "✓ ✓",
+            "epoxyresin": "✗"
+          },
+          {
+            "parameter": "Setting in Moisture",
+            "biovion": "✓ ✓ ✓",
+            "zoersealer": "✗",
+            "epoxyresin": "✗"
+          },
+          {
+            "parameter": "Flow & Canal Adaptation",
+            "biovion": "✓ ✓ ✓",
+            "zoersealer": "✓ ✓",
+            "epoxyresin": "✓"
+          },
+          {
+            "parameter": "Radiopacity",
+            "biovion": "✓ ✓",
+            "zoersealer": "✓ ✓",
+            "epoxyresin": "✓"
+          },
+          {
+            "parameter": "Bioactivity",
+            "biovion": "✓ ✓ ✓",
+            "zoersealer": "✗",
+            "epoxyresin": "✗"
+          },
+          {
+            "parameter": "Post-op Pain",
+            "biovion": "Minimal",
+            "zoersealer": "Potentially more",
+            "epoxyresin": "Moderate"
+          },
+          {
+            "parameter": "Shrinkage on Setting",
+            "biovion": "None — expands slightly",
+            "zoersealer": "Shrinks",
+            "epoxyresin": "Shrinks"
+          },
+          {
+            "parameter": "Hard Tissue Formation",
+            "biovion": "✓ ✓ ✓",
+            "zoersealer": "✗",
+            "epoxyresin": "✗"
+          },
+          {
+            "parameter": "Antibacterial pH",
+            "biovion": "✓ ✓ ✓",
+            "zoersealer": "✓",
+            "epoxyresin": "✗"
+          },
+          {
+            "parameter": "Clinically Validated in India",
+            "biovion": "✓ ✓ ✓",
+            "zoersealer": "✗",
+            "epoxyresin": "✗"
+          },
+          {
+            "parameter": "Price Point",
+            "biovion": "Affordable",
+            "zoersealer": "Low but limited",
+            "epoxyresin": "More than double"
+          }
         ]
       },
       "badges": [
-        {"title": "Quality Assurance", "body": "Every Bio-Vion syringe is manufactured at our ISO 13485:2016 certified facility in Jammu, J&K. Stringent quality checks ensure consistency in every batch."},
-        {"title": "Pan-India Availability", "body": "Bio-Vion is available across India through authorised distributors and direct orders. Contact us to place an enquiry or request a product sample."}
+        {
+          "icon": "icon-badge",
+          "title": "Quality Assurance",
+          "body": "Every Bio-Vion syringe is manufactured at our ISO 13485:2016 certified facility in Jammu, J&K. Stringent quality checks ensure consistency in every batch."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Pan-India Availability",
+          "body": "Bio-Vion is available across India through authorised distributors and direct orders. Contact us to place an enquiry or request a product sample."
+        }
       ],
       "reviews": [
-        {"author": "Dr. Brijesh Vyas", "location": "Surat", "text": "Exceptional healing owing to the Bioactive properties of the sealer."},
-        {"author": "Dr. Pradnya Chaudhari", "location": "Mumbai", "text": "Pairs up perfectly with the single cone obturation technique to save chair time."}
+        {
+          "author": "Dr. Brijesh Vyas",
+          "location": "Surat",
+          "text": "Exceptional healing owing to the Bioactive properties of the sealer."
+        },
+        {
+          "author": "Dr. Pradnya Chaudhari",
+          "location": "Mumbai",
+          "text": "Pairs up perfectly with the single cone obturation technique to save chair time."
+        },
+        {
+          "author": "Dr. Dharmesh Singh",
+          "location": "Ranchi",
+          "text": "Shows excellent sealer flow into the lateral canals as well."
+        },
+        {
+          "author": "Dr. Kanraj Solanki",
+          "location": "Gujarat",
+          "text": "Ease of use at his very first time with a Bioceramic sealer."
+        },
+        {
+          "author": "Dr. Anand Mohatta",
+          "location": "Mumbai",
+          "text": "Perfect sealing of an open root apex."
+        },
+        {
+          "author": "Dr. Payal Batavia",
+          "location": "Vadodara",
+          "text": "Excellent flow, sealing all the exit portals with minimum patient discomfort."
+        }
       ],
       "related_ids": ["nexaprep", "nexacal", "solvexa"]
     },
@@ -50,25 +173,735 @@
       "id": "nexaprep",
       "name": "NexaPrep",
       "category": "Endodontics",
+      "type": "Lubricants & Chelants",
+      "pack_size": "3 g × 1 syringe",
+      "tagline": "Glide Through with Confidence",
       "short_descriptor": "EDTA Gel",
       "price": "Enquire for Price",
-      "images": { "main": "img/products/nexaprep.jpg" }
+      "feature_tags": ["Instrument Protection", "For Calcified Canals", "Excellent Lubrication"],
+      "images": {
+        "main": "img/products01/NexaPrep.png",
+        "gallery": ["img/products01/NexaPrep.png"]
+      },
+      "description": {
+        "about": "NexaPrep is a premium EDTA gel formulation designed to effectively remove the smear layer during root canal instrumentation. Its controlled viscosity provides excellent lubrication while the chelating properties enable efficient removal of inorganic dentinal content. Perfect for navigating calcified canals and enhancing overall canal cleanliness.",
+        "indications": [
+          "Lubrication and chelation during root canal instrumentation",
+          "Smear layer removal",
+          "Opening calcified canals",
+          "Enhancing irrigation effectiveness"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Instrument Protection",
+          "body": "Reduces instrument fatigue and breakage through superior lubrication properties."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Enhanced Chelation",
+          "body": "Effectively removes inorganic matrix for cleaner, more accessible canals."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Arun Kumar",
+          "location": "Bangalore",
+          "text": "Outstanding performance in calcified and difficult canals."
+        },
+        {
+          "author": "Dr. Neha Sharma",
+          "location": "Delhi",
+          "text": "Smooth instrument movement and excellent feel during instrumentation."
+        }
+      ],
+      "related_ids": ["biovion", "nexacal", "solvexa"]
+    },
+    {
+      "id": "gleam",
+      "name": "Gleam",
+      "category": "Diagnosis & Prophylaxis",
+      "type": "Polishing Pastes",
+      "pack_size": "75 g jar",
+      "tagline": "From Stains to Stunning",
+      "short_descriptor": "Prophylaxis Paste",
+      "price": "Enquire for Price",
+      "feature_tags": ["Effective Stain Removal", "Smooth Polish", "Long Lasting Protection"],
+      "images": {
+        "main": "img/products01/Gleam.png",
+        "gallery": ["img/products01/Gleam.png"]
+      },
+      "description": {
+        "about": "Gleam is a premium prophylaxis paste formulated for effective plaque and stain removal with a smooth, lustrous finish. Its non-splattering consistency, fluoride enrichment, and pleasant flavour make it ideal for routine oral prophylaxis across all age groups.",
+        "indications": [
+          "Mechanical removal of plaque and surface stains",
+          "Final polishing after scaling and root planning",
+          "Pre-treatment cleaning before sealants or restorations",
+          "Routine oral prophylaxis"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Effective Cleaning",
+          "body": "Non-abrasive yet highly effective at removing stains and plaque."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Fluoride Enriched",
+          "body": "Added fluoride for enhanced caries protection."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Isha Kapoor",
+          "location": "Gurgaon",
+          "text": "Fantastic stain removal with smooth, beautiful polish - patients love it."
+        },
+        {
+          "author": "Dr. Rahul Sharma",
+          "location": "Delhi",
+          "text": "The non-splattering formula keeps my clinic cleaner and saves time."
+        }
+      ],
+      "related_ids": ["fognix", "glanzaa", "markx"]
+    },
+      {
+      "id": "statrix",
+      "name": "Statrix",
+      "category": "Surgery",
+      "type": "Hemostatic Agents",
+      "pack_size": "3 g × 1 syringe",
+      "tagline": "Control at Your Fingertips",
+      "short_descriptor": "Hemostatic Gel",
+      "price": "Enquire for Price",
+      "feature_tags": ["Controlled Delivery", "Easy Application", "Rapid Bleeding Control"],
+      "images": {
+        "main": "img/products01/Statrix.png",
+        "gallery": ["img/products01/Statrix.png"]
+      },
+      "description": {
+        "about": "Statrix is a fast-acting hemostatic gel engineered for rapid and efficient bleeding control during dental procedures. Its high viscosity ensures controlled delivery while its gentle formula protects tissues, making it essential for restorative, surgical, and periodontal work.",
+        "indications": [
+          "Control of minor gingival bleeding during restorative procedures",
+          "Before impression taking or bonding",
+          "Hemostasis during crown preparation or matrix band placement",
+          "Soft tissue management in surgical and scaling procedures"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Rapid Haemostasis",
+          "body": "Fast-acting gel provides immediate bleeding control."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Syringe Delivery",
+          "body": "Precise, controlled application with high viscosity formula."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Sanjay Desai",
+          "location": "Mumbai",
+          "text": "Quickest bleeding control I've ever used - a must-have in my office."
+        },
+        {
+          "author": "Dr. Priya Sharma",
+          "location": "Bangalore",
+          "text": "The syringe delivery gives perfect control even in difficult bleeding situations."
+        }
+      ],
+      "related_ids": ["statrixaqua", "retrix"]
     },
     {
       "id": "nexacal",
       "name": "NexaCal",
       "category": "Endodontics",
-      "short_descriptor": "Aq. Calcium Hydroxide",
+      "type": "Intracanal Dressings",
+      "pack_size": "3 g × 1 syringe",
+      "tagline": "Strong Base, Stronger Healing",
+      "short_descriptor": "Aqueous Calcium Hydroxide",
       "price": "Enquire for Price",
-      "images": { "main": "img/products/nexacal.jpg" }
+      "feature_tags": ["Superior Flow", "Easy Administration", "Homogeneous Consistency"],
+      "images": {
+        "main": "images/products/nexacal-main.jpg",
+        "gallery": ["images/products/nexacal-1.jpg", "images/products/nexacal-2.jpg", "images/products/nexacal-3.jpg"]
+      },
+      "description": {
+        "about": "NexaCal delivers the antimicrobial benefits of calcium hydroxide in a water-based formulation with exceptional flow characteristics. Its homogeneous consistency and smooth delivery ensure complete canal filling while maintaining the high pH necessary for healing and disinfection.",
+        "indications": [
+          "Temporary intracanal dressing between appointments",
+          "Management of weeping canals",
+          "Resorption cases",
+          "Treatment of lesions with endodontic origin",
+          "Apexification procedures"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "High pH Formula",
+          "body": "Maintains pH of ~12.5 for antimicrobial action and biocompatibility."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Easy Delivery",
+          "body": "Syringe-based application with long delivery tip for deep canal penetration."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Vikram Patel",
+          "location": "Ahmedabad",
+          "text": "Perfect consistency for inter-appointment dressing with excellent patient comfort."
+        },
+        {
+          "author": "Dr. Meera Singh",
+          "location": "Lucknow",
+          "text": "Superior performance in managing resorption cases."
+        }
+      ],
+      "related_ids": ["biovion", "nexaprep", "solvexa"]
     },
     {
       "id": "solvexa",
       "name": "Solvexa",
       "category": "Endodontics",
-      "short_descriptor": "GP Solvent",
+      "type": "Solvents",
+      "pack_size": "15 ml bottle",
+      "tagline": "Solvent that Solves it All",
+      "short_descriptor": "Gutta Percha Solvent",
       "price": "Enquire for Price",
-      "images": { "main": "img/products/solvexa.jpg" }
+      "feature_tags": ["Softens GP & Sealers", "Fast Action", "Non-Toxic"],
+      "images": {
+        "main": "images/products/solvexa-main.jpg",
+        "gallery": ["images/products/solvexa-1.jpg", "images/products/solvexa-2.jpg", "images/products/solvexa-3.jpg"]
+      },
+      "description": {
+        "about": "Solvexa is a sophisticated gutta percha solvent engineered for efficient root canal retreatment. Its rapid softening action combined with controlled evaporation rate provides optimal working time for GP and sealer removal without compromising pulp tissue safety.",
+        "indications": [
+          "Softening GP in root canal retreatment",
+          "Removal of resin-based and ZOE sealers",
+          "Re-establishing canal patency for re-instrumentation"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Safe & Effective",
+          "body": "Non-toxic to periapical tissues with rapid softening and controlled evaporation."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Compatible Techniques",
+          "body": "Works seamlessly with both rotary and hand instrumentation techniques."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Rajesh Kumar",
+          "location": "Chennai",
+          "text": "Fastest acting solvent I've used - significantly reduces retreatment time."
+        },
+        {
+          "author": "Dr. Anjali Gupta",
+          "location": "Pune",
+          "text": "Excellent control and minimal irritation to surrounding tissues."
+        }
+      ],
+      "related_ids": ["biovion", "nexaprep", "nexacal"]
+    },
+    {
+      "id": "nexaetch",
+      "name": "Nexa-Etch",
+      "category": "Restorative Dentistry",
+      "type": "Etchants",
+      "pack_size": "3 g × 1 syringe",
+      "tagline": "Defined Etch, Refined Outcome",
+      "short_descriptor": "Etchant Gel (37% Phosphoric Acid)",
+      "price": "Enquire for Price",
+      "feature_tags": ["No Dripping", "Silica Free", "Easy Rinse Off"],
+      "images": {
+        "main": "images/products/nexaetch-main.jpg",
+        "gallery": ["images/products/nexaetch-1.jpg", "images/products/nexaetch-2.jpg", "images/products/nexaetch-3.jpg"]
+      },
+      "description": {
+        "about": "Nexa-Etch is a premium 37% phosphoric acid gel with optimal concentration and controlled viscosity. The silica-free formulation ensures clean rinse-off while the high visibility formula allows precise application control in both enamel and dentin etching protocols.",
+        "indications": [
+          "Etching enamel and dentin before adhesive bonding",
+          "Total-etch and selective-etch techniques",
+          "Composites, sealants, veneers, orthodontic brackets"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Optimal Concentration",
+          "body": "37% phosphoric acid for superior etching efficiency and adhesion."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Clean Application",
+          "body": "High visibility formula with easy rinse-off and no residue."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Harpreet Singh",
+          "location": "Chandigarh",
+          "text": "Excellent etching with consistent results across all procedures."
+        },
+        {
+          "author": "Dr. Shalini Roy",
+          "location": "Kolkata",
+          "text": "The high visibility makes precise application in anterior regions effortless."
+        }
+      ],
+      "related_ids": ["resinxgic", "barrixa", "linical"]
+    },
+    {
+      "id": "resinxgic",
+      "name": "Resin X-GIC",
+      "category": "Restorative Dentistry",
+      "type": "Liners & Cements",
+      "pack_size": "2 g × 1 syringe",
+      "tagline": "Click-Cure-Restore",
+      "short_descriptor": "Light Cure Glass Ionomer Cement",
+      "price": "Enquire for Price",
+      "feature_tags": ["No Etching or Bonding", "Durable Restorations", "Pediatric Friendly"],
+      "images": {
+        "main": "images/products/resinxgic-main.jpg",
+        "gallery": ["images/products/resinxgic-1.jpg", "images/products/resinxgic-2.jpg", "images/products/resinxgic-3.jpg"]
+      },
+      "description": {
+        "about": "Resin X-GIC combines the benefits of light-cured technology with proven glass ionomer properties. This fluoride-releasing cement offers excellent adhesion, low solubility, and high flexural strength, making it ideal for aesthetic restorations across all age groups.",
+        "indications": [
+          "Sandwich technique under composites",
+          "Cervical lesions and root caries",
+          "Paediatric and geriatric restorations",
+          "Pre-Endo buildups"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Fluoride Release",
+          "body": "Sustained fluoride release for enhanced caries prevention."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Pediatric Friendly",
+          "body": "Safe, effective, and easy to use for young and elderly patients."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Priya Desai",
+          "location": "Mumbai",
+          "text": "Perfect for sandwich technique with excellent retention and aesthetics."
+        },
+        {
+          "author": "Dr. Rohan Kapoor",
+          "location": "Gurgaon",
+          "text": "My go-to material for pediatric restorations - reliable and easy."
+        }
+      ],
+      "related_ids": ["nexaetch", "barrixa", "linical"]
+    },
+    {
+      "id": "linical",
+      "name": "Linical",
+      "category": "Restorative Dentistry",
+      "type": "Liners & Cements",
+      "pack_size": "2 g × 1 syringe",
+      "tagline": "Smart Base, Swift Cure",
+      "short_descriptor": "Light Cure Calcium Hydroxide Liner",
+      "price": "Enquire for Price",
+      "feature_tags": ["Pulp Protection", "Promotes Repair", "Controlled Set"],
+      "images": {
+        "main": "images/products/linical-main.jpg",
+        "gallery": ["images/products/linical-1.jpg", "images/products/linical-2.jpg", "images/products/linical-3.jpg"]
+      },
+      "description": {
+        "about": "Linical is a light-cured calcium hydroxide liner designed for quick, effective pulp capping and protection. Its alkaline pH and moisture-tolerant formula make it ideal for deep cavity preparations, providing reliable dentin-pulp complex protection.",
+        "indications": [
+          "Lining under composites, amalgams, and GIC",
+          "Indirect pulp capping",
+          "Protection of the dentin-pulp complex",
+          "Deep cavity preparations"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Pulp Protection",
+          "body": "Alkaline pH (~11-12) for superior dentin-pulp complex protection."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "On-Demand Curing",
+          "body": "Light-curable for precise control over setting time."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Amit Joshi",
+          "location": "Indore",
+          "text": "Excellent pulp protection with smooth application and perfect working time."
+        },
+        {
+          "author": "Dr. Kavya Nair",
+          "location": "Kochi",
+          "text": "The moisture tolerance is outstanding for difficult clinical situations."
+        }
+      ],
+      "related_ids": ["nexaetch", "resinxgic", "barrixa"]
+    },
+    {
+      "id": "interfill",
+      "name": "Inter-Fill",
+      "category": "Restorative Dentistry",
+      "type": "Temporary Materials",
+      "pack_size": "40 g jar",
+      "tagline": "Engineered for the Interim",
+      "short_descriptor": "Temporary Filling Material",
+      "price": "Enquire for Price",
+      "feature_tags": ["Easy Removal", "Optimal Seal", "Radio-opaque"],
+      "images": {
+        "main": "images/products/interfill-main.jpg",
+        "gallery": ["images/products/interfill-1.jpg", "images/products/interfill-2.jpg", "images/products/interfill-3.jpg"]
+      },
+      "description": {
+        "about": "Inter-Fill is a soft-setting temporary filling material engineered for secure cavity sealing during and after endodontic therapy. Its radio-opaque formulation, quick set time, and easy removal make it the ideal choice for interim restorations.",
+        "indications": [
+          "Temporary sealing of cavities during or after root canal therapy",
+          "Teeth awaiting permanent restorations"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Easy Removal",
+          "body": "Soft-setting material removes cleanly without damaging tooth structure."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Radio-opaque",
+          "body": "Clearly visible on X-rays for confirmation and monitoring."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Suresh Reddy",
+          "location": "Hyderabad",
+          "text": "Perfect consistency and easy removal every time - no surprises."
+        },
+        {
+          "author": "Dr. Divya Sharma",
+          "location": "Jaipur",
+          "text": "Excellent seal and patient-friendly formula with pleasant odour."
+        }
+      ],
+      "related_ids": ["nexaetch", "resinxgic", "linical"]
+    },
+    {
+      "id": "barrixa",
+      "name": "Barrixa",
+      "category": "Restorative Dentistry",
+      "type": "Barriers & Isolation",
+      "pack_size": "1 g × 1 syringe",
+      "tagline": "Stops the Spill, Seals the Field",
+      "short_descriptor": "Gingival Barrier",
+      "price": "Enquire for Price",
+      "feature_tags": ["Moisture Control", "Light Cured", "Non Dripping"],
+      "images": {
+        "main": "images/products/barrixa-main.jpg",
+        "gallery": ["images/products/barrixa-1.jpg", "images/products/barrixa-2.jpg", "images/products/barrixa-3.jpg"]
+      },
+      "description": {
+        "about": "Barrixa is a light-cured resin barrier designed for superior soft tissue protection during aesthetic and restorative procedures. Its contrasting colour, excellent tissue isolation, and flexible-yet-strong formulation make it essential for moisture control and chemical protection.",
+        "indications": [
+          "Protection of gingiva during whitening and etching",
+          "Isolation during composite layering or bonding",
+          "Shielding soft tissues from chemical agents",
+          "Moisture control in aesthetic treatments"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Tissue Isolation",
+          "body": "Excellent isolation with flexible, strong formula that protects gingiva."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Contrasting Colour",
+          "body": "Highly visible for easy application and complete removal confirmation."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Nisha Patel",
+          "location": "Surat",
+          "text": "Game-changer for aesthetic cases - perfect tissue isolation every time."
+        },
+        {
+          "author": "Dr. Arjun Verma",
+          "location": "Ludhiana",
+          "text": "The contrasting colour makes application and removal foolproof."
+        }
+      ],
+      "related_ids": ["nexaetch", "resinxgic", "linical"]
+    },
+    {
+      "id": "fognix",
+      "name": "Fog-Nix",
+      "category": "Diagnosis & Prophylaxis",
+      "type": "Preventive Aids",
+      "pack_size": "100 ml bottle",
+      "tagline": "Fog Free, Stress Free",
+      "short_descriptor": "Anti-Fog Spray",
+      "price": "Enquire for Price",
+      "feature_tags": ["Fast Acting", "Streak-free", "Clear Vision"],
+      "images": {
+        "main": "images/products/fognix-main.jpg",
+        "gallery": ["images/products/fognix-1.jpg", "images/products/fognix-2.jpg", "images/products/fognix-3.jpg"]
+      },
+      "description": {
+        "about": "Fog-Nix is a multi-surface anti-fog spray that provides crystal-clear visibility on all dental equipment surfaces. Its fast-acting, streak-free formula ensures long-lasting clarity even in high-humidity environments, enhancing clinical efficiency and safety.",
+        "indications": [
+          "Prevents fogging on mouth mirrors",
+          "Keeps face shields, loupes, and protective eyewear clear",
+          "Suitable for intraoral camera lenses",
+          "High-humidity environments"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Multi-Surface Safe",
+          "body": "Compatible with mirrors, glass, plastics, and camera lenses."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Long-Lasting Effect",
+          "body": "Single application provides extended clarity throughout the day."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Ravi Kumar",
+          "location": "Bangalore",
+          "text": "Eliminates fogging completely - essential for precision work."
+        },
+        {
+          "author": "Dr. Sneha Desai",
+          "location": "Pune",
+          "text": "Works on all my equipment - loupes, mirrors, and cameras without any issues."
+        }
+      ],
+      "related_ids": ["gleam", "glanzaa", "markx"]
+    },
+  
+    {
+      "id": "glanzaa",
+      "name": "Glanzaa",
+      "category": "Diagnosis & Prophylaxis",
+      "type": "Polishing Pastes",
+      "pack_size": "3 g × 1 syringe",
+      "tagline": "Polish-Perform-Perfect",
+      "short_descriptor": "Diamond Polishing Paste",
+      "price": "Enquire for Price",
+      "feature_tags": ["Enhanced Luster", "Exceptional Polish", "Universal Application"],
+      "images": {
+        "main": "images/products/glanzaa-main.jpg",
+        "gallery": ["images/products/glanzaa-1.jpg", "images/products/glanzaa-2.jpg", "images/products/glanzaa-3.jpg"]
+      },
+      "description": {
+        "about": "Glanzaa is a premium diamond-enhanced polishing paste designed for ultra-high luster on all restoration types. Its micronized particle size and smooth consistency ensure time-efficient polishing of ceramic, metal, zirconia, and composite surfaces with professional results.",
+        "indications": [
+          "Polishing of ceramic, metal, and zirconia restorations",
+          "Finishing enamel surfaces in aesthetic zones",
+          "Final high-gloss polishing of composite restorations"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Diamond-Enhanced Shine",
+          "body": "Micronized diamond particles deliver unparalleled lustre and shine."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Universal Application",
+          "body": "Works perfectly on ceramics, metals, zirconia, and composites."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Vikram Singh",
+          "location": "Chandigarh",
+          "text": "The final shine is absolutely stunning - clients are always impressed."
+        },
+        {
+          "author": "Dr. Pooja Agarwal",
+          "location": "Indore",
+          "text": "Diamond polish on restorations looks professional and lasts perfectly."
+        }
+      ],
+      "related_ids": ["fognix", "gleam", "markx"]
+    },
+    {
+      "id": "markx",
+      "name": "Mark X",
+      "category": "Diagnosis & Prophylaxis",
+      "type": "Diagnostic Dyes",
+      "pack_size": "10 ml bottle",
+      "tagline": "Reveal What Eyes Can't See",
+      "short_descriptor": "Caries Indicator Dye",
+      "price": "Enquire for Price",
+      "feature_tags": ["Targets Caries", "Visible Contrast", "Easy to Rinse"],
+      "images": {
+        "main": "images/products/markx-main.jpg",
+        "gallery": ["images/products/markx-1.jpg", "images/products/markx-2.jpg", "images/products/markx-3.jpg"]
+      },
+      "description": {
+        "about": "Mark X is a diagnostic dye that provides visual identification of infected carious dentin, enabling clinicians to precisely differentiate between infected and affected dentin. Its contrasting colour, quick application, and water-soluble formulation enhance clinical accuracy and confidence.",
+        "indications": [
+          "Detection of carious dentin during cavity preparation",
+          "Evaluation of complete caries removal",
+          "Paediatric and geriatric restorative procedures",
+          "Minimal intervention dentistry"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Enhanced Accuracy",
+          "body": "Clear visualization of infected vs affected dentin for precise removal."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Contrasting Colour",
+          "body": "Water-soluble dye with excellent visibility and easy rinse-off."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Nikhil Patel",
+          "location": "Ahmedabad",
+          "text": "Transforms caries removal from guesswork to precise science - invaluable."
+        },
+        {
+          "author": "Dr. Anjali Singh",
+          "location": "Lucknow",
+          "text": "My pediatric patients are less anxious knowing exactly what I'm removing."
+        }
+      ],
+      "related_ids": ["fognix", "gleam", "glanzaa"]
+    },
+  
+    {
+      "id": "statrixaqua",
+      "name": "Statrix Aqua",
+      "category": "Surgery",
+      "type": "Hemostatic Agents",
+      "pack_size": "15 ml bottle",
+      "tagline": "Control at Your Fingertips",
+      "short_descriptor": "Hemostatic Liquid",
+      "price": "Enquire for Price",
+      "feature_tags": ["Fast Acting Formula", "Buffered Solution", "Effective Hemostasis"],
+      "images": {
+        "main": "images/products/statrixaqua-main.jpg",
+        "gallery": ["images/products/statrixaqua-1.jpg", "images/products/statrixaqua-2.jpg", "images/products/statrixaqua-3.jpg"]
+      },
+      "description": {
+        "about": "Statrix Aqua is a liquid hemostatic solution formulated as a buffered astringent for rapid bleeding control. Its versatile application in surgical and restorative procedures, combined with excellent tissue tolerance, provides a clear working field with minimal discomfort to patients.",
+        "indications": [
+          "Bleeding control post minor surgical procedures or extraction",
+          "Control of minor bleeding during crown preparation",
+          "Moisture control around gingival margins",
+          "Bleeding control during periodontal or restorative treatments",
+          "Tissue management during retraction and scaling"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Astringent Formula",
+          "body": "Buffered solution for rapid and effective hemostasis."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Versatile Use",
+          "body": "Effective in surgical, restorative, and periodontal applications."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Rohit Verma",
+          "location": "Gurgaon",
+          "text": "Liquid formulation gives flexibility for various clinical situations."
+        },
+        {
+          "author": "Dr. Sakshi Patel",
+          "location": "Pune",
+          "text": "Excellent control with minimal tissue irritation - ideal for extractions."
+        }
+      ],
+      "related_ids": ["statrix", "retrix"]
+    },
+    {
+      "id": "retrix",
+      "name": "Retrix",
+      "category": "Surgery",
+      "type": "Retraction Materials",
+      "pack_size": "3 g × 1 syringe",
+      "tagline": "Margin Clarity in a Click",
+      "short_descriptor": "Gingival Retraction Paste",
+      "price": "Enquire for Price",
+      "feature_tags": ["Excellent Retraction", "Effective Hemostasis", "Precise Application"],
+      "images": {
+        "main": "images/products/retrix-main.jpg",
+        "gallery": ["images/products/retrix-1.jpg", "images/products/retrix-2.jpg", "images/products/retrix-3.jpg"]
+      },
+      "description": {
+        "about": "Retrix is an astringent paste formulated for gentle yet effective gingival retraction. Its cordless application technology, combined with hemostatic properties, eliminates the need for retraction cord while providing excellent tissue displacement and moisture control.",
+        "indications": [
+          "Temporary gingival retraction before impression or scan",
+          "Retraction prior to crown, bridge, or veneer cementation",
+          "Restorative procedures near the gingival margin",
+          "Moisture and bleeding control during adhesive protocols"
+        ]
+      },
+      "badges": [
+        {
+          "icon": "icon-badge",
+          "title": "Cordless Application",
+          "body": "No retraction cord needed - astringent paste provides effective tissue displacement."
+        },
+        {
+          "icon": "icon-badge",
+          "title": "Dual Action",
+          "body": "Combines retraction with hemostasis for improved visibility and control."
+        }
+      ],
+      "reviews": [
+        {
+          "author": "Dr. Anish Kumar",
+          "location": "Chennai",
+          "text": "No more retraction cord hassles - this paste is a game-changer."
+        },
+        {
+          "author": "Dr. Divya Nair",
+          "location": "Kochi",
+          "text": "Perfect margin visibility with minimal patient discomfort - excellent product."
+        }
+      ],
+      "related_ids": ["statrix", "statrixaqua"]
     }
   ]
 }

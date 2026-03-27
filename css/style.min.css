@@ -43,7 +43,8 @@ figure {
 }
 
 figure>img {
-	width: 100%
+	width: 100%;
+	/* height: 290px; */
 }
 
 figure>figcaption {
@@ -3601,6 +3602,7 @@ span.bold {
 .features-section .bg-decoration {
 	position: absolute;
 	top: 244px;
+	width: 50%;
 	right: -88px
 }
 
@@ -3897,17 +3899,32 @@ span.bold {
 	clear: both
 }
 
+.step-list .step-list-item::nth-child(1) {
+	margin-bottom: 0
+}
+
+
 .step-list .step-list-item:last-child {
 	margin-bottom: 0
 }
+
 
 .step-list .step-list-item.left .step-list-item-info {
 	float: left;
 	text-align: left
 }
 
-.step-list .step-list-item.left .step-list-item-img {
-	float: right
+.step-list .step-list-item.left .step-list-item-img:nth-child(0) {
+	float: right;
+	position: relative;
+	left: 60px;
+}
+
+
+.step-list .step-list-item.left .step-list-item-img:nth-child(2) {
+	float: right;
+	position: relative;
+	left: 160px;
 }
 
 .step-list .step-list-item.right .step-list-item-info {
@@ -3916,7 +3933,9 @@ span.bold {
 }
 
 .step-list .step-list-item.right .step-list-item-img {
-	float: left
+	float: left;
+	position: relative;
+	right: 86px;
 }
 
 .step-list .step-list-item .step-list-item-info {
@@ -3928,7 +3947,7 @@ span.bold {
 }
 
 .step-list .step-list-item .step-list-item-info .title.large {
-	font-size: 2.875em;
+	font-size: 3.875em;
 	line-height: 1.2
 }
 
@@ -4369,6 +4388,10 @@ span.bold {
 	transition-delay: 0.25s
 }
 
+.product-list-item-preview figure>img {
+	height: 290px;
+}
+
 .product-list .product-list-item .product-list-item-info {
 	padding-top: 30px;
 	text-align: center
@@ -4545,7 +4568,7 @@ span.bold {
 }
 
 .footer-bottom {
-	height: 122px;
+	height: 92px;
 	padding-left: 70px;
 	border-top: 1px solid #3e3e3e
 }
@@ -4558,7 +4581,7 @@ span.bold {
 
 .footer-bottom .title,
 .footer-bottom .payment-list {
-	float: left
+	float: center
 }
 
 .footer-bottom .title {
@@ -4568,8 +4591,8 @@ span.bold {
 }
 
 .footer-bottom .payment-list .payment-list-item a {
-	height: 121px;
-	line-height: 132px
+	height: 51px;
+	line-height: 142px;
 }
 
 .footer-bottom .payment-list .payment-list-item:nth-child(4) a {
@@ -4676,6 +4699,11 @@ span.bold {
 .payment-list .payment-list-item {
 	float: left
 }
+
+.payment-list .payment-list-item  img{
+	width: 80px;
+}
+
 
 .payment-list .payment-list-item a {
 	display: block;

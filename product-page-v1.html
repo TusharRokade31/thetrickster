@@ -3,12 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-  <!-- styles -->
   <link rel="stylesheet" href="css/vendor/font-awesome.min.css">
   <link rel="stylesheet" href="css/vendor/simple-line-icons.css">
   <link rel="stylesheet" href="css/vendor/magnific-popup.css">
   <link rel="stylesheet" href="css/style.min.css">
-  <!-- favicon -->
   <link rel="icon" href="favicon.ico">
   <title>The Trickster | Product Page</title>
 </head>
@@ -16,1032 +14,163 @@
 
  <div id="dynamic-header"></div>
 
-  <!-- SECTION NAVIGATION WRAP -->
   <div class="section-navigation-wrap">
-    <!-- SECTION NAVIGATION -->
     <div class="section-navigation">
-      <!-- SECTION NAVIGATION PATH -->
       <p class="section-navigation-path">
         <span class="path">Home</span>
-        <span class="path">
-          <!-- SVG ARROW -->
-          <svg class="svg-arrow tiny">
-            <use xlink:href="#svg-arrow"></use>
-          </svg>
-          <!-- /SVG ARROW -->
-        </span>
-        <span class="path">Browse All</span>
-        <span class="path bold">
-          <!-- SVG ARROW -->
-          <svg class="svg-arrow tiny">
-            <use xlink:href="#svg-arrow"></use>
-          </svg>
-          <!-- /SVG ARROW -->
-        </span>
-        <span class="path current">Poisonous Frog</span>
+        <span class="path"><svg class="svg-arrow tiny"><use xlink:href="#svg-arrow"></use></svg></span>
+        <span class="path">Products</span>
+        <span class="path"><svg class="svg-arrow tiny"><use xlink:href="#svg-arrow"></use></svg></span>
+        <span class="path" id="bread-category">Category</span>
+        <span class="path bold"><svg class="svg-arrow tiny"><use xlink:href="#svg-arrow"></use></svg></span>
+        <span class="path current" id="bread-current">Product Name</span>
       </p>
-      <!-- SECTION NAVIGATION PATH -->
     </div>
-    <!-- /SECTION NAVIGATION -->
   </div>
-  <!-- /SECTION NAVIGATION WRAP -->
 
-  <!-- SECTION WRAP -->
   <div class="section-wrap">
-    <!-- SECTION -->
     <div class="section bottom-void no-title">
-      <!-- PRODUCT VIEW -->
       <div class="product-view full">
-        <!-- PRODUCT IMG LIST -->
-        <div class="product-img-list vertical border-anim">
-          <!-- PRODUCT IMG LIST ITEM -->
-          <div class="product-img-list-item selected">
-            <div class="overlay"></div>
-            <!-- PRODUCT IMG -->
-            <figure class="product-img small">
-              <img src="img/product_page/02.jpg" alt="product02">
-            </figure>
-            <!-- /PRODUCT IMG -->
+        
+        <div class="product-img-list vertical border-anim" id="dynamic-gallery-thumbs">
           </div>
-          <!-- /PRODUCT IMG LIST ITEM -->
 
-          <!-- PRODUCT IMG LIST ITEM -->
-          <div class="product-img-list-item">
-            <div class="overlay"></div>
-            <!-- PRODUCT IMG -->
-            <figure class="product-img small">
-              <img src="img/product_page/06.jpg" alt="product06">
-            </figure>
-            <!-- /PRODUCT IMG -->
-          </div>
-          <!-- /PRODUCT IMG LIST ITEM -->
+        <figure class="product-img big scalable" id="dynamic-main-image">
+          </figure>
 
-          <!-- PRODUCT IMG LIST ITEM -->
-          <div class="product-img-list-item">
-            <div class="overlay"></div>
-            <!-- PRODUCT IMG -->
-            <figure class="product-img small">
-              <img src="img/product_page/10.jpg" alt="product10">
-            </figure>
-            <!-- /PRODUCT IMG -->
-          </div>
-          <!-- /PRODUCT IMG LIST ITEM -->
-
-          <!-- PRODUCT IMG LIST ITEM -->
-          <div class="product-img-list-item">
-            <div class="overlay"></div>
-            <!-- PRODUCT IMG -->
-            <figure class="product-img small">
-              <img src="img/product_page/08.jpg" alt="product08">
-            </figure>
-            <!-- /PRODUCT IMG -->
-          </div>
-          <!-- /PRODUCT IMG LIST ITEM -->
-        </div>
-        <!-- /PRODUCT IMG LIST -->
-
-        <!-- PRODUCT IMG -->
-        <figure class="product-img big scalable">
-          <img src="img/product_page/02.jpg" alt="product02">
-        </figure>
-        <!-- /PRODUCT IMG -->
-
-        <!-- PRODUCT DETAILS -->
         <div class="product-details">
-          <h2 class="title bigger">Poisonous Frog</h2>
-          <p class="product-description medium">For Outdoor Sports</p>
-          <!-- RATING -->
+          <h2 class="title bigger" id="prod-name">Loading...</h2>
+          <p class="product-description medium" id="prod-descriptor"></p>
+          
           <ul class="rating medium">
-            <!-- RATING ITEM -->
-            <li class="rating-item filled">
-              <!-- SVG STAR -->
-              <svg class="svg-star">
-                <use xlink:href="#svg-star"></use>
-              </svg>
-              <!-- /SVG STAR -->
-            </li>
-            <!-- /RATING ITEM -->
-
-            <!-- RATING ITEM -->
-            <li class="rating-item filled">
-              <!-- SVG STAR -->
-              <svg class="svg-star">
-                <use xlink:href="#svg-star"></use>
-              </svg>
-              <!-- /SVG STAR -->
-            </li>
-            <!-- /RATING ITEM -->
-
-            <!-- RATING ITEM -->
-            <li class="rating-item filled">
-              <!-- SVG STAR -->
-              <svg class="svg-star">
-                <use xlink:href="#svg-star"></use>
-              </svg>
-              <!-- /SVG STAR -->
-            </li>
-            <!-- /RATING ITEM -->
-
-            <!-- RATING ITEM -->
-            <li class="rating-item filled">
-              <!-- SVG STAR -->
-              <svg class="svg-star">
-                <use xlink:href="#svg-star"></use>
-              </svg>
-              <!-- /SVG STAR -->
-            </li>
-            <!-- /RATING ITEM -->
-
-            <!-- RATING ITEM -->
-            <li class="rating-item filled">
-              <!-- SVG STAR -->
-              <svg class="svg-star">
-                <use xlink:href="#svg-star"></use>
-              </svg>
-              <!-- /SVG STAR -->
-            </li>
-            <!-- /RATING ITEM -->
+            <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+            <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+            <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+            <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+            <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
           </ul>
-          <!-- /RATING -->
-          <h6 class="product-price big">$170</h6>
-          <p class="product-description-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat.</p>
+          
+          <!-- <h6 class="product-price big" id="prod-price"></h6> -->
+          <p class="product-description-preview" id="prod-tagline" style="font-style:italic; margin-bottom: 20px;"></p>
+          <p class="product-description-preview" id="prod-pack-size" style="font-weight:bold; margin-bottom: 20px;"></p>
 
-          <!-- FORM -->
           <form>
-            <!-- FORM ROW -->
-            <div class="form-row">
-              <label class="rl-label">Helmet Size</label>
-              <!-- SELECT BLOCK -->
-              <label for="helmet_size" class="select-block medium">
-  							<select name="helmet_size" id="helmet_size">
-  								<option value="0">Small</option>
-  								<option value="1" selected>Medium</option>
-                  <option value="2">Big</option>
-  							</select>
-  							<!-- SVG ARROW -->
-  							<svg class="svg-arrow face-down">
-  								<use xlink:href="#svg-arrow"></use>
-  							</svg>
-  							<!-- /SVG ARROW -->
-  						</label>
-              <!-- SELECT BLOCK -->
-            </div>
-            <!-- /FORM ROW -->
-
-            <!-- FORM ROW -->
-            <div class="form-row">
-              <label class="rl-label">Base Color</label>
-              <!-- SELECT BLOCK -->
-              <label for="helmet_color" class="select-block medium">
-                <select name="helmet_color" id="helmet_color">
-                  <option value="0">Green</option>
-                  <option value="1">Blue</option>
-                  <option value="2">Black</option>
-                </select>
-                <!-- SVG ARROW -->
-                <svg class="svg-arrow face-down">
-                  <use xlink:href="#svg-arrow"></use>
-                </svg>
-                <!-- /SVG ARROW -->
-              </label>
-              <!-- SELECT BLOCK -->
-            </div>
-            <!-- /FORM ROW -->
-
-            <!-- FORM ROW -->
             <div class="form-row">
               <label class="rl-label">Quantity</label>
-              <!-- QUANTITY INPUT -->
               <div class="quantity-input">
-                <span class="count">4</span>
-                <!-- INCREMENT COUNT -->
-                <div class="increment-count">
-                  <!-- SVG ARROW -->
-                  <svg class="svg-arrow face-up">
-                    <use xlink:href="#svg-arrow"></use>
-                  </svg>
-                  <!-- /SVG ARROW -->
-                </div>
-                <!-- /INCREMENT COUNT -->
-
-                <!-- DECREMENT COUNT -->
-                <div class="decrement-count">
-                  <!-- SVG ARROW -->
-                  <svg class="svg-arrow face-down">
-                    <use xlink:href="#svg-arrow"></use>
-                  </svg>
-                  <!-- /SVG ARROW -->
-                </div>
-                <!-- /DECREMENT COUNT -->
+                <span class="count">1</span>
+                <div class="increment-count"><svg class="svg-arrow face-up"><use xlink:href="#svg-arrow"></use></svg></div>
+                <div class="decrement-count"><svg class="svg-arrow face-down"><use xlink:href="#svg-arrow"></use></svg></div>
               </div>
-              <!-- QUANTITY INPUT -->
             </div>
-            <!-- /FORM ROW -->
           </form>
-          <!-- /FORM -->
 
-          <!-- PRODUCT DETAILS ACTIONS -->
           <div class="product-details-actions">
-            <a href="product-page-v1.html#" class="button medium cart-icon">
-              <!-- SVG CART -->
-              <svg class="svg-cart">
-                <use xlink:href="#svg-cart"></use>
-              </svg>
-              <!-- /SVG CART -->
-              Add to Cart
+            <a href="#" class="button medium cart-icon">
+              <!-- <svg class="svg-cart"><use xlink:href="#svg-cart"></use></svg> -->
+              Enquire About This Product
             </a>
-            <!-- BUTTON LIST -->
-            <div class="button-list wrap-3">
-              <!-- BUTTON -->
-              <a href="product-page-v1.html#" class="button square">
-                <!-- SVG HEART -->
-                <svg class="svg-heart">
-                  <use xlink:href="#svg-heart"></use>
-                </svg>
-                <!-- /SVG HEART -->
-              </a>
-              <!-- /BUTTON -->
-
-              <!-- BUTTON -->
-              <a href="product-page-v1.html#" class="button square">
-                <i class="fa fa-facebook"></i>
-              </a>
-              <!-- /BUTTON -->
-
-              <!-- BUTTON -->
-              <a href="product-page-v1.html#" class="button square">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <!-- /BUTTON -->
-            </div>
-            <!-- /BUTTON LIST -->
+            <!-- <div class="button-list wrap-3">
+              <a href="#" class="button square tooltip-trigger" title="Request a Sample"><svg class="svg-heart"><use xlink:href="#svg-heart"></use></svg></a>
+            </div> -->
           </div>
-          <!-- /PRODUCT DETAILS ACTIONS -->
         </div>
-        <!-- /PRODUCT DETAILS -->
       </div>
-      <!-- /PRODUCT VIEW -->
     </div>
-    <!-- /SECTION -->
   </div>
-  <!-- /SECTION WRAP -->
 
-  <!-- SECTION WRAP -->
-  <div class="section-wrap">
-    <!-- SECTION -->
+  <div class="section-wrap" id="tabs-section" style="display:none;">
     <div class="section bottom-void">
-      <!-- TABBED CONTENT -->
       <div class="tabbed-content centered short">
-        <!-- TABBED CONTENT HEADER -->
         <div class="tabbed-content-header">
-          <h6 class="title tabbed-content-item-title tab-control selected">
-            Description
-            <span class="triangle"></span>
-          </h6>
-          <h6 class="title tabbed-content-item-title tab-control ">
-            Reviews
-            <span class="triangle"></span>
-          </h6>
+          <h6 class="title tabbed-content-item-title tab-control selected">Description<span class="triangle"></span></h6>
+          <h6 class="title tabbed-content-item-title tab-control " id="reviews-tab-trigger" style="display:none;">Clinical Feedback<span class="triangle"></span></h6>
         </div>
-        <!-- /TABBED CONTENT HEADER -->
         <div class="tab-separator"></div>
 
-        <!-- TABBED CONTENT ITEM -->
         <div class="tabbed-content-item tab-item padded">
-          <!-- TEXT ROW -->
           <div class="text-row">
-            <h2 class="title main-title">Enjoy all Outdoor Sports!</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat. Duis aute irure dolor in reprehenderit in tate velit esse cillum dolore. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat. Duis aute irure dolor in reprehenderit in tate velit esse cillum doloretate velit esse cillum dolore.</p>
+            <h2 class="title main-title" id="about-title">About Product</h2>
+            <p id="prod-about-text" style="white-space: pre-wrap; line-height: 1.8;"></p>
           </div>
-          <!-- /TEXT ROW -->
-
-          <!-- TEXT ROW -->
-          <div class="text-row">
-            <h2 class="title subtitle">The Poisonous Color Pallette</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat. Duis aute irure dolor in reprehenderit in tate velit esse cillum dolore. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat. Duis aute irure dolor in reprehenderit in tate velit esse cillum doloretate velit esse cillum dolore.</p>
+          
+          <div class="text-row" id="indications-container" style="display:none;">
+            <h2 class="title subtitle">Indications for Use</h2>
+            <ul style="list-style:disc; margin-left: 20px; line-height: 1.8;" id="prod-indications"></ul>
           </div>
-          <!-- /TEXT ROW -->
 
-          <!-- FEATURE ENUM -->
-          <div class="feature-enum">
-            <!-- FEATURE ENUM ITEM -->
-            <div class="feature-enum-item">
-              <i class="s-icon icon-badge"></i>
-              <h6 class="title">Quality Assurance</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur sicing elit, se do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-            <!-- FEATURE ENUM ITEM -->
-
-            <div class="separator"></div>
-
-            <!-- FEATURE ENUM ITEM -->
-            <div class="feature-enum-item">
-              <i class="s-icon icon-rocket"></i>
-              <h6 class="title">Overnight Shipping</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur sicing elit, se do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-            <!-- FEATURE ENUM ITEM -->
+          <div class="text-row" id="key-benefits-container" style="display:none; margin-top: 40px;">
+            <h2 class="title subtitle">Key Benefits</h2>
+            <table id="key-benefits-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+              <thead>
+                <tr style="background-color: #1a1a1a; color: white;">
+                  <th style="padding: 15px; text-align: left; font-weight: bold; border: 1px solid #ddd;">BENEFIT</th>
+                  <th style="padding: 15px; text-align: left; font-weight: bold; border: 1px solid #ddd;">DETAIL</th>
+                </tr>
+              </thead>
+              <tbody id="key-benefits-tbody">
+              </tbody>
+            </table>
           </div>
-          <!-- /FEATURE ENUM -->
+
+          <div class="text-row" id="comparison-table-container" style="display:none; margin-top: 40px; overflow-x: auto;">
+            <h2 class="title subtitle">Bio-Vion vs. Alternatives</h2>
+            <table id="comparison-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+              <thead>
+                <tr>
+                  <th style="padding: 15px; text-align: left; font-weight: bold; border: 1px solid #ddd; background-color: #1a1a1a; color: white;">PARAMETER</th>
+                  <th style="padding: 15px; text-align: center; font-weight: bold; border: 1px solid #ddd; background-color: #c41e3a; color: white;">BIO-VION</th>
+                  <th style="padding: 15px; text-align: center; font-weight: bold; border: 1px solid #ddd; background-color: #4a4a4a; color: white;">ZOE SEALER</th>
+                  <th style="padding: 15px; text-align: center; font-weight: bold; border: 1px solid #ddd; background-color: #2c3e50; color: white;">EPOXY RESIN</th>
+                </tr>
+              </thead>
+              <tbody id="comparison-tbody">
+              </tbody>
+            </table>
+          </div>
+
+          <div class="feature-enum" id="prod-badges"></div>
         </div>
-        <!-- /TABBED CONTENT ITEM -->
 
-        <!-- TABBED CONTENT ITEM -->
-        <div class="tabbed-content-item tab-item padded hidden">
-          <!-- REVIEWS -->
+        <div class="tabbed-content-item tab-item padded hidden" id="reviews-tab-content" style="display:none;">
           <div class="reviews">
-            <!-- REVIEWS HEADER -->
             <div class="reviews-header">
-              <h2 class="title"><span class="bold">4</span> Reviews</h2>
-              <p class="title review-title">3 out of 5</p>
-              <!-- RATING -->
-              <ul class="rating medium">
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-              </ul>
-              <!-- /RATING -->
-              <a href="product-page-v1.html#review-popup" class="button popup-trigger">Write a Review</a>
+              <h2 class="title" id="review-count-title">Clinician Feedback</h2>
             </div>
-            <!-- /REVIEWS HEADER -->
-
-            <!-- REVIEWS ITEM -->
-            <div class="reviews-item">
-              <p class="title review-title">Truly Works of Art!</p>
-              <!-- RATING -->
-              <ul class="rating">
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-              </ul>
-              <!-- /RATING -->
-              <p><span class="review-author">Jessica March -</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat en derum.</p>
-              <p class="timestamp">3 weeks ago - <a href="product-page-v1.html#">Report</a></p>
-            </div>
-            <!-- /REVIEWS ITEM -->
-
-            <!-- REVIEWS ITEM -->
-            <div class="reviews-item">
-              <p class="title review-title">Comfort and Design</p>
-              <!-- RATING -->
-              <ul class="rating">
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-              </ul>
-              <!-- /RATING -->
-              <p><span class="review-author">Steven Richards -</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat den derum del lorem ipsen.</p>
-              <p class="timestamp">4 weeks ago - <a href="product-page-v1.html#">Report</a></p>
-            </div>
-            <!-- /REVIEWS ITEM -->
-
-            <!-- REVIEWS ITEM -->
-            <div class="reviews-item">
-              <p class="title review-title">Incredible Shipping</p>
-              <!-- RATING -->
-              <ul class="rating">
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-              </ul>
-              <!-- /RATING -->
-              <p><span class="review-author">Spencer Jameson -</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <p class="timestamp">1 month ago - <a href="product-page-v1.html#">Report</a></p>
-            </div>
-            <!-- /REVIEWS ITEM -->
-
-            <!-- REVIEWS ITEM -->
-            <div class="reviews-item">
-              <p class="title review-title">First but not Last!</p>
-              <!-- RATING -->
-              <ul class="rating">
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-              </ul>
-              <!-- /RATING -->
-              <p><span class="review-author">Marissa Roschers -</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis trud exercitation ullamco laboris nisi ut aliquip ex ea modo consequat perum der.</p>
-              <p class="timestamp">2 years ago - <a href="product-page-v1.html#">Report</a></p>
-            </div>
-            <!-- /REVIEWS ITEM -->
+            <div id="prod-reviews"></div>
           </div>
-          <!-- /REVIEWS -->
         </div>
-        <!-- /TABBED CONTENT ITEM -->
         <div class="tab-separator"></div>
       </div>
-      <!-- /TABBED CONTENT -->
     </div>
-    <!-- /SECTION -->
   </div>
-  <!-- /SECTION WRAP -->
 
-  <!-- SECTION WRAP -->
   <div class="section-wrap">
-    <!-- SECTION -->
     <div class="section bottom-short">
       <h6 class="pretitle">Check out Other</h6>
       <h3 class="title large">Featured Products</h3>
       <hr class="line-separator">
-
-      <!-- PRODUCT LIST -->
-      <div class="product-list column-3-wrap">
-        <!-- PRODUCT LIST ITEM -->
-        <div class="product-list-item column">
-          <!-- PRODUCT LIST ITEM PREVIEW -->
-          <div class="product-list-item-preview">
-            <!-- PRODUCT IMG -->
-            <figure class="product-img">
-              <img src="img/products/01.jpg" alt="product01">
-            </figure>
-            <!-- /PRODUCT IMG -->
-
-            <!-- PRODUCT LIST ITEM ACTIONS -->
-            <div class="product-list-item-actions">
-              <!-- BUTTON LIST -->
-              <div class="button-list wrap-4">
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <!-- SVG CART -->
-                  <svg class="svg-cart-small">
-                    <use xlink:href="#svg-cart-small"></use>
-                  </svg>
-                  <!-- /SVG CART -->
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <!-- SVG HEART -->
-                  <svg class="svg-heart">
-                    <use xlink:href="#svg-heart"></use>
-                  </svg>
-                  <!-- /SVG HEART -->
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <i class="fa fa-facebook"></i>
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <i class="fa fa-twitter"></i>
-                </a>
-                <!-- /BUTTON -->
-              </div>
-              <!-- /BUTTON LIST -->
-            </div>
-            <!-- /PRODUCT LIST ITEM ACTIONS -->
-          </div>
-          <!-- /PRODUCT LIST ITEM PREVIEW -->
-
-          <!-- PRODUCT LIST ITEM INFO -->
-          <div class="product-list-item-info">
-            <a href="product-page-v1.html"><h6 class="title">The Golden Eagle</h6></a>
-            <p class="product-description">For Extreme Conditions</p>
-            <!-- PRODUCT LIST ITEM PRICE -->
-            <div class="product-list-item-price">
-              <!-- RATING -->
-              <ul class="rating">
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-              </ul>
-              <!-- /RATING -->
-              <h6 class="product-price">$140</h6>
-            </div>
-            <!-- /PRODUCT LIST ITEM PRICE -->
-          </div>
-          <!-- /PRODUCT LIST ITEM INFO -->
+      <div class="product-list column-3-wrap" id="related-products-grid">
         </div>
-        <!-- /PRODUCT LIST ITEM -->
-
-        <!-- PRODUCT LIST ITEM -->
-        <div class="product-list-item column">
-          <!-- PRODUCT LIST ITEM PREVIEW -->
-          <div class="product-list-item-preview">
-            <!-- PRODUCT IMG -->
-            <figure class="product-img">
-              <img src="img/products/02.jpg" alt="product02">
-            </figure>
-            <!-- /PRODUCT IMG -->
-
-            <!-- PRODUCT LIST ITEM ACTIONS -->
-            <div class="product-list-item-actions">
-              <!-- BUTTON LIST -->
-              <div class="button-list wrap-4">
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <!-- SVG CART -->
-                  <svg class="svg-cart-small">
-                    <use xlink:href="#svg-cart-small"></use>
-                  </svg>
-                  <!-- /SVG CART -->
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <!-- SVG HEART -->
-                  <svg class="svg-heart">
-                    <use xlink:href="#svg-heart"></use>
-                  </svg>
-                  <!-- /SVG HEART -->
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <i class="fa fa-facebook"></i>
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <i class="fa fa-twitter"></i>
-                </a>
-                <!-- /BUTTON -->
-              </div>
-              <!-- /BUTTON LIST -->
-            </div>
-            <!-- /PRODUCT LIST ITEM ACTIONS -->
-          </div>
-          <!-- /PRODUCT LIST ITEM PREVIEW -->
-
-          <!-- PRODUCT LIST ITEM INFO -->
-          <div class="product-list-item-info">
-            <a href="product-page-v1.html"><h6 class="title">Poisonous Frog</h6></a>
-            <p class="product-description">For Outdoor Sports</p>
-            <!-- PRODUCT LIST ITEM PRICE -->
-            <div class="product-list-item-price">
-              <!-- RATING -->
-              <ul class="rating">
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-              </ul>
-              <!-- /RATING -->
-              <h6 class="product-price">$170</h6>
-            </div>
-            <!-- /PRODUCT LIST ITEM PRICE -->
-          </div>
-          <!-- /PRODUCT LIST ITEM INFO -->
-        </div>
-        <!-- /PRODUCT LIST ITEM -->
-
-        <!-- PRODUCT LIST ITEM -->
-        <div class="product-list-item column">
-          <!-- PRODUCT LIST ITEM PREVIEW -->
-          <div class="product-list-item-preview">
-            <!-- PRODUCT IMG -->
-            <figure class="product-img">
-              <img src="img/products/03.jpg" alt="product03">
-            </figure>
-            <!-- /PRODUCT IMG -->
-
-            <!-- PRODUCT LIST ITEM ACTIONS -->
-            <div class="product-list-item-actions">
-              <!-- BUTTON LIST -->
-              <div class="button-list wrap-4">
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <!-- SVG CART -->
-                  <svg class="svg-cart-small">
-                    <use xlink:href="#svg-cart-small"></use>
-                  </svg>
-                  <!-- /SVG CART -->
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <!-- SVG HEART -->
-                  <svg class="svg-heart">
-                    <use xlink:href="#svg-heart"></use>
-                  </svg>
-                  <!-- /SVG HEART -->
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <i class="fa fa-facebook"></i>
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html#" class="button square">
-                  <i class="fa fa-twitter"></i>
-                </a>
-                <!-- /BUTTON -->
-              </div>
-              <!-- /BUTTON LIST -->
-            </div>
-            <!-- /PRODUCT LIST ITEM ACTIONS -->
-          </div>
-          <!-- /PRODUCT LIST ITEM PREVIEW -->
-
-          <!-- PRODUCT LIST ITEM INFO -->
-          <div class="product-list-item-info">
-            <a href="product-page-v1.html"><h6 class="title">Crasher Blu</h6></a>
-            <p class="product-description">Water Resistant</p>
-            <!-- PRODUCT LIST ITEM PRICE -->
-            <div class="product-list-item-price">
-              <!-- RATING -->
-              <ul class="rating">
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item filled">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-
-                <!-- RATING ITEM -->
-                <li class="rating-item">
-                  <!-- SVG STAR -->
-                  <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                  </svg>
-                  <!-- /SVG STAR -->
-                </li>
-                <!-- /RATING ITEM -->
-              </ul>
-              <!-- /RATING -->
-              <h6 class="product-price">$165</h6>
-            </div>
-            <!-- /PRODUCT LIST ITEM PRICE -->
-          </div>
-          <!-- /PRODUCT LIST ITEM INFO -->
-        </div>
-        <!-- /PRODUCT LIST ITEM -->
-      </div>
-      <!-- /PRODUCT LIST -->
     </div>
-    <!-- /SECTION -->
   </div>
-  <!-- /SECTION WRAP -->
 
-   <div id="dynamic-footer"></div>
-  <!-- /WIDGET FORM WRAP -->
+  <div id="dynamic-footer"></div>
+
+<script src="js/vendor/jquery-3.1.0.min.js"></script>
+<script src="js/vendor/jquery.magnific-popup.min.js"></script>
+<script src="js/vendor/imgLiquid-min.js"></script>
+<script src="js/liquid.js"></script>
+<script src="js/dropdowns.js"></script>
+<script src="js/popups.js"></script>
+<script src="js/tab.js"></script>
+<script src="js/rating.js"></script>
+<script src="js/image_changer.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/zoomifier.js"></script>
+
 <script>
+   // Load Header and Footer
    fetch('header.html')
      .then(response => response.text())
      .then(data => document.getElementById('dynamic-header').innerHTML = data);
@@ -1049,29 +178,182 @@
    fetch('footer.html')
      .then(response => response.text())
      .then(data => document.getElementById('dynamic-footer').innerHTML = data);
-</script>
 
-<!-- jQuery -->
-<script src="js/vendor/jquery-3.1.0.min.js"></script>
-<!-- magnificPopup -->
-<script src="js/vendor/jquery.magnific-popup.min.js"></script>
-<!-- imgLiquid -->
-<script src="js/vendor/imgLiquid-min.js"></script>
-<!-- liquid -->
-<script src="js/liquid.js"></script>
-<!-- dropdowns -->
-<script src="js/dropdowns.js"></script>
-<!-- popups -->
-<script src="js/popups.js"></script>
-<!-- tab -->
-<script src="js/tab.js"></script>
-<!-- rating -->
-<script src="js/rating.js"></script>
-<!-- image changer -->
-<script src="js/image_changer.js"></script>
-<!-- counter -->
-<script src="js/counter.js"></script>
-<!-- zoomifier -->
-<script src="js/zoomifier.js"></script>
+   // Load Product Data
+   const urlParams = new URLSearchParams(window.location.search);
+   const productId = urlParams.get('id');
+
+   if (productId) {
+     fetch('data.json')
+       .then(response => response.json())
+       .then(data => {
+         const product = data.products.find(p => p.id === productId);
+
+         if (product) {
+           // 1. Fill basic text details
+           document.getElementById('prod-name').innerText = product.name;
+           document.getElementById('bread-current').innerText = product.name;
+           document.getElementById('bread-category').innerText = product.category;
+           document.getElementById('prod-descriptor').innerText = product.short_descriptor || '';
+          //  document.getElementById('prod-price').innerText = product.price || '';
+           document.getElementById('about-title').innerText = `About ${product.name}`;
+           
+           if(product.tagline) { 
+             document.getElementById('prod-tagline').innerText = `"${product.tagline}"`; 
+           }
+           if(product.pack_size) { 
+             document.getElementById('prod-pack-size').innerText = `Pack Size: ${product.pack_size}`; 
+           }
+
+           // 2. Build Image Gallery
+           if(product.images && product.images.gallery) {
+              let thumbsHTML = '';
+              product.images.gallery.forEach((imgSrc, index) => {
+                  let selectedClass = index === 0 ? 'selected' : '';
+                  thumbsHTML += `
+                  <div class="product-img-list-item ${selectedClass}">
+                    <div class="overlay"></div>
+                    <figure class="product-img small"><img src="${imgSrc}" alt="${product.name}"></figure>
+                  </div>`;
+              });
+              document.getElementById('dynamic-gallery-thumbs').innerHTML = thumbsHTML;
+              document.getElementById('dynamic-main-image').innerHTML = `<img src="${product.images.main}" alt="${product.name}">`;
+              
+              // Add click handlers for image gallery
+              document.querySelectorAll('.product-img-list-item').forEach((item, index) => {
+                item.addEventListener('click', function() {
+                  document.querySelectorAll('.product-img-list-item').forEach(i => i.classList.remove('selected'));
+                  this.classList.add('selected');
+                  document.getElementById('dynamic-main-image').innerHTML = `<img src="${product.images.gallery[index]}" alt="${product.name}">`;
+                  if(typeof initImageChanger === 'function') { initImageChanger(); }
+                });
+              });
+           }
+
+           // 3. Fill Tab Details (Only show tabs if description data exists)
+           if(product.description && product.description.about) {
+               document.getElementById('tabs-section').style.display = 'block';
+               document.getElementById('prod-about-text').innerText = product.description.about;
+               
+               // Indications
+               if(product.description.indications && product.description.indications.length > 0) {
+                   document.getElementById('indications-container').style.display = 'block';
+                   let indHTML = '';
+                   product.description.indications.forEach(ind => { 
+                     indHTML += `<li>${ind}</li>`; 
+                   });
+                   document.getElementById('prod-indications').innerHTML = indHTML;
+               }
+
+               // Key Benefits Table
+               if(product.key_benefits && product.key_benefits.length > 0) {
+                   document.getElementById('key-benefits-container').style.display = 'block';
+                   let benefitsHTML = '';
+                   product.key_benefits.forEach((item, index) => {
+                       const bgColor = index % 2 === 0 ? '#ffffff' : '#f9f9f9';
+                       benefitsHTML += `
+                       <tr style="background-color: ${bgColor};">
+                         <td style="padding: 15px; border: 1px solid #ddd; font-weight: bold; color: #1a1a1a;">${item.benefit}</td>
+                         <td style="padding: 15px; border: 1px solid #ddd; color: #2d5016;">${item.detail}</td>
+                       </tr>`;
+                   });
+                   document.getElementById('key-benefits-tbody').innerHTML = benefitsHTML;
+               }
+
+               // Comparison Table
+               if(product.comparison_table && product.comparison_table.rows && product.comparison_table.rows.length > 0) {
+                   document.getElementById('comparison-table-container').style.display = 'block';
+                   let comparisonHTML = '';
+                   product.comparison_table.rows.forEach((row, index) => {
+                       const bgColor = index % 2 === 0 ? '#ffffff' : '#f9f9f9';
+                       comparisonHTML += `
+                       <tr style="background-color: ${bgColor};">
+                         <td style="padding: 15px; border: 1px solid #ddd; font-weight: bold; color: #1a1a1a;">${row.parameter}</td>
+                         <td style="padding: 15px; border: 1px solid #ddd; text-align: center; color: #2d5016; font-weight: 500;">${row.biovion}</td>
+                         <td style="padding: 15px; border: 1px solid #ddd; text-align: center; color: #555;">${row.zoersealer}</td>
+                         <td style="padding: 15px; border: 1px solid #ddd; text-align: center; color: #555;">${row.epoxyresin}</td>
+                       </tr>`;
+                   });
+                   document.getElementById('comparison-tbody').innerHTML = comparisonHTML;
+               }
+
+               // Badges / Quality features
+               if(product.badges && product.badges.length > 0) {
+                   let badgesHTML = '';
+                   product.badges.forEach((badge, i) => {
+                       badgesHTML += `
+                       <div class="feature-enum-item">
+                         <i class="s-icon ${badge.icon || 'icon-badge'}"></i>
+                         <h6 class="title">${badge.title}</h6>
+                         <p>${badge.body}</p>
+                       </div>`;
+                       if(i < product.badges.length - 1) badgesHTML += `<div class="separator"></div>`;
+                   });
+                   document.getElementById('prod-badges').innerHTML = badgesHTML;
+               }
+
+               // Reviews (Clinician Feedback)
+               if(product.reviews && product.reviews.length > 0) {
+                   document.getElementById('reviews-tab-trigger').style.display = 'block';
+                   document.getElementById('reviews-tab-content').style.display = 'block';
+                   
+                   let reviewsHTML = '';
+                   product.reviews.forEach(review => {
+                       reviewsHTML += `
+                       <div class="reviews-item">
+                         <ul class="rating">
+                           <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+                           <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+                           <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+                           <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+                           <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
+                         </ul>
+                         <p><span class="review-author">${review.author} (${review.location}) -</span> ${review.text}</p>
+                       </div>`;
+                   });
+                   document.getElementById('prod-reviews').innerHTML = reviewsHTML;
+               }
+           }
+
+           // 4. Build Related Products
+           if(product.related_ids && product.related_ids.length > 0) {
+               let relatedHTML = '';
+               product.related_ids.forEach(relId => {
+                   let relProduct = data.products.find(p => p.id === relId);
+                   if(relProduct) {
+                       relatedHTML += `
+                        <div class="product-list-item column">
+                          <div class="product-list-item-preview">
+                            <figure class="product-img"><img src="${relProduct.images.main}" alt="${relProduct.name}"></figure>
+                            <div class="product-list-item-actions">
+                              <div class="button-list wrap-4">
+                                <a href="product-page-v1.html?id=${relProduct.id}" class="button square"><svg class="svg-cart-small"><use xlink:href="#svg-cart-small"></use></svg></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-list-item-info">
+                            <a href="product-page-v1.html?id=${relProduct.id}"><h6 class="title">${relProduct.name}</h6></a>
+                            <p class="product-description">${relProduct.short_descriptor}</p>
+                            <div class="product-list-item-price"><h6 class="product-price" style="font-size:14px; color:#000;">${relProduct.price}</h6></div>
+                          </div>
+                        </div>`;
+                   }
+               });
+               document.getElementById('related-products-grid').innerHTML = relatedHTML;
+           }
+
+           // 5. Re-init theme scripts since HTML was injected
+           if(typeof initImageChanger === 'function') { initImageChanger(); }
+           if(typeof initTabs === 'function') { initTabs(); }
+
+         } else {
+           document.getElementById('prod-name').innerText = "Product Not Found";
+         }
+       })
+       .catch(error => console.error('Error loading product data:', error));
+   } else {
+     document.getElementById('prod-name').innerText = "No Product Selected";
+   }
+</script>
 </body>
 </html>
