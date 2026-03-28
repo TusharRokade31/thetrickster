@@ -7,8 +7,10 @@
   <link rel="stylesheet" href="css/vendor/simple-line-icons.css">
   <link rel="stylesheet" href="css/vendor/magnific-popup.css">
   <link rel="stylesheet" href="css/style.min.css">
+  <!-- INQUIRY POPUP STYLES -->
+  <link rel="stylesheet" href="inquiry-popup.css">
   <link rel="icon" href="favicon.ico">
-  <title>The Trickster | Shop</title>
+  <title>Dentessa | Shop</title>
 </head>
 <body>
 
@@ -81,209 +83,213 @@
 <script src="js/liquid.js"></script>
 <script src="js/dropdowns.js"></script>
 <script src="js/popups.js"></script>
+<!-- INQUIRY POPUP SCRIPT -->
+<script src="inquiry-popup.js"></script>
 
 <script>
-   // Global variables for filtering
-   let allProducts = [];
-   let filteredProducts = [];
-   let currentCategory = '';
-   let currentType = '';
+  /* ── INIT INQUIRY POPUP ─────────────────────── */
+  DentessaInquiry.init({ email: 'info@dentessa.com' }); // ← CHANGE TO YOUR EMAIL
 
-   // Load Header and Footer
-   fetch('header.html')
-     .then(response => response.text())
-     .then(data => document.getElementById('dynamic-header').innerHTML = data);
+  /* ── GLOBAL STATE ───────────────────────────── */
+  let allProducts = [];
+  let filteredProducts = [];
+  let currentCategory = '';
+  let currentType = '';
 
-   fetch('footer.html')
-     .then(response => response.text())
-     .then(data => document.getElementById('dynamic-footer').innerHTML = data);
+  /* ── LOAD HEADER & FOOTER ───────────────────── */
+  fetch('header.html')
+    .then(r => r.text())
+    .then(data => document.getElementById('dynamic-header').innerHTML = data);
 
-   // Load Products Data
-   fetch('data.json')
-     .then(response => response.json())
-     .then(data => {
-       allProducts = data.products;
-       
-       // Initialize filters
-       initializeTypeFilter();
-       
-       // Set initial category if provided in URL
-       const urlParams = new URLSearchParams(window.location.search);
-       const initialCategory = urlParams.get('category');
-       
-       if (initialCategory) {
-         document.getElementById('category_filter').value = initialCategory;
-         currentCategory = initialCategory;
-       }
-       
-       // Render initial products
-       renderProducts();
-       
-       // Add event listeners for filters
-       document.getElementById('category_filter').addEventListener('change', function() {
-         currentCategory = this.value;
-         currentType = ''; // Reset type filter when category changes
-         document.getElementById('type_filter').value = '';
-         updateTypeFilterOptions();
-         renderProducts();
-       });
+  fetch('footer.html')
+    .then(r => r.text())
+    .then(data => document.getElementById('dynamic-footer').innerHTML = data);
 
-       document.getElementById('type_filter').addEventListener('change', function() {
-         currentType = this.value;
-         renderProducts();
-       });
-     })
-     .catch(error => console.error('Error loading products:', error));
+  /* ── LOAD PRODUCTS ──────────────────────────── */
+  fetch('data.json')
+    .then(r => r.json())
+    .then(data => {
+      allProducts = data.products;
 
-   // Initialize type filter with all unique types
-   function initializeTypeFilter() {
-     const typeSelect = document.getElementById('type_filter');
-     const allTypes = new Set();
-     
-     allProducts.forEach(product => {
-       allTypes.add(product.type);
-     });
+      initializeTypeFilter();
 
-     // Clear existing options except the first one
-     const options = typeSelect.querySelectorAll('option');
-     options.forEach((option, index) => {
-       if (index > 0) option.remove();
-     });
+      // Read URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialCategory = urlParams.get('category');
 
-     // Add all types as options
-     Array.from(allTypes).sort().forEach(type => {
-       const option = document.createElement('option');
-       option.value = type;
-       option.textContent = type;
-       typeSelect.appendChild(option);
-     });
-   }
+      if (initialCategory) {
+        document.getElementById('category_filter').value = initialCategory;
+        currentCategory = initialCategory;
+      }
 
-   // Update type filter based on selected category
-   function updateTypeFilterOptions() {
-     const typeSelect = document.getElementById('type_filter');
-     
-     // Get unique types for current category
-     let availableTypes = new Set();
-     
-     if (currentCategory) {
-       allProducts.forEach(product => {
-         if (product.category === currentCategory) {
-           availableTypes.add(product.type);
-         }
-       });
-     } else {
-       // If no category selected, show all types
-       allProducts.forEach(product => {
-         availableTypes.add(product.type);
-       });
-     }
+      renderProducts();
 
-     // Clear existing options except the first one
-     const options = Array.from(typeSelect.querySelectorAll('option'));
-     options.forEach((option, index) => {
-       if (index > 0) option.remove();
-     });
+      document.getElementById('category_filter').addEventListener('change', function () {
+        currentCategory = this.value;
+        currentType = '';
+        document.getElementById('type_filter').value = '';
+        updateTypeFilterOptions();
+        renderProducts();
+      });
 
-     // Add available types
-     Array.from(availableTypes).sort().forEach(type => {
-       const option = document.createElement('option');
-       option.value = type;
-       option.textContent = type;
-       typeSelect.appendChild(option);
-     });
+      document.getElementById('type_filter').addEventListener('change', function () {
+        currentType = this.value;
+        renderProducts();
+      });
+    })
+    .catch(error => console.error('Error loading products:', error));
 
-     // Reset type filter value
-     typeSelect.value = '';
-   }
+  /* ── TYPE FILTER INIT ───────────────────────── */
+  function initializeTypeFilter() {
+    const typeSelect = document.getElementById('type_filter');
+    const allTypes = new Set();
+    allProducts.forEach(p => allTypes.add(p.type));
 
-   // Filter and render products
-   function renderProducts() {
-     // Apply filters
-     filteredProducts = allProducts.filter(product => {
-       const categoryMatch = !currentCategory || product.category === currentCategory;
-       const typeMatch = !currentType || product.type === currentType;
-       return categoryMatch && typeMatch;
-     });
+    Array.from(typeSelect.querySelectorAll('option')).forEach((o, i) => { if (i > 0) o.remove(); });
 
-     // Update breadcrumb and title
-     const breadcrumb = document.getElementById('category-breadcrumb');
-     const pageTitle = document.getElementById('page-title');
-     const pageSubtitle = document.getElementById('page-subtitle');
+    Array.from(allTypes).sort().forEach(type => {
+      const opt = document.createElement('option');
+      opt.value = type;
+      opt.textContent = type;
+      typeSelect.appendChild(opt);
+    });
+  }
 
-     if (currentCategory) {
-       breadcrumb.textContent = currentCategory;
-       pageTitle.textContent = currentCategory;
-       
-       if (currentType) {
-         pageSubtitle.textContent = currentType;
-       } else {
-         updateCategorySubtitle(currentCategory);
-       }
-     } else {
-       breadcrumb.textContent = 'All Products';
-       pageTitle.textContent = 'All Products';
-       pageSubtitle.textContent = 'Explore Our Complete Dental Solutions Portfolio';
-     }
+  function updateTypeFilterOptions() {
+    const typeSelect = document.getElementById('type_filter');
+    const available = new Set();
 
-     // Update results count
-     const countDisplay = document.getElementById('results-count');
-     countDisplay.innerText = `Showing ${filteredProducts.length} result${filteredProducts.length !== 1 ? 's' : ''}`;
+    allProducts.forEach(p => {
+      if (!currentCategory || p.category === currentCategory) available.add(p.type);
+    });
 
-     // Build HTML for products
-     const gridContainer = document.getElementById('dynamic-product-grid');
-     let htmlContent = '';
+    Array.from(typeSelect.querySelectorAll('option')).forEach((o, i) => { if (i > 0) o.remove(); });
 
-     filteredProducts.forEach(product => {
-       htmlContent += `
+    Array.from(available).sort().forEach(type => {
+      const opt = document.createElement('option');
+      opt.value = type;
+      opt.textContent = type;
+      typeSelect.appendChild(opt);
+    });
+    typeSelect.value = '';
+  }
+
+  /* ── RENDER PRODUCTS ────────────────────────── */
+  function renderProducts() {
+    filteredProducts = allProducts.filter(p => {
+      const catOk  = !currentCategory || p.category === currentCategory;
+      const typeOk = !currentType     || p.type === currentType;
+      return catOk && typeOk;
+    });
+
+    // Update breadcrumb / title / subtitle
+    const breadcrumb  = document.getElementById('category-breadcrumb');
+    const pageTitle   = document.getElementById('page-title');
+    const pageSubtitle= document.getElementById('page-subtitle');
+
+    if (currentCategory) {
+      breadcrumb.textContent  = currentCategory;
+      pageTitle.textContent   = currentCategory;
+      pageSubtitle.textContent= currentType ? currentType : getCategorySubtitle(currentCategory);
+    } else {
+      breadcrumb.textContent  = 'All Products';
+      pageTitle.textContent   = 'All Products';
+      pageSubtitle.textContent= 'Explore Our Complete Dental Solutions Portfolio';
+    }
+
+    document.getElementById('results-count').innerText =
+      `Showing ${filteredProducts.length} result${filteredProducts.length !== 1 ? 's' : ''}`;
+
+    const gridContainer = document.getElementById('dynamic-product-grid');
+    let htmlContent = '';
+
+    filteredProducts.forEach(product => {
+      // Safely escape product name for data attribute
+      const safeName = product.name.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+      htmlContent += `
         <div class="product-list-item column">
+
+          <!-- PREVIEW / IMAGE -->
           <div class="product-list-item-preview">
             <figure class="product-img">
-              <img src="${product.images.main}" alt="${product.name}">
+              <img src="${product.images.main}" alt="${product.name}" loading="lazy">
             </figure>
             <div class="product-list-item-actions">
               <div class="button-list wrap-4">
-                <a href="product-page-v1.html?id=${product.id}" class="button square">
+                <a href="product-page-v1.html?id=${product.id}" class="button square" title="View Product">
                   <svg class="svg-cart-small"><use xlink:href="#svg-cart-small"></use></svg>
                 </a>
               </div>
             </div>
           </div>
+
+          <!-- INFO -->
           <div class="product-list-item-info">
-            <a href="product-page-v1.html?id=${product.id}"><h6 class="title">${product.name}</h6></a>
+            <a href="product-page-v1.html?id=${product.id}">
+              <h6 class="title">${product.name}</h6>
+            </a>
             <p class="product-description">${product.short_descriptor}</p>
+
+            <!-- PRICE — click triggers B2B inquiry popup -->
             <div class="product-list-item-price">
-              <h6 class="product-price small">${product.price}</h6>
+              <h6
+                class="product-price small diq-trigger"
+                data-product="${safeName}"
+                title="Click to inquire about pricing"
+                style="cursor:pointer; display:inline-flex; align-items:center; gap:8px;"
+              >
+                ${product.price}
+                <span style="
+                  font-size:10px;
+                  font-weight:700;
+                  letter-spacing:0.6px;
+                  background:#E8600A;
+                  color:#fff;
+                  padding:3px 8px;
+                  border-radius:3px;
+                  text-transform:uppercase;
+                  white-space:nowrap;
+                ">Inquire</span>
+              </h6>
             </div>
+            <!-- /PRICE -->
+
           </div>
-        </div>
-       `;
-     });
+        </div>`;
+    });
 
-     if (htmlContent === '') {
-       htmlContent = '<p style="grid-column: 1 / -1; text-align: center; padding: 40px;">No products found matching the selected filters.</p>';
-     }
+    if (!htmlContent) {
+      htmlContent = `<p style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
+        No products found matching the selected filters.
+      </p>`;
+    }
 
-     gridContainer.innerHTML = htmlContent;
-     
-     // Re-initialize theme scripts after injecting HTML
-     if(typeof jQuery !== 'undefined' && typeof imgLiquid !== 'undefined'){
-         $('.product-img').imgLiquid();
-     }
-   }
+    gridContainer.innerHTML = htmlContent;
 
-   // Helper function to set category-specific subtitles
-   function updateCategorySubtitle(category) {
-     const subtitles = {
-       'Endodontics': 'Healing Beyond the Surface — Perfect Seal · Efficient Canal Cleaning · Bioactive · Biocompatible',
-       'Restorative Dentistry': 'Comprehensive Solutions for Aesthetic & Durable Restorations',
-       'Diagnosis & Prophylaxis': 'Advanced Diagnostic Tools & Preventive Care Solutions',
-       'Surgery': 'Precision Instruments for Surgical Excellence'
-     };
-     
-     const pageSubtitle = document.getElementById('page-subtitle');
-     pageSubtitle.textContent = subtitles[category] || 'Explore Our Dental Solutions';
-   }
+    // Bind inquiry popup to every price tag
+    gridContainer.querySelectorAll('.diq-trigger').forEach(function (el) {
+      el.addEventListener('click', function () {
+        DentessaInquiry.open(this.dataset.product);
+      });
+    });
+
+    // Re-init theme imgLiquid after HTML inject
+    if (typeof jQuery !== 'undefined' && typeof imgLiquid !== 'undefined') {
+      jQuery('.product-img').imgLiquid();
+    }
+  }
+
+  /* ── CATEGORY SUBTITLES ─────────────────────── */
+  function getCategorySubtitle(category) {
+    const map = {
+      'Endodontics':              'Healing Beyond the Surface — Perfect Seal · Efficient Canal Cleaning · Bioactive · Biocompatible',
+      'Restorative Dentistry':    'Comprehensive Solutions for Aesthetic & Durable Restorations',
+      'Diagnosis & Prophylaxis':  'Advanced Diagnostic Tools & Preventive Care Solutions',
+      'Surgery':                  'Precision Instruments for Surgical Excellence'
+    };
+    return map[category] || 'Explore Our Dental Solutions';
+  }
 </script>
 </body>
 </html>

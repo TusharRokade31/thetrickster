@@ -1,0 +1,264 @@
+/* =============================================
+   DENTESSA — INQUIRY POPUP
+   Drop this file into any page.
+   Brand: Orange #E8600A | Dark #1C1C1C
+   ============================================= */
+
+/* ---------- OVERLAY ---------- */
+#dentessa-inquiry-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 28, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+#dentessa-inquiry-overlay.active {
+  display: flex;
+}
+
+/* ---------- MODAL BOX ---------- */
+#dentessa-inquiry-modal {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 24px 60px rgba(28, 28, 28, 0.22);
+  overflow: hidden;
+  animation: diq-slide-up 0.28s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+@keyframes diq-slide-up {
+  from { opacity: 0; transform: translateY(32px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)  scale(1);    }
+}
+
+/* ---------- HEADER ---------- */
+#dentessa-inquiry-modal .diq-header {
+  background: #E8600A;
+  padding: 22px 28px 18px;
+  position: relative;
+}
+#dentessa-inquiry-modal .diq-header h2 {
+  margin: 0 0 4px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+#dentessa-inquiry-modal .diq-header p {
+  margin: 0;
+  color: rgba(255,255,255,0.85);
+  font-size: 13px;
+}
+#dentessa-inquiry-modal .diq-product-badge {
+  display: inline-block;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* ---------- CLOSE BUTTON ---------- */
+#dentessa-inquiry-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: rgba(255,255,255,0.18);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+#dentessa-inquiry-close:hover {
+  background: rgba(255,255,255,0.32);
+}
+
+/* ---------- BODY / FORM ---------- */
+#dentessa-inquiry-modal .diq-body {
+  padding: 24px 28px 28px;
+}
+
+#dentessa-inquiry-modal .diq-row {
+  display: flex;
+  gap: 14px;
+}
+#dentessa-inquiry-modal .diq-row .diq-field {
+  flex: 1;
+}
+
+#dentessa-inquiry-modal .diq-field {
+  margin-bottom: 16px;
+}
+#dentessa-inquiry-modal .diq-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1C1C1C;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+#dentessa-inquiry-modal .diq-field label span.req {
+  color: #E8600A;
+  margin-left: 2px;
+}
+#dentessa-inquiry-modal .diq-field input,
+#dentessa-inquiry-modal .diq-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 7px;
+  font-size: 14px;
+  color: #1C1C1C;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+#dentessa-inquiry-modal .diq-field input:focus,
+#dentessa-inquiry-modal .diq-field select:focus,
+#dentessa-inquiry-modal .diq-field textarea:focus {
+  border-color: #E8600A;
+  box-shadow: 0 0 0 3px rgba(232, 96, 10, 0.12);
+  background: #fff;
+}
+#dentessa-inquiry-modal .diq-field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+#dentessa-inquiry-modal .diq-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E8600A' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* ---------- SUBMIT BUTTON ---------- */
+#dentessa-inquiry-modal .diq-submit-btn {
+  width: 100%;
+  padding: 13px;
+  background: #E8600A;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 4px;
+}
+#dentessa-inquiry-modal .diq-submit-btn:hover {
+  background: #c95208;
+  transform: translateY(-1px);
+}
+#dentessa-inquiry-modal .diq-submit-btn:active {
+  transform: translateY(0);
+}
+#dentessa-inquiry-modal .diq-submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- FOOTER NOTE ---------- */
+#dentessa-inquiry-modal .diq-note {
+  margin-top: 14px;
+  font-size: 11.5px;
+  color: #888;
+  text-align: center;
+  line-height: 1.5;
+}
+#dentessa-inquiry-modal .diq-note a {
+  color: #E8600A;
+  text-decoration: none;
+}
+
+/* ---------- SUCCESS STATE ---------- */
+#dentessa-inquiry-modal .diq-success {
+  display: none;
+  text-align: center;
+  padding: 32px 28px 36px;
+}
+#dentessa-inquiry-modal .diq-success.active {
+  display: block;
+}
+#dentessa-inquiry-modal .diq-success .diq-checkmark {
+  width: 60px;
+  height: 60px;
+  background: #E8600A;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 28px;
+  color: #fff;
+}
+#dentessa-inquiry-modal .diq-success h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1C1C1C;
+}
+#dentessa-inquiry-modal .diq-success p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------- ERROR MESSAGE ---------- */
+.diq-error-msg {
+  color: #d9534f;
+  font-size: 11.5px;
+  margin-top: 4px;
+  display: none;
+}
+.diq-field.has-error input,
+.diq-field.has-error select,
+.diq-field.has-error textarea {
+  border-color: #d9534f;
+}
+.diq-field.has-error .diq-error-msg {
+  display: block;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 480px) {
+  #dentessa-inquiry-modal .diq-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  #dentessa-inquiry-modal .diq-header,
+  #dentessa-inquiry-modal .diq-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/vendor/simple-line-icons.css">
   <link rel="stylesheet" href="css/vendor/magnific-popup.css">
   <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="inquiry-popup.css">
   <!-- favicon -->
   <link rel="icon" href="favicon.ico">
   <title>Dentessa | Home</title>
@@ -84,7 +85,7 @@
         <img src="img/home/categories/images website_surgery.webp" alt="start01">
         <h6 class="title">Surgery</h6>
         <!-- <p>Durability and Comfort</p> -->
-        <a href="/shop-grid.html" class="button small">View Product →</a>
+        <a href="/shop-grid.html?category=Surgery" class="button small">View Product →</a>
       </div>
       <!-- /BUILDER ACTIONS ITEM -->
     </div>
@@ -97,7 +98,7 @@
         <img src="img/home/categories/images website_diagnosis.webp" alt="start02">
         <h6 class="title">Diagnosis & Prophylaxis</h6>
         <!-- <p>For Extreme Conditions</p> -->
-        <a href="/shop-grid.html" class="button small">View Product →</a>
+        <a href="/shop-grid.html?category=Diagnosis%20%26%20Prophylaxis" class="button small">View Product →</a>
       </div>
       <!-- /BUILDER ACTIONS ITEM -->
     </div>
@@ -110,7 +111,7 @@
         <img src="img/home/categories/images website_restorative.webp" alt="start03">
         <h6 class="title">Restorative Dentistry</h6>
         <!-- <p>Handpicked Designs</p> -->
-        <a href="/shop-grid.html" class="button small">View Product →</a>
+        <a href="/shop-grid.html?category=Restorative%20Dentistry" class="button small">View Product →</a>
       </div>
       <!-- /BUILDER ACTIONS ITEM -->
     </div>
@@ -122,7 +123,7 @@
         <img src="img/home/categories/images website_ebdodontics.webp" alt="start03">
         <h6 class="title">Endodontics</h6>
         <!-- <p>Handpicked Designs</p> -->
-        <a href="shop-grid.html" class="button small">View Product →</a>
+        <a href="/shop-grid.html?category=Endodontics" class="button small">View Product →</a>
       </div>
       <!-- /BUILDER ACTIONS ITEM -->
     </div>
@@ -428,93 +429,123 @@ CDSCO Compliant</p>
      .then(data => document.getElementById('dynamic-footer').innerHTML = data);
 </script>
 
+<script src="inquiry-popup.js"></script>
 <script>
-  // Fetch the data.json file
-  fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-      const gridContainer = document.getElementById('dynamic-product-grid');
-      let htmlContent = '';
-         const limitedProducts = data.products.slice(0, 4);
-
-      // Loop through the limited set
-      limitedProducts.forEach(product => {
-        // Notice the link now passes the ID: product-page-v1.html?id=${product.id}
-        htmlContent += `
-
-        
-        
-        
-        <div class=".product-list product-list-item column">
-          <!-- PRODUCT LIST ITEM PREVIEW -->
-          <div class="product-list-item-preview">
-            <!-- PRODUCT IMG -->
-            <figure class="product-img">
-              <img src="${product.images.main}" alt="${product.name}">
-            </figure>
-            <!-- /PRODUCT IMG -->
-
-            <!-- PRODUCT LIST ITEM ACTIONS -->
-            <div class="product-list-item-actions">
-              <!-- BUTTON LIST -->
-              <div class="button-list wrap-4">
-                <!-- BUTTON -->
-                <a href="product-page-v1.html?id=${product.id}" class="button square">
-                  <!-- SVG CART -->
-                  <svg class="svg-cart-small">
-                    <use xlink:href="#svg-cart-small"></use>
-                  </svg>
-                  <!-- /SVG CART -->
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html?id=${product.id}" class="button square">
-                  <!-- SVG HEART -->
-                  <svg class="svg-heart">
-                    <use xlink:href="#svg-heart"></use>
-                  </svg>
-                  <!-- /SVG HEART -->
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html?id=${product.id}" class="button square">
-                  <i class="fa fa-facebook"></i>
-                </a>
-                <!-- /BUTTON -->
-
-                <!-- BUTTON -->
-                <a href="product-page-v1.html?id=${product.id}" class="button square">
-                  <i class="fa fa-twitter"></i>
-                </a>
-                <!-- /BUTTON -->
+  /* ── INIT INQUIRY POPUP ───────────────────────
+     Change the email once here — works site-wide.  */
+  document.addEventListener('DOMContentLoaded', function () {
+    DentessaInquiry.init({ email: 'info@dentessa.com' }); // ← YOUR EMAIL
+  });
+ 
+  /* ── PRODUCT GRID LOADER ─────────────────────
+     Reusable: pass any container ID + slice range.
+     Usage examples:
+       loadProducts('dynamic-product-grid', 0, 4);   // index.html — 4 featured
+       loadProducts('shop-product-grid', 0, 999);    // shop.html — all products
+  ─────────────────────────────────────────────── */
+  function loadProducts(containerId, sliceFrom, sliceTo) {
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        const gridContainer = document.getElementById(containerId);
+        if (!gridContainer) return;
+ 
+        const products = data.products.slice(sliceFrom, sliceTo);
+        let htmlContent = '';
+ 
+        products.forEach(product => {
+          htmlContent += `
+          <div class="product-list-item column">
+ 
+            <!-- PRODUCT LIST ITEM PREVIEW -->
+            <div class="product-list-item-preview">
+              <figure class="product-img">
+                <img src="${product.images.main}" alt="${product.name}" loading="lazy">
+              </figure>
+ 
+              <div class="product-list-item-actions">
+                <div class="button-list wrap-4">
+                  <a href="product-page-v1.html?id=${product.id}" class="button square" title="View Product">
+                    <svg class="svg-cart-small"><use xlink:href="#svg-cart-small"></use></svg>
+                  </a>
+                  <a href="product-page-v1.html?id=${product.id}" class="button square" title="Wishlist">
+                    <svg class="svg-heart"><use xlink:href="#svg-heart"></use></svg>
+                  </a>
+                  <a href="product-page-v1.html?id=${product.id}" class="button square" title="Share on Facebook">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                  <a href="product-page-v1.html?id=${product.id}" class="button square" title="Share on Twitter">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </div>
               </div>
-              <!-- /BUTTON LIST -->
             </div>
-            <!-- /PRODUCT LIST ITEM ACTIONS -->
-          </div>
-          <!-- /PRODUCT LIST ITEM PREVIEW -->
-
-          <!-- PRODUCT LIST ITEM INFO -->
-          <div class="product-list-item-info">
-            <a href="product-page-v1.html?id=${product.id}"><h6 class="title">${product.name}</h6></a>
-            <p class="product-description">${product.short_descriptor}</p>
-            <!-- PRODUCT LIST ITEM PRICE -->
-            <div class="product-list-item-price">
-             
-              <h6 class="product-price small">${product.price}</h6>
+            <!-- /PRODUCT LIST ITEM PREVIEW -->
+ 
+            <!-- PRODUCT LIST ITEM INFO -->
+            <div class="product-list-item-info">
+              <a href="product-page-v1.html?id=${product.id}">
+                <h6 class="title">${product.name}</h6>
+              </a>
+              <p class="product-description">${product.short_descriptor}</p>
+ 
+              <!-- PRICE — click opens B2B inquiry popup -->
+              <div class="product-list-item-price">
+                <h6
+                  class="product-price small diq-trigger"
+                  title="Click to inquire about pricing"
+                  data-product="${product.name.replace(/"/g, '&quot;')}"
+                  style="cursor:pointer;"
+                >
+                  ${product.price}
+                  <span style="
+                    display:inline-block;
+                    font-size:10px;
+                    font-weight:600;
+                    letter-spacing:0.5px;
+                    background:#E8600A;
+                    color:#fff;
+                    padding:2px 7px;
+                    border-radius:3px;
+                    margin-left:6px;
+                    vertical-align:middle;
+                    text-transform:uppercase;
+                  ">Inquire</span>
+                </h6>
+              </div>
+              <!-- /PRICE -->
+ 
             </div>
-            <!-- /PRODUCT LIST ITEM PRICE -->
-          </div>
-          <!-- /PRODUCT LIST ITEM INFO -->
-        </div>
-        `;
-      });
-
-      gridContainer.innerHTML = htmlContent;
-    })
-    .catch(error => console.error('Error loading products:', error));
+            <!-- /PRODUCT LIST ITEM INFO -->
+ 
+          </div>`;
+        });
+ 
+        gridContainer.innerHTML = htmlContent;
+ 
+        /* Bind click on every price tag in THIS container */
+        gridContainer.querySelectorAll('.diq-trigger').forEach(function (el) {
+          el.addEventListener('click', function () {
+            DentessaInquiry.open(this.dataset.product);
+          });
+        });
+      })
+      .catch(error => console.error('Error loading products:', error));
+  }
+ 
+  /* ── PAGE-SPECIFIC CALLS ─────────────────────
+     Uncomment the line that matches the current page.
+     Or put this inline in each page's own <script> block.
+  ─────────────────────────────────────────────── */
+ 
+  // index.html — 4 featured products
+  loadProducts('dynamic-product-grid', 0, 4);
+ 
+  // shop.html — all products (uncomment & change container id)
+  // loadProducts('shop-product-grid', 0, 999);
+ 
+  // category page — products 5 to 16
+  // loadProducts('category-grid', 4, 16);
 </script>
  
 
