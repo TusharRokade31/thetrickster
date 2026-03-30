@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+    <!-- styles -->
+    <link rel="stylesheet" href="css/vendor/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/vendor/simple-line-icons.css" />
+    <link rel="stylesheet" href="css/vendor/magnific-popup.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <!-- favicon -->
+    <link rel="icon" href="favicon.ico" />
+    <title>Dentessa | About</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,   /* ← disables Tailwind's base reset so style.min.css is not overridden */
+      },
+      theme: {
+        extend: {
+          colors: {
+            navy:          '#242935',
+            'navy-light':  '#2e3547',
+            'navy-dark':   '#1a1f29',
+            accent:        '#e4380f',
+            'accent-light':'#ff4a20',
+            'accent-muted':'#c42d0a',
+          },
+          fontFamily: {
+            heading: ['"Inter"', 'sans-serif'],
+            body:    ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: #fff; color: #242935; overflow-x: hidden; }
+
+    /* ── NAV ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(36,41,53,0.08); transition: box-shadow .3s;
+    }
+    #navbar.scrolled { box-shadow: 0 4px 30px rgba(36,41,53,.12); }
+    .nav-link {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+      font-size: .85rem; letter-spacing: .1em; text-transform: uppercase;
+      color: #242935; transition: color .2s; position: relative;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px;
+      background: #e4380f; transform: scaleX(0); transform-origin: left; transition: transform .3s;
+    }
+    .nav-link:hover { color: #e4380f; }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .cart-btn {
+      background: #e4380f; color: #fff;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      letter-spacing: .06em; font-size: .85rem; padding: .55rem 1.2rem;
+      transition: background .2s, transform .15s;
+    }
+    .cart-btn:hover { background: #c42d0a; transform: translateY(-1px); }
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    /* ── HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, #242935 0%, #1a1f29 50%, #2e1a14 100%);
+      position: relative; overflow: hidden; padding: 7rem 0 5rem;
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(228,56,15,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(228,56,15,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .page-hero-glow {
+      position: absolute; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(228,56,15,.14) 0%, transparent 65%);
+      border-radius: 50%; right: -80px; top: -80px; pointer-events: none;
+    }
+    .breadcrumb-link {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .75rem;
+      letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.35);
+      transition: color .2s;
+    }
+    .breadcrumb-link:hover { color: #e4380f; }
+
+    /* ── SIDEBAR NAV ── */
+    .sidebar-link {
+      display: flex; align-items: center; gap: .6rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(36,41,53,.5); padding: .65rem 1rem;
+      border-left: 2px solid transparent; transition: all .2s; cursor: pointer;
+    }
+    .sidebar-link:hover { color: #e4380f; border-left-color: rgba(228,56,15,.3); background: rgba(228,56,15,.03); }
+    .sidebar-link.active { color: #e4380f; border-left-color: #e4380f; background: rgba(228,56,15,.05); }
+    .sidebar-link .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+    /* ── LEGAL CONTENT ── */
+    .legal-section { padding: 3.5rem 0; border-bottom: 1px solid rgba(36,41,53,.08); }
+    .legal-section:last-child { border-bottom: none; }
+    .legal-kicker {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: #e4380f;
+    }
+    .legal-title {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.5rem); text-transform: uppercase; color: #242935;
+      line-height: 1; margin-top: .4rem;
+    }
+    .legal-divider { width: 36px; height: 3px; background: #e4380f; margin: .9rem 0 1.5rem; }
+
+    .legal-article-title {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+      font-size: 1rem; text-transform: uppercase; letter-spacing: .05em;
+      color: #242935; margin: 1.8rem 0 .5rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .legal-article-title::before {
+      content: ''; display: inline-block; width: 18px; height: 2px; background: #e4380f; flex-shrink: 0;
+    }
+    .legal-body { color: #6b7280; font-size: .9rem; line-height: 1.85; }
+    .legal-body p { margin-bottom: .9rem; }
+    .legal-body ul { list-style: none; padding: 0; margin: .75rem 0 1rem; }
+    .legal-body ul li {
+      padding: .4rem 0 .4rem 1.4rem; position: relative;
+      font-size: .88rem; color: #6b7280; line-height: 1.6;
+    }
+    .legal-body ul li::before {
+      content: '›'; position: absolute; left: 0;
+      color: #e4380f; font-weight: 700; font-size: 1rem;
+    }
+    .legal-note {
+      background: rgba(228,56,15,.05); border-left: 3px solid #e4380f;
+      padding: 1rem 1.2rem; margin: 1.2rem 0;
+      font-size: .85rem; color: #374151; line-height: 1.7;
+    }
+
+    /* ── CONTACT BOX ── */
+    .contact-box {
+      background: #242935; padding: 2rem 2.5rem; position: relative; overflow: hidden;
+    }
+    .contact-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #e4380f, #ff4a20);
+    }
+
+    .policy-pill { font-family:'Barlow Condensed',sans-serif; font-weight:700;
+      font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+      padding:.45rem 1rem; border:1.5px solid rgba(255,255,255,.18);
+      color:rgba(255,255,255,.5); transition:all .2s; text-decoration:none; display:inline-block; }
+    .policy-pill:hover { border-color:#e4380f; color:#e4380f; background:rgba(228,56,15,.06); }
+    .policy-pill.active-pill { background:#e4380f; border-color:#e4380f; color:#fff; }
+
+    /* ── FOOTER ── */
+    footer { background: #1a1f29; }
+    .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem; letter-spacing: .05em; text-transform: uppercase; color: #fff; }
+    .footer-logo span { color: #e4380f; }
+    .footer-link { color: rgba(255,255,255,.45); font-size: .85rem; transition: color .2s; display: block; margin-bottom: .5rem; }
+    .footer-link:hover { color: #e4380f; }
+    .footer-heading { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.2rem; }
+
+    /* ── REVEALS ── */
+    .reveal { opacity: 0; transform: translateY(24px); }
+  </style>
+</head>
+<body>
+<div id="dynamic-header"></div>
+
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-glow"></div>
+  <div class="max-w-screen-xl mx-auto px-6 md:px-10 relative z-10">
+    <div class="flex items-center gap-2 mb-6">
+      <a href="index.html" class="breadcrumb-link">Home</a>
+      <span class="text-white/20 text-xs">›</span>
+      <span class="font-heading font-semibold text-[.75rem] tracking-[.15em] uppercase text-accent">Legal</span>
+    </div>
+    <h1 class="font-heading font-black text-white uppercase" style="font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;letter-spacing:.02em">
+      DISCLAIMER<br/>&amp; <span style="color:#e4380f">POLICIES</span>
+    </h1>
+    <p class="text-white/45 text-sm mt-4 max-w-lg leading-relaxed">
+      Last Updated: 2026. Dentessa is a brand owned and operated by <strong class="text-white/70">Atyanta</strong>. Please read these policies carefully before using our website or products.
+    </p>
+        <div class="flex flex-wrap gap-2 mt-8">
+      <a href="privacy-policy.html" class="policy-pill">Privacy Policy</a>
+        <a href="terms-of-use.html" class="policy-pill">Terms of Use</a>
+        <a href="shipping-policy.html" class="policy-pill">Shipping Policy</a>
+        <a href="refund-return.html" class="policy-pill ">Return &amp; Refund</a>
+        <a href="cancellation-policy.html" class="policy-pill">Cancellation Policy</a>
+        <a href="disclaimer.html" class="policy-pill active-pill">Disclaimer</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ MAIN CONTENT ══════════════ -->
+<div class="max-w-screen-xl mx-auto px-6 md:px-10">
+  <div class="grid lg:grid-cols-[220px_1fr] gap-12 py-14">
+
+    <!-- SIDEBAR (desktop sticky) -->
+    <aside class="hidden lg:block">
+      <div class="sticky top-24">
+        <p class="font-heading font-bold text-[.7rem] tracking-[.2em] uppercase text-gray-400 mb-3 px-1">On This Page</p>
+        <nav class="flex flex-col">
+          <a class="sidebar-link active" href="#disclaimer"><span class="dot"></span>Disclaimer</a>
+          <a class="sidebar-link" href="#privacy"><span class="dot"></span>Privacy Policy</a>
+          <a class="sidebar-link" href="#terms"><span class="dot"></span>Terms of Use</a>
+          <a class="sidebar-link" href="#shipping"><span class="dot"></span>Shipping Policy</a>
+          <a class="sidebar-link" href="#returns"><span class="dot"></span>Returns &amp; Warranty</a>
+          <a class="sidebar-link" href="#contact-legal"><span class="dot"></span>Contact</a>
+        </nav>
+        
+
+        <!-- Note box -->
+        <div class="mt-8 border border-accent/20 bg-accent/[.03] p-4">
+          <p class="font-heading font-bold text-[.7rem] tracking-[.12em] uppercase text-accent mb-1">Questions?</p>
+          <p class="text-gray-500 text-xs leading-relaxed">For any legal queries, reach us at <a href="mailto:atyantainc@gmail.com" class="text-accent underline">atyantainc@gmail.com</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="min-w-0">
+
+      <!-- ── DISCLAIMER ── -->
+      <section id="disclaimer" class="legal-section reveal">
+        <p class="legal-kicker">Legal Notice</p>
+        <h2 class="legal-title">DISCLAIMER</h2>
+        <div class="legal-divider"></div>
+
+        <div class="legal-note">
+          The information provided on the Dentessa website is intended solely for general informational and educational purposes related to dental materials, technologies, and clinical practices. Dentessa is a brand owned and operated by <strong>Atyanta</strong>.
+        </div>
+
+        <div class="legal-body">
+
+          <h3 class="legal-article-title">1. Professional Use</h3>
+          <p>Dentessa products are intended exclusively for use by qualified dental professionals who possess appropriate clinical training and professional expertise. Information presented on this website should not be interpreted as clinical instructions, treatment recommendations, or professional advice.</p>
+          <p>Dental professionals must rely on their own clinical judgment, professional training, and experience when selecting and using dental materials.</p>
+
+          <h3 class="legal-article-title">2. Product Information</h3>
+          <p>While Dentessa strives to provide accurate and up-to-date information regarding its products, the content on this website may not always reflect the most current product specifications, indications, or instructions for use.</p>
+          <p>Before using any product, dental professionals should always consult:</p>
+          <ul>
+            <li>Official product Instructions for Use (IFU)</li>
+            <li>Product packaging and labeling</li>
+            <li>Regulatory documentation where applicable</li>
+          </ul>
+
+          <h3 class="legal-article-title">3. No Medical or Clinical Advice</h3>
+          <p>Content on this website — including text, images, graphics, videos, and educational materials — is not intended to substitute professional education, clinical training, or professional dental advice. Patients seeking dental care should consult a qualified dental practitioner.</p>
+
+          <h3 class="legal-article-title">4. Limitation of Liability</h3>
+          <p>To the fullest extent permitted by law, Atyanta and Dentessa shall not be liable for any direct or indirect damages arising from the use of information presented on this website. Users assume full responsibility for the appropriate interpretation and application of the information provided.</p>
+
+          <h3 class="legal-article-title">5. Educational Content</h3>
+          <p>Educational materials and resources presented on this website are intended to support professional knowledge sharing and academic discussion within the dental community. Such content should not be interpreted as mandatory treatment protocols or universal clinical guidelines.</p>
+
+          <h3 class="legal-article-title">6. External Content</h3>
+          <p>This website may contain references or links to external resources or websites. Dentessa does not control or guarantee the accuracy or reliability of third-party content.</p>
+
+        </div>
+      </section>
+
+      <!-- ── PRIVACY POLICY ── -->
+      <section id="privacy" class="legal-section reveal">
+        <p class="legal-kicker">Data Protection</p>
+        <h2 class="legal-title">PRIVACY POLICY</h2>
+        <div class="legal-divider"></div>
+
+        <div class="legal-body">
+          <p>Dentessa (operated by Atyanta) is committed to protecting the privacy and personal information of visitors to our website and clients of our services.</p>
+
+          <h3 class="legal-article-title">Information We Collect</h3>
+          <ul>
+            <li>Contact details (name, email, phone) when you submit an enquiry or place an order</li>
+            <li>Professional information (dental registration, institution) for account verification</li>
+            <li>Usage data and analytics collected via cookies to improve our website experience</li>
+            <li>Order and transaction data for fulfilment and record-keeping purposes</li>
+          </ul>
+
+          <h3 class="legal-article-title">How We Use Your Information</h3>
+          <ul>
+            <li>To process and fulfil your product orders</li>
+            <li>To communicate about orders, product updates, and support</li>
+            <li>To send professional educational content (with your consent)</li>
+            <li>To comply with applicable legal obligations</li>
+          </ul>
+
+          <h3 class="legal-article-title">Data Sharing</h3>
+          <p>We do not sell or rent your personal data to third parties. We may share information with trusted logistics partners solely for order delivery purposes, and with payment processors to complete transactions securely.</p>
+
+          <h3 class="legal-article-title">Cookies</h3>
+          <p>Our website uses cookies to improve your browsing experience. You may choose to disable cookies through your browser settings, although this may affect certain website functionality.</p>
+
+          <h3 class="legal-article-title">Your Rights</h3>
+          <p>You have the right to access, correct, or request deletion of your personal data at any time. Please contact us at <a href="mailto:atyantainc@gmail.com" class="text-accent">atyantainc@gmail.com</a> to exercise these rights.</p>
+        </div>
+      </section>
+
+      <!-- ── TERMS OF USE ── -->
+      <section id="terms" class="legal-section reveal">
+        <p class="legal-kicker">Website Usage</p>
+        <h2 class="legal-title">TERMS OF USE</h2>
+        <div class="legal-divider"></div>
+
+        <div class="legal-body">
+          <p>By accessing and using the Dentessa website, you agree to comply with these Terms of Use. If you do not agree, please refrain from using this website.</p>
+
+          <h3 class="legal-article-title">Permitted Use</h3>
+          <p>This website is intended for use by licensed dental professionals, dental institutions, and individuals exploring Dentessa products for legitimate professional purposes. Unauthorized commercial use or reproduction of site content is prohibited.</p>
+
+          <h3 class="legal-article-title">Intellectual Property</h3>
+          <p>All content on this website — including product names, descriptions, images, logos, and educational materials — is the intellectual property of Atyanta / Dentessa. Reproduction without prior written consent is not permitted.</p>
+
+          <h3 class="legal-article-title">Account Responsibility</h3>
+          <p>If you create an account on our platform, you are responsible for maintaining the confidentiality of your login credentials and for all activities that occur under your account.</p>
+
+          <h3 class="legal-article-title">Changes to Terms</h3>
+          <p>Dentessa reserves the right to update these Terms of Use at any time. Continued use of the website after changes constitutes acceptance of the revised terms.</p>
+
+          <h3 class="legal-article-title">Governing Law</h3>
+          <p>These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of courts in Mumbai, Maharashtra.</p>
+        </div>
+      </section>
+
+      <!-- ── SHIPPING POLICY ── -->
+      <section id="shipping" class="legal-section reveal">
+        <p class="legal-kicker">Delivery Information</p>
+        <h2 class="legal-title">SHIPPING POLICY</h2>
+        <div class="legal-divider"></div>
+
+        <div class="legal-body">
+          <h3 class="legal-article-title">Processing Time</h3>
+          <p>Orders are processed within 1–2 business days of confirmed payment. Orders placed on weekends or public holidays will be processed on the next business day.</p>
+
+          <h3 class="legal-article-title">Domestic Shipping (India)</h3>
+          <ul>
+            <li>Standard delivery: 3–5 business days</li>
+            <li>Express delivery: 1–2 business days (available in select cities)</li>
+            <li>Free shipping on orders above ₹5,000</li>
+            <li>Orders below ₹5,000 attract a flat shipping fee of ₹150</li>
+          </ul>
+
+          <h3 class="legal-article-title">International Shipping</h3>
+          <p>International orders are available for select countries. Delivery timelines and shipping fees vary by destination and will be calculated at checkout. Import duties and customs taxes are the responsibility of the recipient.</p>
+
+          <h3 class="legal-article-title">Order Tracking</h3>
+          <p>A tracking number will be provided via email once your order has been dispatched. You can track your shipment through the carrier's website or by contacting our support team.</p>
+
+          <div class="legal-note">
+            <strong>Note:</strong> Delivery timelines are estimates and may be subject to delays due to weather conditions, customs, or carrier disruptions. Dentessa is not responsible for delays caused by third-party logistics partners.
+          </div>
+        </div>
+      </section>
+
+      <!-- ── RETURNS & WARRANTY ── -->
+      <section id="returns" class="legal-section reveal">
+        <p class="legal-kicker">Quality Assurance</p>
+        <h2 class="legal-title">RETURNS &amp; WARRANTY</h2>
+        <div class="legal-divider"></div>
+
+        <div class="legal-body">
+          <h3 class="legal-article-title">Return Eligibility</h3>
+          <p>Returns are accepted within 7 days of delivery for products that are:</p>
+          <ul>
+            <li>Received in a damaged or defective condition</li>
+            <li>Incorrect items delivered due to fulfillment error</li>
+            <li>Unopened and in original sealed packaging (for non-consumable items)</li>
+          </ul>
+          <p>Consumable dental materials (e.g., composites, etchants, cements) cannot be returned once opened due to hygiene and sterility regulations.</p>
+
+          <h3 class="legal-article-title">Return Process</h3>
+          <p>To initiate a return, contact our support team at <a href="mailto:atyantainc@gmail.com" class="text-accent">atyantainc@gmail.com</a> within 7 days of receiving your order. Include your order number, description of the issue, and supporting photographs where applicable.</p>
+
+          <h3 class="legal-article-title">Warranty</h3>
+          <p>All Dentessa instruments and non-consumable products carry a <strong>one-year quality warranty</strong> from the date of purchase. This warranty covers manufacturing defects under normal clinical use and does not cover:</p>
+          <ul>
+            <li>Damage from improper use or storage</li>
+            <li>Normal wear and tear from clinical use</li>
+            <li>Unauthorized modifications or repairs</li>
+          </ul>
+
+          <h3 class="legal-article-title">Refunds</h3>
+          <p>Approved refunds will be processed within 7–10 business days to the original payment method. Shipping charges are non-refundable unless the return is due to a Dentessa fulfillment error.</p>
+        </div>
+      </section>
+
+      <!-- ── CONTACT ── -->
+      <section id="contact-legal" class="reveal" style="padding-top:3.5rem">
+        <div class="contact-box">
+          <p class="font-heading font-bold text-[.72rem] tracking-[.18em] uppercase text-accent mb-3">Get in Touch</p>
+          <h3 class="font-heading font-black text-2xl text-white uppercase mb-4">Questions About This Policy?</h3>
+          <div class="h-px bg-white/10 mb-5"></div>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <p class="font-heading font-bold text-[.7rem] tracking-widest uppercase text-white/30 mb-2">Registered Office</p>
+              <p class="text-white/55 text-sm leading-relaxed">
+                Shop No. 3, Azad Timber Mart<br/>
+                Singh Estate, Road No. 3<br/>
+                Thakur Village, Kandivali East<br/>
+                Mumbai 400 101, India
+              </p>
+            </div>
+            <div>
+              <p class="font-heading font-bold text-[.7rem] tracking-widest uppercase text-white/30 mb-2">Corporate Office</p>
+              <p class="text-white/55 text-sm leading-relaxed">
+                501, 5th Floor, Dimple Arcade<br/>
+                Thakur Complex, Kandivali East<br/>
+                Mumbai 400101, India
+              </p>
+              <div class="mt-4 space-y-1">
+                <p class="text-white/55 text-sm"><span class="text-accent font-heading font-bold text-xs tracking-wider uppercase">Phone: </span><a href="tel:+919619633900" class="hover:text-accent transition-colors">+91 9619 633 900</a></p>
+                <p class="text-white/55 text-sm"><span class="text-accent font-heading font-bold text-xs tracking-wider uppercase">Email: </span><a href="mailto:atyantainc@gmail.com" class="hover:text-accent transition-colors">atyantainc@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div id="dynamic-footer"></div>
+
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  /* Hero entrance */
+  gsap.from('.page-hero h1', { y: 40, opacity: 0, duration: .9, ease: 'power3.out', delay: .2 });
+  gsap.from('.page-hero p', { y: 25, opacity: 0, duration: .7, ease: 'power3.out', delay: .4 });
+
+  /* Scroll reveals */
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.to(el, {
+      y: 0, opacity: 1, duration: .8, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
+  });
+
+  /* Sidebar active state on scroll */
+  const sections = document.querySelectorAll('section[id], div[id="contact-legal"]');
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) current = section.id;
+    });
+    sidebarLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+
+  /* Smooth anchor scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+<!-- ══════════════════════════════════════ DYNAMIC HEADER / FOOTER ══════════════════════════════════════ -->
+<script>
+  /**
+   * Fetch header/footer HTML files and inject only their <body> content
+   * using DOMParser — this prevents duplicate <html>/<head>/<link> tags
+   * from being injected, which is what causes the CSS conflict.
+   */
+  function loadComponent(url, targetId) {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load ' + url);
+        return response.text();
+      })
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        document.getElementById(targetId).innerHTML = doc.body.innerHTML;
+
+        /* After header loads: wire up navbar scroll shadow */
+        if (targetId === 'dynamic-header') {
+          const navbar = document.getElementById('navbar');
+          if (navbar) {
+            window.addEventListener('scroll', () => {
+              navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+          }
+        }
+      })
+      .catch(err => console.warn(err));
+  }
+
+  loadComponent('header.html', 'dynamic-header');
+  loadComponent('footer.html', 'dynamic-footer');
+</script>
+
+</body>
+</html>

@@ -3484,14 +3484,42 @@ span.bold {
 }
 
 .section-wrap.gmap {
-	position: relative;
-	background-color: #fbfbfb
+    position: relative;
+    background-color: #fbfbfb;
+    min-height: 608px; /* Matches your form height */
+    overflow: hidden;
+    display: flex;
 }
 
-.section-wrap.gmap #map {
-	width: 100%;
-	height: 100%
+/* Shifts the map 3% from the left and centers it vertically */
+.section-wrap.gmap .contact-map {
+    position: absolute;
+    top: 4%;               /* 4% gap from top */
+    left: 3%;              /* This creates the 'padding-left' shift */
+    width: 44%;            /* Narrower than 50% to leave a center gap */
+    height: 92%;           /* 4% gap from bottom */
+    z-index: 10;
+    border-radius: 15px;   /* Rounded corners like the screenshot */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Adds depth */
 }
+
+.section-wrap.gmap .map-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* Push the form content to the right so it stays clear of the map */
+.contact-actions {
+    width: 50%;
+    margin-left: auto;     /* Align to the right side */
+    position: relative;
+    z-index: 20;
+    padding-right: 3%;     /* Symmetric padding for the form side */
+}
+
 
 .section,
 .product-showcase {
@@ -3601,8 +3629,8 @@ span.bold {
 
 .features-section .bg-decoration {
 	position: absolute;
-	top: 244px;
-	width: 50%;
+	top: 200px;
+	width: 41%;
 	right: -88px
 }
 
@@ -3878,15 +3906,15 @@ span.bold {
 }
 
 .service-banners .service-banner.main {
-	background-color: #ff5400
+	background-color: #9db956
 }
 
 .service-banners .service-banner.secondary {
-	background-color: #ff7200
+	background-color: #106ac5
 }
 
 .service-banners .service-banner.tertiary {
-	background-color: #ffae00
+	background-color: #db1c59
 }
 
 .step-list .step-list-item {
@@ -3922,9 +3950,10 @@ span.bold {
 
 
 .step-list .step-list-item.left .step-list-item-img:nth-child(2) {
+	width: 600px;
 	float: right;
 	position: relative;
-	left: 160px;
+	left: 100px;
 }
 
 .step-list .step-list-item.right .step-list-item-info {
@@ -4406,7 +4435,7 @@ span.bold {
 }
 
 .product-list .product-list-item .product-list-item-price {
-	padding-left: 60px
+	padding-left: 10px
 }
 
 .product-list .product-list-item .product-list-item-price:after {
@@ -4422,7 +4451,8 @@ span.bold {
 
 .product-list .product-list-item .product-list-item-price .product-price {
 	float: left;
-	margin-top: 1px
+	margin-top: 1px;
+	margin-left: 50px
 }
 
 .product-preview-list .product-preview-list-item {
@@ -6310,12 +6340,21 @@ span.bold {
 }
 
 .contact-map {
-	width: 50%;
-	height: 608px;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	z-index: 10
+    width: 45% !important;   /* Slightly narrower than half */
+    height: 90% !important;  /* Shorter to allow vertical centering */
+    position: absolute !important;
+    top: 5% !important;      /* Moves it down from the top edge */
+    left: 40px !important;   /* This is the "padding" that shifts it from the left */
+    z-index: 10 !important;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.contact-map iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    display: block !important;
 }
 
 @media screen and (max-width: 1260px) {
