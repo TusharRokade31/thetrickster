@@ -22,6 +22,9 @@
 
   <script>
     tailwind.config = {
+      corePlugins: {
+        preflight: false,   /* ← disables Tailwind's base reset so style.min.css is not overridden */
+      },
       theme: {
         extend: {
           colors: {
@@ -33,9 +36,9 @@
             'accent-muted':'#c42d0a',
           },
           fontFamily: {
-  heading: ['"Inter"', 'sans-serif'],
-  body: ['"Inter"', 'sans-serif'],
-}
+            heading: ['"Inter"', 'sans-serif'],
+            body:    ['"Inter"', 'sans-serif'],
+          }
         }
       }
     }
@@ -46,41 +49,6 @@
     html { scroll-behavior: smooth; }
     body { font-family: "Manrope", sans-serif; background: #fff; color: #242935; overflow-x: hidden; }
 
-    /* ────── NAV (identical to index) ────── */
-    #navbar {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(36,41,53,0.08);
-    transition: box-shadow .3s;
-  }
-  #navbar.scrolled { box-shadow: 0 4px 30px rgba(36,41,53,.12); }
-
-  .nav-link {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #242935;
-    transition: color 0.2s;
-    position: relative;
-  }
-  .nav-link::after {
-    content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px;
-    background: #e4380f; transform: scaleX(0); transform-origin: left; transition: transform .3s;
-  }
-  .nav-link:hover { color: #e4380f; }
-  .nav-link:hover::after { transform: scaleX(1); }
-  .nav-link.active-page { color: #e4380f; }
-  .nav-link.active-page::after { transform: scaleX(1); }
-
-  .cart-btn {
-    background: #e4380f; color: #fff;
-    font-family: "Syne", sans-serif;
-    font-weight: 700; letter-spacing: .06em; font-size: .85rem;
-    padding: .55rem 1.2rem; transition: background .2s, transform .15s;
-  }
     /* ────── HERO BANNER ────── */
     .page-hero {
       min-height: 62vh;
@@ -250,13 +218,6 @@
     .reveal-scale  { opacity: 0; transform: scale(.93); }
     .reveal-fade   { opacity: 0; }
 
-    /* ────── FOOTER ────── */
-    footer { background: #1a1f29; }
-    .footer-logo { font-family: "Syne", sans-serif; font-weight: 800; font-size: 2rem; letter-spacing: .05em; text-transform: uppercase; color: #fff; }
-    .footer-logo span { color: #e4380f; }
-    .footer-link { color: rgba(255,255,255,.45); font-size: .85rem; transition: color .2s; display: block; margin-bottom: .5rem; }
-    .footer-link:hover { color: #e4380f; }
-    .footer-heading { font-family: "Syne", sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.2rem; }
 
     /* ────── BTN ────── */
     .btn-primary {
@@ -361,659 +322,8 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════ NAVBAR ══════════════════════════════════════ -->
-   <!-- WIDGET LINE WRAP -->
-    <div class="widget-line-wrap widget-line-1">
-      <!-- WIDGET LINE -->
-      <div class="widget-line">
-        <!-- ACTIONS LIST -->
-        <ul class="actions-list left">
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <!-- SOCIAL LINK -->
-            <div class="social-link">
-              <a href="aboutus.html#">
-                <i class="fa fa-facebook"></i>
-              </a>
-            </div>
-            <!-- /SOCIAL LINK -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <!-- SOCIAL LINK -->
-            <div class="social-link">
-              <a href="aboutus.html#">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </div>
-            <!-- /SOCIAL LINK -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <!-- SOCIAL LINK -->
-            <div class="social-link">
-              <a href="aboutus.html#">
-                <i class="fa fa-google-plus"></i>
-              </a>
-            </div>
-            <!-- /SOCIAL LINK -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <!-- SOCIAL LINK -->
-            <div class="social-link">
-              <a href="aboutus.html#">
-                <i class="fa fa-rss"></i>
-              </a>
-            </div>
-            <!-- /SOCIAL LINK -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <!-- SOCIAL LINK -->
-            <div class="social-link">
-              <a href="aboutus.html#">
-                <i class="fa fa-vimeo"></i>
-              </a>
-            </div>
-            <!-- /SOCIAL LINK -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-        </ul>
-        <!-- ACTIONS LIST -->
-
-        <!-- ACTIONS LIST -->
-        <ul class="actions-list right">
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <a
-              class="action-button options-dropdown dropdown-control click-closable"
-              href="aboutus.html#"
-            >
-              <span class="language-selected-option">eng</span>
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow small face-down">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-
-            <!-- DROPDOWN LIST -->
-            <ul class="dropdown-list dropdown">
-              <li
-                data-language="eng"
-                class="dropdown-list-item language-option selected"
-              >
-                <a href="aboutus.html#">eng</a>
-              </li>
-              <li
-                data-language="spa"
-                class="dropdown-list-item language-option"
-              >
-                <a href="aboutus.html#">spa</a>
-              </li>
-              <li
-                data-language="ger"
-                class="dropdown-list-item language-option"
-              >
-                <a href="aboutus.html#">ger</a>
-              </li>
-            </ul>
-            <!-- /DROPDOWN LIST -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <a
-              class="action-button options-dropdown dropdown-control click-closable"
-              href="aboutus.html#"
-            >
-              <span class="currency-selected-option">usd</span>
-              <!-- SVG ARROW -->
-              <svg class="svg-arrow small face-down">
-                <use xlink:href="#svg-arrow"></use>
-              </svg>
-              <!-- /SVG ARROW -->
-            </a>
-
-            <!-- DROPDOWN LIST -->
-            <ul class="dropdown-list dropdown">
-              <li
-                data-currency="usd"
-                class="dropdown-list-item currency-option selected"
-              >
-                <a href="aboutus.html#">usd</a>
-              </li>
-              <li
-                data-currency="euro"
-                class="dropdown-list-item currency-option"
-              >
-                <a href="aboutus.html#">euro</a>
-              </li>
-            </ul>
-            <!-- /DROPDOWN LIST -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <a class="action-button" href="profile.html">My Account</a>
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <a class="action-button" href="wishlist.html"
-              >Wishlist<span class="bold">4</span></a
-            >
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <a
-              class="action-button regular popup-trigger"
-              href="aboutus.html#login-popup"
-              >Logout</a
-            >
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item">
-            <!-- SEARCH FORM -->
-            <form class="search-form">
-              <input
-                type="text"
-                name="search"
-                autocomplete="off"
-                placeholder="Search products here..."
-              />
-              <!-- SEARCH SUBMIT -->
-              <div class="search-submit">
-                <!-- SVG MAG GLASS -->
-                <svg class="svg-mag-glass">
-                  <use xlink:href="#svg-mag-glass"></use>
-                </svg>
-                <!-- /SVG MAG GLASS -->
-              </div>
-              <!-- /SEARCH SUBMIT -->
-
-              <!-- SEARCH CANCEL -->
-              <div class="search-cancel hidden">
-                <!-- SVG CROSS -->
-                <svg class="svg-cross">
-                  <use xlink:href="#svg-cross"></use>
-                </svg>
-                <!-- /SVG CROSS -->
-              </div>
-              <!-- /SEARCH CANCEL -->
-            </form>
-            <!-- /SEARCH FORM -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-        </ul>
-        <!-- ACTIONS LIST -->
-      </div>
-      <!-- WIDGET LINE -->
-    </div>
-    <!-- WIDGET LINE WRAP -->
-
-    <!-- WIDGET LINE WRAP -->
-    <div class="widget-line-wrap widget-line-2">
-      <!-- WIDGET LINE -->
-      <div class="widget-line">
-        <!-- ACTIONS LIST -->
-        <ul class="actions-list">
-          <!-- ACTIONS LIST ITEM -->
-          <li class="actions-list-item full void">
-            <!-- SEARCH FORM -->
-            <form class="search-form">
-              <input
-                type="text"
-                name="search"
-                autocomplete="off"
-                placeholder="Search products here..."
-              />
-              <!-- SEARCH SUBMIT -->
-              <div class="search-submit">
-                <!-- SVG MAG GLASS -->
-                <svg class="svg-mag-glass">
-                  <use xlink:href="#svg-mag-glass"></use>
-                </svg>
-                <!-- /SVG MAG GLASS -->
-              </div>
-              <!-- /SEARCH SUBMIT -->
-
-              <!-- SEARCH CANCEL -->
-              <div class="search-cancel hidden">
-                <!-- SVG CROSS -->
-                <svg class="svg-cross">
-                  <use xlink:href="#svg-cross"></use>
-                </svg>
-                <!-- /SVG CROSS -->
-              </div>
-              <!-- /SEARCH CANCEL -->
-            </form>
-            <!-- /SEARCH FORM -->
-          </li>
-          <!-- ACTIONS LIST ITEM -->
-        </ul>
-        <!-- ACTIONS LIST -->
-      </div>
-      <!-- WIDGET LINE -->
-    </div>
-    <!-- WIDGET LINE WRAP -->
-
-    <!-- NAVIGATION WRAP -->
-<div class="navigation-wrap" style="background:#fff; border-bottom:1px solid rgba(0,0,0,0.08); position:sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.06);">
-  <nav class="navigation" style="display:flex; align-items:center; justify-content:space-between; height:100px; max-width:1170px; margin:0 auto; padding:0;">
-
-    <div class="logo-wrapper" style="display:flex; align-items:center; padding-left:15px; flex-shrink:0;">
-      <a href="index.html">
-        <img src="img/logo.png" alt="logo" style="height:45px; width:auto; display:block;" />
-      </a>
-    </div>
-
-    <ul class="main-menu" style="display:flex; align-items:center; list-style:none; margin:0 20px 0 auto; padding:0; gap:10px;">
-      <li class="main-menu-item">
-        <a href="index.html" style="padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#242935; letter-spacing:0.05em; text-decoration:none;">Home</a>
-      </li>
-      <li class="main-menu-item">
-        <a href="aboutus.html" style="padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#e4380f; letter-spacing:0.05em; text-decoration:none;">About</a>
-      </li>
-      
-      <li class="main-menu-item" style="position:relative; height:100px; display:flex; align-items:center;" onmouseenter="this.querySelector('.menu-dropdown').style.display='block'" onmouseleave="this.querySelector('.menu-dropdown').style.display='none'">
-        <a href="/shop-grid.html" style="display:flex; align-items:center; gap:8px; padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#242935; text-decoration:none;">
-          Shop
-            
-        </a>
-        
-        
-      </li>
-
-      <li class="main-menu-item">
-        <a href="blog.html" style="padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#242935; text-decoration:none;">Our Blog</a>
-      </li>
-      <li class="main-menu-item">
-        <a href="contactus.html" style="padding:10px 15px; font-weight:800; font-size:14px; text-transform:uppercase; color:#242935; text-decoration:none;">Contact</a>
-      </li>
-    </ul>
-
-    
-
-  </nav>
-</div>
-    <!-- /NAVIGATION WRAP -->
-
-    <!-- MOBILE MENU WRAP -->
-    <div class="mobile-menu-wrap">
-      <!-- MOBILE MENU CONTROL -->
-      <div class="mobile-menu-control dropdown-control">
-        <!-- SVG BURGER -->
-        <svg class="svg-burger">
-          <use xlink:href="#svg-burger"></use>
-        </svg>
-        <!-- /SVG BURGER -->
-      </div>
-      <!-- /MOBILE MENU CONTROL -->
-
-      <!-- MOBILE MENU -->
-      <ul class="mobile-menu dropdown">
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="index.html">Home</a>
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="aboutus.html">About</a>
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="aboutus.html#" class="dropdown-control">
-            Shop
-            <!-- SVG ARROW -->
-            <svg class="svg-arrow medium rotable">
-              <use xlink:href="#svg-arrow"></use>
-            </svg>
-            <!-- /SVG ARROW -->
-          </a>
-
-          <!-- MOBILE MENU DROPDOWN -->
-          <ul class="mobile-menu-dropdown dropdown">
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shop-sidebar-grid.html">Sidebar 3 Col Grid</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shop-grid.html">4 Columns Grid</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shop-sidebar-list.html">Sidebar 3 Col List</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shop-list.html">4 Columns List</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="product-page-v1.html">Product Page V1</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="product-page-v2.html">Product Page V2</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-          </ul>
-          <!-- /MOBILE MENU DROPDOWN -->
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="blog.html">Our Blog</a>
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="aboutus.html#" class="dropdown-control">
-            Features
-            <!-- SVG ARROW -->
-            <svg class="svg-arrow medium rotable">
-              <use xlink:href="#svg-arrow"></use>
-            </svg>
-            <!-- /SVG ARROW -->
-          </a>
-
-          <!-- MOBILE MENU DROPDOWN -->
-          <ul class="mobile-menu-dropdown dropdown">
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="index.html">Trickster Home</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="product-builder-v1.html">Product Builder V1</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="product-builder-v2.html">Product Builder V2</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="blog.html">Trickster Blog</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="post.html">Blog Post</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="contactus.html">Contact Page</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="404.html">Error Page</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="aboutus.html">About Us</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="menu-dropdowns.html">Menu &amp; DDowns</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shortcodes.html">Shortcodes</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="login-popup.html">Login Popup</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="ratings-popup.html">Ratings Popup</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shop-sidebar-grid.html">Sidebar 3 Col Grid</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shop-grid.html">4 Columns Grid</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shop-sidebar-list.html">Sidebar 3 Col List</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="shop-list.html">4 Columns List</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="product-page-v1.html">Product Page V1</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="product-page-v1.html">Product Page V2</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="identification.html">Identification</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="billing-shipping.html">Billing and Shipping</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="confirmation.html">Confirmation</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="cart.html">Shopping Cart</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="wishlist.html">Wishlist</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li class="mobile-menu-dropdown-item">
-              <a href="profile.html">Your Account</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-          </ul>
-          <!-- /MOBILE MENU DROPDOWN -->
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="contactus.html">Contact</a>
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="profile.html">My Account</a>
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="wishlist.html">
-            Wishlist
-            <span class="bold">4</span>
-          </a>
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="aboutus.html#" class="dropdown-control">
-            Language:
-            <span class="selected-option language-selected-option">eng</span>
-            <!-- SVG ARROW -->
-            <svg class="svg-arrow medium rotable">
-              <use xlink:href="#svg-arrow"></use>
-            </svg>
-            <!-- /SVG ARROW -->
-          </a>
-
-          <!-- MOBILE MENU DROPDOWN -->
-          <ul class="mobile-menu-dropdown dropdown">
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li
-              data-language="eng"
-              class="mobile-menu-dropdown-item language-option selected"
-            >
-              <a href="aboutus.html#">eng</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li
-              data-language="spa"
-              class="mobile-menu-dropdown-item language-option"
-            >
-              <a href="aboutus.html#">spa</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li
-              data-language="ger"
-              class="mobile-menu-dropdown-item language-option"
-            >
-              <a href="aboutus.html#">ger</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-          </ul>
-          <!-- /MOBILE MENU DROPDOWN -->
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item">
-          <a href="aboutus.html#" class="dropdown-control">
-            Currency:
-            <span class="selected-option currency-selected-option">usd</span>
-            <!-- SVG ARROW -->
-            <svg class="svg-arrow medium rotable">
-              <use xlink:href="#svg-arrow"></use>
-            </svg>
-            <!-- /SVG ARROW -->
-          </a>
-
-          <!-- MOBILE MENU DROPDOWN -->
-          <ul class="mobile-menu-dropdown dropdown">
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li
-              data-currency="usd"
-              class="mobile-menu-dropdown-item currency-option selected"
-            >
-              <a href="aboutus.html#">usd</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-
-            <!-- MOBILE MENU DROPDOWN ITEM -->
-            <li
-              data-currency="euro"
-              class="mobile-menu-dropdown-item currency-option"
-            >
-              <a href="aboutus.html#">euro</a>
-            </li>
-            <!-- /MOBILE MENU DROPDOWN ITEM -->
-          </ul>
-          <!-- /MOBILE MENU DROPDOWN -->
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-
-        <!-- MOBILE MENU ITEM -->
-        <li class="mobile-menu-item void">
-          <a href="aboutus.html#">Logout</a>
-        </li>
-        <!-- /MOBILE MENU ITEM -->
-      </ul>
-      <!-- /MOBILE MENU -->
-    </div>
-    <!-- /MOBILE MENU WRAP -->
-
-    
+<!-- ══════════════════════════════════════ HEADER (dynamic) ══════════════════════════════════════ -->
+<div id="dynamic-header"></div>
 
 <!-- ══════════════════════════════════════ PAGE HERO ══════════════════════════════════════ -->
 <section class="page-hero pt-16">
@@ -1490,80 +800,12 @@
 </section>
 
 
-<!-- ══════════════════════════════════════ FOOTER ══════════════════════════════════════ -->
- <footer class="py-14 bg-navy">
-  <div class="max-w-screen-xl mx-auto px-6 md:px-10">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-10 border-b border-white/10">
-
-      <div class="col-span-2 md:col-span-1">
-        <div class="footer-logo mb-3">
-          <img src="assets/Dentessa Logo 2.png" alt="Dentessa Logo" class="h-10 w-auto">
-        </div>
-        <p class="text-white/40 text-sm leading-relaxed mb-5">
-          Precision dental instruments for clinical professionals. Quality you can trust at every stage of patient care.
-        </p>
-       <div class="flex gap-3">
-          <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center text-white/40 hover:border-accent hover:text-accent transition-colors">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          </a>
-          <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center text-white/40 hover:border-accent hover:text-accent transition-colors">
-            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center text-white/40 hover:border-accent hover:text-accent transition-colors">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <div class="footer-heading font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-4">Products</div>
-        <a href="shop.html?cat=surgery" class="footer-link">Surgery</a>
-        <a href="shop.html?cat=Diagnosis%20%26%20Prophylaxis" class="footer-link">Diagnosis & Prophylaxis</a>
-        <a href="shop.html?cat=Restorative%20Dentistry" class="footer-link">Restorative Dentistry</a>
-        <a href="shop.html?cat=endodontics" class="footer-link">Endodontics</a>
-      </div>
-
-      <div>
-        <div class="footer-heading font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-4">Company</div>
-        <a href="index.html" class="footer-link">Home</a>
-        <a href="shop.html" class="footer-link">shop</a>
-        <a href="contact.html" class="footer-link">Contact</a>
-       
-      </div>
-
-      <div>
-        <div class="footer-heading font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-4">Support</div>
-        <a href="shipping-policy.html" class="footer-link">Shipping Policy</a>
-         <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
-        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
-        <a href="return-policy.html" class="footer-link">Return & Refund</a>
-        <a href="cancellation-policy.html" class="footer-link">Cancellation Policy</a>
-        <a href="disclaimer.html" class="footer-link">Disclaimer</a>
-      </div>
-
-    </div>
-
-    <div class="pt-6 flex flex-col sm:flex-row justify-between gap-3 items-center">
-      <p class="text-white/25 text-xs">© 2026 Dentessa. All rights reserved.</p>
-      <p class="text-white/25 text-xs">ISO 13485 Certified · CE Marked · Made with ♥ for dental care</p>
-    </div>
-  </div>
-</footer>
-
+<!-- ══════════════════════════════════════ FOOTER (dynamic) ══════════════════════════════════════ -->
+<div id="dynamic-footer"></div>
 
 <!-- ══════════════════════════════════════ SCRIPTS ══════════════════════════════════════ -->
 <script>
   gsap.registerPlugin(ScrollTrigger);
-
-  /* ── Navbar scroll */
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  /* ── Mobile menu */
-  function toggleMenu() {
-    document.getElementById('mobile-menu').classList.toggle('open');
-  }
 
   /* ── Hero entrance */
   gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -1614,19 +856,43 @@
       if (target) {
         e.preventDefault();
         window.scrollTo({ top: target.offsetTop - 68, behavior: 'smooth' });
-        document.getElementById('mobile-menu').classList.remove('open');
       }
     });
   });
+</script>
 
-    window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
+<!-- ══════════════════════════════════════ DYNAMIC HEADER / FOOTER ══════════════════════════════════════ -->
+<script>
+  /**
+   * Fetch header/footer HTML files and inject only their <body> content
+   * using DOMParser — this prevents duplicate <html>/<head>/<link> tags
+   * from being injected, which is what causes the CSS conflict.
+   */
+  function loadComponent(url, targetId) {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load ' + url);
+        return response.text();
+      })
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        document.getElementById(targetId).innerHTML = doc.body.innerHTML;
+
+        /* After header loads: wire up navbar scroll shadow */
+        if (targetId === 'dynamic-header') {
+          const navbar = document.getElementById('navbar');
+          if (navbar) {
+            window.addEventListener('scroll', () => {
+              navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+          }
+        }
+      })
+      .catch(err => console.warn(err));
+  }
+
+  loadComponent('header.html', 'dynamic-header');
+  loadComponent('footer.html', 'dynamic-footer');
 </script>
 
 </body>
