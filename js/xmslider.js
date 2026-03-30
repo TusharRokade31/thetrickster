@@ -31,8 +31,8 @@ xm_trickster.namespace('plugins.xmslider');
           startAt: 0,
           currentIndex: 0,
           autoSlide: true,
-          autoSlideTimeout: 3000,
-          speed: 600,
+          autoSlideTimeout: 2000,
+          speed: 700,
           easing: 'ease-in-out',
           animation: 'fade',
           mode: 'vertical',
@@ -246,6 +246,6 @@ var ctrl = document.getElementsByClassName('slider-controls')[0],
         }
       },
       // autoSlide: false,
-      autoSlideTimeout: 5000
+      autoSlideTimeout: 2000
       // mode: 'horizontal'
     });
