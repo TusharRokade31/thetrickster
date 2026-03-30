@@ -11,11 +11,758 @@
   <link rel="stylesheet" href="inquiry-popup.css">
   <link rel="icon" href="favicon.ico">
   <title>Dentessa | Shop</title>
+
+  <style>
+    /* =============================================
+       SIDE CART PANEL
+       ============================================= */
+    #dnt-cart-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28,28,28,0.45);
+      backdrop-filter: blur(3px);
+      z-index: 88888;
+    }
+    #dnt-cart-overlay.active { display: block; }
+
+    #dnt-cart-panel {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 360px;
+      max-width: 95vw;
+      background: #fff;
+      box-shadow: -8px 0 40px rgba(28,28,28,0.18);
+      z-index: 88889;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(110%);
+      transition: transform 0.32s cubic-bezier(0.34,1.1,0.64,1);
+    }
+    #dnt-cart-panel.open { transform: translateX(0); }
+
+    .dnt-cart-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      background: #1C1C1C;
+    }
+    .dnt-cart-head h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dnt-cart-head h3 .dnt-cart-count-badge {
+      background: #E8600A;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+    }
+    .dnt-cart-close-btn {
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .dnt-cart-close-btn:hover { background: rgba(255,255,255,0.22); }
+
+    .dnt-cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+    .dnt-cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: #aaa;
+      font-size: 14px;
+      text-align: center;
+      gap: 12px;
+      padding: 40px 0;
+    }
+    .dnt-cart-empty svg { opacity: 0.25; }
+
+    .dnt-cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f4f4f4;
+      position: relative;
+    }
+    .dnt-cart-item:last-child { border-bottom: none; }
+    .dnt-cart-item-img {
+      width: 60px; height: 60px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #f5f5f5;
+      border: 1px solid #eee;
+    }
+    .dnt-cart-item-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .dnt-cart-item-info { flex: 1; min-width: 0; }
+    .dnt-cart-item-info .dnt-item-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1C1C1C;
+      margin: 0 0 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dnt-cart-item-info .dnt-item-type {
+      font-size: 11px;
+      color: #888;
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .dnt-item-qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dnt-qty-btn {
+      width: 24px; height: 24px;
+      border-radius: 4px;
+      border: 1.5px solid #e0e0e0;
+      background: #fafafa;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1C1C1C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, background 0.15s;
+      line-height: 1;
+    }
+    .dnt-qty-btn:hover { border-color: #E8600A; background: #fff5f0; color: #E8600A; }
+    .dnt-qty-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1C1C1C;
+      min-width: 18px;
+      text-align: center;
+    }
+    .dnt-item-remove {
+      position: absolute;
+      top: 12px; right: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ccc;
+      font-size: 16px;
+      line-height: 1;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+    .dnt-item-remove:hover { color: #d9534f; }
+
+    .dnt-cart-footer {
+      padding: 16px 22px 22px;
+      border-top: 1px solid #f0f0f0;
+      background: #fafafa;
+    }
+    .dnt-cart-footer-note {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+    .dnt-cart-inquiry-btn {
+      width: 100%;
+      padding: 13px;
+      background: #E8600A;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .dnt-cart-inquiry-btn:hover { background: #c95208; transform: translateY(-1px); }
+    .dnt-cart-inquiry-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+    /* ── floating cart trigger ── */
+    #dnt-cart-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px; height: 52px;
+      background: #1C1C1C;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(28,28,28,0.28);
+      z-index: 8000;
+      transition: background 0.2s, transform 0.2s;
+    }
+    #dnt-cart-fab:hover { background: #E8600A; transform: translateY(-2px); }
+    #dnt-cart-fab .dnt-fab-badge {
+      position: absolute;
+      top: -4px; right: -4px;
+      background: #E8600A;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      min-width: 18px; height: 18px;
+      border-radius: 9px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      border: 2px solid #fff;
+    }
+    #dnt-cart-fab .dnt-fab-badge.visible { display: flex; }
+
+    /* =============================================
+       SIDEBAR STYLES — matches theme structure
+       ============================================= */
+    .sidebar-search-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 9px 14px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #1C1C1C;
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .sidebar-search-input:focus { border-color: #E8600A; }
+
+    .widget-filter-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 13px;
+      color: #555;
+      cursor: pointer;
+      transition: color 0.2s;
+      border-bottom: 1px solid #f5f5f5;
+      text-decoration: none;
+    }
+    .widget-filter-link:last-child { border-bottom: none; }
+    .widget-filter-link:hover,
+    .widget-filter-link.active { color: #E8600A; font-weight: 700; }
+    .widget-filter-link .filter-count {
+      background: #f2f2f2;
+      color: #888;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+    .widget-filter-link.active .filter-count {
+      background: #E8600A;
+      color: #fff;
+    }
+
+    /* ── stars ── */
+    .dnt-stars {
+      display: inline-flex;
+      gap: 2px;
+      align-items: center;
+    }
+    .dnt-stars svg.svg-star {
+      width: 11px; height: 11px;
+      fill: #ddd;
+      transition: fill 0.15s;
+    }
+    .dnt-stars .filled svg.svg-star { fill: #E8600A; }
+
+    /* ── cart button on product card ── */
+    .dnt-add-cart-btn {
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .dnt-add-cart-btn.added svg { color: #E8600A; }
+
+    /* ── "Added" flash ── */
+    @keyframes dnt-pop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+    .dnt-pop { animation: dnt-pop 0.3s ease; }
+
+    /* ── active sidebar link ── */
+    .widget-dropdown-item a.sidebar-active {
+      color: #E8600A !important;
+      font-weight: 700;
+    }
+
+    /* clear filters btn */
+    .dnt-clear-filters {
+      display: none;
+      background: none;
+      border: 1px solid #E8600A;
+      color: #E8600A;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 8px;
+    }
+    .dnt-clear-filters.visible { display: inline-flex; align-items: center; gap: 5px; }
+    .dnt-clear-filters:hover { background: #E8600A; color: #fff; }
+
+    
+/**
+ * CSS OVERRIDES FOR RESPONSIVE GRID
+ * 
+ * Add these rules to the BOTTOM of your style_min.css
+ * This will make the grid responsive while keeping all your existing styles
+ */
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE GRID LAYOUT FIX
+   ═════════════════════════════════════════════════════════ */
+
+/* Make the sidebar + content responsive */
+@media screen and (min-width: 1025px) {
+  .sidebar.left {
+    float: left;
+    width: 270px;
+    margin-right: 30px;
+  }
+
+  .content.left {
+    overflow: hidden;
+  }
+}
+
+/* Override product grid to use CSS Grid instead of floats */
+#dynamic-product-grid.product-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  gap: 30px 24px !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Remove float from grid items */
+#dynamic-product-grid.product-list .product-list-item {
+  float: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  display: block;
+}
+
+/* Keep existing preview/info styles */
+#dynamic-product-grid .product-list-item .product-list-item-preview {
+  width: 100%;
+  height: 290px;
+  position: relative;
+}
+
+#dynamic-product-grid .product-list-item .product-list-item-info {
+  padding-top: 30px;
+  text-align: center;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  #dynamic-product-grid.product-list {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar.left {
+    float: none !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 30px !important;
+  }
+
+  .content.left {
+    float: none !important;
+    width: 100% !important;
+  }
+
+  #dynamic-product-grid.product-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    gap: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #dynamic-product-grid.product-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #dynamic-product-grid.product-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CART PANEL STYLES
+   ═════════════════════════════════════════════════════════ */
+
+#dnt-cart-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(28,28,28,0.45);
+  backdrop-filter: blur(3px);
+  z-index: 88888;
+}
+
+#dnt-cart-overlay.active {
+  display: block;
+}
+
+#dnt-cart-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  max-width: 95vw;
+  background: #fff;
+  box-shadow: -8px 0 40px rgba(28,28,28,0.18);
+  z-index: 88889;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(110%);
+  transition: transform 0.32s cubic-bezier(0.34,1.1,0.64,1);
+}
+
+#dnt-cart-panel.open {
+  transform: translateX(0);
+}
+
+.dnt-cart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #1C1C1C;
+}
+
+.dnt-cart-head h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dnt-cart-head h3 .dnt-cart-count-badge {
+  background: #E8600A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.dnt-cart-close-btn {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.dnt-cart-close-btn:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+.dnt-cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.dnt-cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #aaa;
+  font-size: 14px;
+  text-align: center;
+  gap: 12px;
+  padding: 40px 0;
+}
+
+.dnt-cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f4f4f4;
+  position: relative;
+}
+
+.dnt-cart-item:last-child {
+  border-bottom: none;
+}
+
+.dnt-cart-item-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #f5f5f5;
+  border: 1px solid #eee;
+}
+
+.dnt-cart-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dnt-cart-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dnt-cart-item-info .dnt-item-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1C1C1C;
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dnt-cart-item-info .dnt-item-type {
+  font-size: 11px;
+  color: #888;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.dnt-item-remove {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.dnt-item-remove:hover {
+  color: #d9534f;
+}
+
+.dnt-cart-footer {
+  padding: 16px 22px 22px;
+  border-top: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.dnt-cart-footer-note {
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.dnt-cart-inquiry-btn {
+  width: 100%;
+  padding: 13px;
+  background: #E8600A;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.dnt-cart-inquiry-btn:hover {
+  background: #c95208;
+  transform: translateY(-1px);
+}
+
+.dnt-cart-inquiry-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Floating cart button */
+#dnt-cart-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 52px;
+  height: 52px;
+  background: #1C1C1C;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(28,28,28,0.28);
+  z-index: 8000;
+  transition: background 0.2s, transform 0.2s;
+  font-size: 24px;
+  padding: 0;
+}
+
+#dnt-cart-fab:hover {
+  background: #E8600A;
+  transform: translateY(-2px);
+}
+
+#dnt-cart-fab .dnt-fab-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #E8600A;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+/* Cart pop animation */
+.dnt-pop {
+  animation: pop 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Controls styling */
+.shop-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.results-count {
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  #dnt-cart-panel {
+    width: 90vw;
+  }
+
+  #dnt-cart-fab {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+  </style>
 </head>
 <body>
 
   <div id="dynamic-header"></div>
 
+  <!-- BREADCRUMB -->
   <div class="section-navigation-wrap">
     <div class="section-navigation">
       <p class="section-navigation-path">
@@ -28,55 +775,154 @@
     </div>
   </div>
 
+  <!-- MAIN SECTION -->
   <div class="section-wrap">
     <div class="section no-title">
-      <h3 class="title large" id="page-title">All Products</h3>
-      <p class="pretitle" id="page-subtitle">Explore Our Complete Dental Solutions Portfolio</p>
-      <hr class="line-separator">
-      
-      <div class="filter-header">
-        <h6 class="title" id="results-count">Showing results...</h6>
-        <div class="filter-options">
-          <div class="filter-option">
-            <h6 class="title">Browse By</h6>
-            <label for="category_filter" class="select-block">
-              <select name="category_filter" id="category_filter">
-                <option value="">All Categories</option>
-                <option value="Endodontics">Endodontics</option>
-                <option value="Restorative Dentistry">Restorative Dentistry</option>
-                <option value="Diagnosis & Prophylaxis">Diagnosis & Prophylaxis</option>
-                <option value="Surgery">Surgery</option>
-              </select>
-              <svg class="svg-arrow face-down"><use xlink:href="#svg-arrow"></use></svg>
-            </label>
-          </div>
-          <div class="filter-option">
-            <h6 class="title">Product Type:</h6>
-            <label for="type_filter" class="select-block">
-              <select name="type_filter" id="type_filter">
-                <option value="">All Types</option>
-              </select>
-              <svg class="svg-arrow face-down"><use xlink:href="#svg-arrow"></use></svg>
-            </label>
+
+      <!-- CONTENT (right = product grid side) -->
+      <div class="content right">
+
+        <!-- FILTER HEADER -->
+        <div class="filter-header">
+          <h6 class="title" id="results-count">Showing results…</h6>
+          <div class="filter-options">
+            <div class="filter-option">
+              <h6 class="title">Sort by:</h6>
+              <label for="sort_filter" class="select-block">
+                <select name="sort_filter" id="sort_filter">
+                  <option value="default">Default</option>
+                  <option value="az">Name: A → Z</option>
+                  <option value="za">Name: Z → A</option>
+                </select>
+                <svg class="svg-arrow face-down"><use xlink:href="#svg-arrow"></use></svg>
+              </label>
+            </div>
+            <div class="filter-option">
+              <label for="perpage_filter" class="select-block">
+                <select name="perpage_filter" id="perpage_filter">
+                  <option value="12">12 Per Page</option>
+                  <option value="24">24 Per Page</option>
+                  <option value="48">48 Per Page</option>
+                  <option value="9999">All</option>
+                </select>
+                <svg class="svg-arrow face-down"><use xlink:href="#svg-arrow"></use></svg>
+              </label>
+            </div>
           </div>
         </div>
-      </div>
+        <!-- /FILTER HEADER -->
 
-      <div class="product-list column-4-wrap" id="dynamic-product-grid">
-      </div>
+        <!-- PRODUCT GRID -->
+        <div class="product-list column-3-wrap" id="dynamic-product-grid"></div>
 
-      <div class="pager-wrap">
-        <ul class="pager">
-          <li class="pager-item"><a href="#"><svg class="svg-arrow medium inverted"><use xlink:href="#svg-arrow"></use></svg></a></li>
-          <li class="pager-item selected"><a href="#">1</a></li>
-          <li class="pager-item"><a href="#"><svg class="svg-arrow medium"><use xlink:href="#svg-arrow"></use></svg></a></li>
-        </ul>
+        <!-- PAGER -->
+        <div class="pager-wrap" id="pager-wrap">
+          <ul class="pager" id="pager-list"></ul>
+        </div>
+
       </div>
+      <!-- /CONTENT -->
+
+      <!-- SIDEBAR (left) -->
+      <div class="sidebar left">
+
+       
+
+        <!-- CATEGORIES WIDGET -->
+        <div class="sidebar-widget">
+          <h2 class="subsection-title">Categories</h2>
+          <hr class="line-separator">
+          <ul class="widget-dropdown" id="sidebar-categories">
+            <li class="widget-dropdown-item">
+              <a href="#" class="widget-filter-link active" data-cat="">All Products</a>
+            </li>
+          </ul>
+          <button class="dnt-clear-filters" id="btn-clear-cat" onclick="clearCategoryFilter()">
+            ✕ Clear
+          </button>
+        </div>
+
+        <!-- PRODUCT TYPE WIDGET -->
+        <div class="sidebar-widget">
+          <h2 class="subsection-title">Product Type</h2>
+          <hr class="line-separator">
+          <ul class="widget-dropdown" id="sidebar-types">
+            <li class="widget-dropdown-item">
+              <a href="#" class="widget-filter-link active" data-type="">All Types</a>
+            </li>
+          </ul>
+          <button class="dnt-clear-filters" id="btn-clear-type" onclick="clearTypeFilter()">
+            ✕ Clear
+          </button>
+        </div>
+
+        <!-- FEATURED WIDGET -->
+        <div class="sidebar-widget" id="sidebar-featured-wrap">
+          <h2 class="subsection-title">Featured</h2>
+          <hr class="line-separator">
+          <div class="product-preview-list" id="sidebar-featured"></div>
+        </div>
+
+      </div>
+      <!-- /SIDEBAR -->
+
     </div>
   </div>
+  <!-- /MAIN SECTION -->
 
   <div id="dynamic-footer"></div>
 
+  <!-- =============================================
+       FLOATING CART BUTTON
+       ============================================= -->
+  <button id="dnt-cart-fab" onclick="DentessaCart.openPanel()" title="View Cart">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+    </svg>
+    <span class="dnt-fab-badge" id="dnt-fab-badge">0</span>
+  </button>
+
+  <!-- =============================================
+       SIDE CART OVERLAY + PANEL
+       ============================================= -->
+  <div id="dnt-cart-overlay" onclick="DentessaCart.closePanel()"></div>
+
+  <div id="dnt-cart-panel">
+    <div class="dnt-cart-head">
+      <h3>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        Cart
+        <span class="dnt-cart-count-badge" id="dnt-cart-badge-head">0</span>
+      </h3>
+      <button class="dnt-cart-close-btn" onclick="DentessaCart.closePanel()">&times;</button>
+    </div>
+
+    <div class="dnt-cart-items" id="dnt-cart-items-list">
+      <div class="dnt-cart-empty" id="dnt-cart-empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+          <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <p>Your cart is empty.<br>Add products to get started.</p>
+      </div>
+    </div>
+
+    <div class="dnt-cart-footer" id="dnt-cart-footer" style="display:none;">
+      <p class="dnt-cart-footer-note">
+        This is a B2B inquiry cart.<br>
+        Submit to get a personalised quote from Dentessa.
+      </p>
+      <button class="dnt-cart-inquiry-btn" onclick="DentessaCart.openInquiry()">
+        Request a Quote →
+      </button>
+    </div>
+  </div>
+
+<!-- JS -->
 <script src="js/vendor/jquery-3.1.0.min.js"></script>
 <script src="js/vendor/jquery.magnific-popup.min.js"></script>
 <script src="js/vendor/imgLiquid-min.js"></script>
@@ -87,203 +933,523 @@
 <script src="inquiry-popup.js"></script>
 
 <script>
-  /* ── INIT INQUIRY POPUP ─────────────────────── */
-  DentessaInquiry.init({ email: 'info@dentessa.com' }); // ← CHANGE TO YOUR EMAIL
+/* ============================================================
+   DENTESSA SIDE CART
+   ============================================================ */
+(function () {
+  'use strict';
 
-  /* ── GLOBAL STATE ───────────────────────────── */
-  let allProducts = [];
-  let filteredProducts = [];
-  let currentCategory = '';
-  let currentType = '';
+  var cart = []; // { id, name, category, type, img, qty }
 
-  /* ── LOAD HEADER & FOOTER ───────────────────── */
-  fetch('header.html')
-    .then(r => r.text())
-    .then(data => document.getElementById('dynamic-header').innerHTML = data);
+  function save() {
+    try { localStorage.setItem('dnt_cart', JSON.stringify(cart)); } catch(e) {}
+  }
+  function load() {
+    try {
+      var d = localStorage.getItem('dnt_cart');
+      if (d) cart = JSON.parse(d);
+    } catch(e) {}
+  }
 
-  fetch('footer.html')
-    .then(r => r.text())
-    .then(data => document.getElementById('dynamic-footer').innerHTML = data);
+  function updateBadges() {
+    var total = cart.reduce(function(s, i){ return s + i.qty; }, 0);
+    var badge = document.getElementById('dnt-fab-badge');
+    var badgeHead = document.getElementById('dnt-cart-badge-head');
+    if (badge)    { badge.textContent = total; badge.classList.toggle('visible', total > 0); }
+    if (badgeHead) badgeHead.textContent = total;
+  }
 
-  /* ── LOAD PRODUCTS ──────────────────────────── */
-  fetch('data.json')
-    .then(r => r.json())
-    .then(data => {
-      allProducts = data.products;
+  function renderCartItems() {
+    var list = document.getElementById('dnt-cart-items-list');
+    var empty = document.getElementById('dnt-cart-empty');
+    var footer = document.getElementById('dnt-cart-footer');
+    if (!list) return;
 
-      initializeTypeFilter();
+    // Remove all items except the empty state div
+    Array.from(list.querySelectorAll('.dnt-cart-item')).forEach(function(el){ el.remove(); });
 
-      // Read URL params
-      const urlParams = new URLSearchParams(window.location.search);
-      const initialCategory = urlParams.get('category');
+    if (cart.length === 0) {
+      if (empty)  empty.style.display = '';
+      if (footer) footer.style.display = 'none';
+      return;
+    }
+    if (empty)  empty.style.display = 'none';
+    if (footer) footer.style.display = '';
 
-      if (initialCategory) {
-        document.getElementById('category_filter').value = initialCategory;
-        currentCategory = initialCategory;
-      }
+    cart.forEach(function(item, idx) {
+      var el = document.createElement('div');
+      el.className = 'dnt-cart-item';
+      el.innerHTML =
+        '<div class="dnt-cart-item-img">' +
+          '<img src="' + item.img + '" alt="' + escHtml(item.name) + '" loading="lazy">' +
+        '</div>' +
+        '<div class="dnt-cart-item-info">' +
+          '<p class="dnt-item-name">' + escHtml(item.name) + '</p>' +
+          '<p class="dnt-item-type">' + escHtml(item.type || item.category || '') + '</p>' +
+          '<div class="dnt-item-qty-row">' +
+            '<button class="dnt-qty-btn" data-idx="' + idx + '" data-action="dec">−</button>' +
+            '<span class="dnt-qty-val">' + item.qty + '</span>' +
+            '<button class="dnt-qty-btn" data-idx="' + idx + '" data-action="inc">+</button>' +
+          '</div>' +
+        '</div>' +
+        '<button class="dnt-item-remove" data-idx="' + idx + '" title="Remove">&times;</button>';
+      list.appendChild(el);
+    });
 
-      renderProducts();
-
-      document.getElementById('category_filter').addEventListener('change', function () {
-        currentCategory = this.value;
-        currentType = '';
-        document.getElementById('type_filter').value = '';
-        updateTypeFilterOptions();
-        renderProducts();
+    // Qty / remove events
+    list.querySelectorAll('.dnt-qty-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var i = parseInt(this.dataset.idx);
+        if (this.dataset.action === 'inc') {
+          cart[i].qty++;
+        } else {
+          cart[i].qty--;
+          if (cart[i].qty <= 0) cart.splice(i, 1);
+        }
+        save(); updateBadges(); renderCartItems();
       });
-
-      document.getElementById('type_filter').addEventListener('change', function () {
-        currentType = this.value;
-        renderProducts();
+    });
+    list.querySelectorAll('.dnt-item-remove').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var i = parseInt(this.dataset.idx);
+        cart.splice(i, 1);
+        save(); updateBadges(); renderCartItems();
       });
-    })
-    .catch(error => console.error('Error loading products:', error));
-
-  /* ── TYPE FILTER INIT ───────────────────────── */
-  function initializeTypeFilter() {
-    const typeSelect = document.getElementById('type_filter');
-    const allTypes = new Set();
-    allProducts.forEach(p => allTypes.add(p.type));
-
-    Array.from(typeSelect.querySelectorAll('option')).forEach((o, i) => { if (i > 0) o.remove(); });
-
-    Array.from(allTypes).sort().forEach(type => {
-      const opt = document.createElement('option');
-      opt.value = type;
-      opt.textContent = type;
-      typeSelect.appendChild(opt);
     });
   }
 
-  function updateTypeFilterOptions() {
-    const typeSelect = document.getElementById('type_filter');
-    const available = new Set();
-
-    allProducts.forEach(p => {
-      if (!currentCategory || p.category === currentCategory) available.add(p.type);
-    });
-
-    Array.from(typeSelect.querySelectorAll('option')).forEach((o, i) => { if (i > 0) o.remove(); });
-
-    Array.from(available).sort().forEach(type => {
-      const opt = document.createElement('option');
-      opt.value = type;
-      opt.textContent = type;
-      typeSelect.appendChild(opt);
-    });
-    typeSelect.value = '';
-  }
-
-  /* ── RENDER PRODUCTS ────────────────────────── */
-  function renderProducts() {
-    filteredProducts = allProducts.filter(p => {
-      const catOk  = !currentCategory || p.category === currentCategory;
-      const typeOk = !currentType     || p.type === currentType;
-      return catOk && typeOk;
-    });
-
-    // Update breadcrumb / title / subtitle
-    const breadcrumb  = document.getElementById('category-breadcrumb');
-    const pageTitle   = document.getElementById('page-title');
-    const pageSubtitle= document.getElementById('page-subtitle');
-
-    if (currentCategory) {
-      breadcrumb.textContent  = currentCategory;
-      pageTitle.textContent   = currentCategory;
-      pageSubtitle.textContent= currentType ? currentType : getCategorySubtitle(currentCategory);
+  function addToCart(product) {
+    var existing = cart.find(function(i){ return i.id === product.id; });
+    if (existing) {
+      existing.qty++;
     } else {
-      breadcrumb.textContent  = 'All Products';
-      pageTitle.textContent   = 'All Products';
-      pageSubtitle.textContent= 'Explore Our Complete Dental Solutions Portfolio';
+      cart.push({ id: product.id, name: product.name, category: product.category, type: product.type, img: product.img, qty: 1 });
     }
+    save(); updateBadges(); renderCartItems();
+  }
 
-    document.getElementById('results-count').innerText =
-      `Showing ${filteredProducts.length} result${filteredProducts.length !== 1 ? 's' : ''}`;
+  function openPanel() {
+    document.getElementById('dnt-cart-overlay').classList.add('active');
+    document.getElementById('dnt-cart-panel').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-    const gridContainer = document.getElementById('dynamic-product-grid');
-    let htmlContent = '';
+  function closePanel() {
+    document.getElementById('dnt-cart-overlay').classList.remove('active');
+    document.getElementById('dnt-cart-panel').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-    filteredProducts.forEach(product => {
-      // Safely escape product name for data attribute
-      const safeName = product.name.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  function openInquiry() {
+    closePanel();
+    var names = cart.map(function(i){ return i.name + ' ×' + i.qty; }).join(', ');
+    if (typeof DentessaInquiry !== 'undefined') {
+      DentessaInquiry.open(names || 'Multiple Products');
+    }
+  }
 
-      htmlContent += `
-        <div class="product-list-item column">
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
 
-          <!-- PREVIEW / IMAGE -->
-          <div class="product-list-item-preview">
-            <figure class="product-img">
-              <img src="${product.images.main}" alt="${product.name}" loading="lazy">
-            </figure>
-           
-          </div>
+  load(); 
+    updateBadges(); 
+    renderCartItems(); // <-- This is the missing piece!
 
-          <!-- INFO -->
-          <div class="product-list-item-info">
-            <a href="product-page-v1.html?id=${product.id}">
-              <h6 class="title">${product.name}</h6>
-            </a>
-            <p class="product-description">${product.short_descriptor}</p>
+  window.DentessaCart = {
+    addToCart: addToCart,
+    openPanel: openPanel,
+    closePanel: closePanel,
+    openInquiry: openInquiry,
+    getCart: function(){ return cart; }
+  };
+})();
 
-            <!-- PRICE — click triggers B2B inquiry popup -->
-            <div class="product-list-item-price">
-              <h6
-                class="product-price small diq-trigger"
-                data-product="${safeName}"
-                title="Click to inquire about pricing"
-                style="cursor:pointer; display:inline-flex; align-items:center; gap:8px;"
-              >
-                ${product.price}
-                <span style="
-                  font-size:10px;
-                  font-weight:700;
-                  letter-spacing:0.6px;
-                  background:#E8600A;
-                  color:#fff;
-                  padding:3px 8px;
-                  border-radius:3px;
-                  text-transform:uppercase;
-                  white-space:nowrap;
-                ">Inquire</span>
-              </h6>
-            </div>
-            <!-- /PRICE -->
 
-          </div>
-        </div>`;
+/* ============================================================
+   INQUIRY POPUP — INIT
+   ============================================================ */
+DentessaInquiry.init({ email: 'website@alphabetasolution.com' }); // ← change to your email
+
+
+/* ============================================================
+   SHOP GRID
+   ============================================================ */
+var allProducts    = [];
+var filteredProducts = [];
+var currentCategory  = '';
+var currentType      = '';
+var currentSearch    = '';
+var currentSort      = 'default';
+var currentPage      = 1;
+var perPage          = 12;
+
+/* ── LOAD HEADER / FOOTER ── */
+fetch('header.html').then(function(r){ return r.text(); }).then(function(d){ document.getElementById('dynamic-header').innerHTML = d; });
+fetch('footer.html').then(function(r){ return r.text(); }).then(function(d){ document.getElementById('dynamic-footer').innerHTML = d; });
+
+/* ── LOAD PRODUCTS ── */
+fetch('data.json')
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    allProducts = data.products;
+
+    // URL params
+    var params = new URLSearchParams(window.location.search);
+    var initCat = params.get('category') || '';
+    var initType = params.get('type') || '';
+    if (initCat)  currentCategory = initCat;
+    if (initType) currentType = initType;
+
+    buildSidebar();
+    renderProducts();
+
+    // Sort / perpage listeners
+    document.getElementById('sort_filter').addEventListener('change', function(){
+      currentSort = this.value; currentPage = 1; renderProducts();
+    });
+    document.getElementById('perpage_filter').addEventListener('change', function(){
+      perPage = parseInt(this.value) || 9999; currentPage = 1; renderProducts();
     });
 
-    if (!htmlContent) {
-      htmlContent = `<p style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
-        No products found matching the selected filters.
-      </p>`;
-    }
+    // Search
+    document.getElementById('sidebar-search').addEventListener('input', function(){
+      currentSearch = this.value.trim().toLowerCase();
+      currentPage = 1;
+      renderProducts();
+    });
+  })
+  .catch(function(err){ console.error('Error loading products:', err); });
 
-    gridContainer.innerHTML = htmlContent;
+/* ── BUILD SIDEBAR ── */
+function buildSidebar() {
+  /* Categories */
+  var catList = document.getElementById('sidebar-categories');
+  catList.innerHTML = '';
+  var categories = Array.from(new Set(allProducts.map(function(p){ return p.category; }))).sort();
 
-    // Bind inquiry popup to every price tag
-    gridContainer.querySelectorAll('.diq-trigger').forEach(function (el) {
-      el.addEventListener('click', function () {
-        DentessaInquiry.open(this.dataset.product);
+  var allLi = document.createElement('li');
+  allLi.className = 'widget-dropdown-item';
+  var allA = document.createElement('a');
+  allA.href = '#';
+  allA.className = 'widget-filter-link' + (currentCategory === '' ? ' active' : '');
+  allA.dataset.cat = '';
+  allA.innerHTML = 'All Products <span class="filter-count">' + allProducts.length + '</span>';
+  allA.addEventListener('click', function(e){ e.preventDefault(); setCategoryFilter(''); });
+  allLi.appendChild(allA);
+  catList.appendChild(allLi);
+
+  categories.forEach(function(cat) {
+    var count = allProducts.filter(function(p){ return p.category === cat; }).length;
+    var li = document.createElement('li');
+    li.className = 'widget-dropdown-item';
+    var a = document.createElement('a');
+    a.href = '#';
+    a.className = 'widget-filter-link' + (currentCategory === cat ? ' active' : '');
+    a.dataset.cat = cat;
+    a.innerHTML = escH(cat) + ' <span class="filter-count">' + count + '</span>';
+    a.addEventListener('click', function(e){ e.preventDefault(); setCategoryFilter(cat); });
+    li.appendChild(a);
+    catList.appendChild(li);
+  });
+
+  buildTypeFilter();
+  buildFeatured();
+}
+
+function buildTypeFilter() {
+  var typeList = document.getElementById('sidebar-types');
+  typeList.innerHTML = '';
+
+  var available = allProducts
+    .filter(function(p){ return !currentCategory || p.category === currentCategory; })
+    .map(function(p){ return p.type; });
+  var types = Array.from(new Set(available)).sort();
+
+  var allLi = document.createElement('li');
+  allLi.className = 'widget-dropdown-item';
+  var allA = document.createElement('a');
+  allA.href = '#';
+  allA.className = 'widget-filter-link' + (currentType === '' ? ' active' : '');
+  allA.dataset.type = '';
+  var allCount = allProducts.filter(function(p){ return !currentCategory || p.category === currentCategory; }).length;
+  allA.innerHTML = 'All Types <span class="filter-count">' + allCount + '</span>';
+  allA.addEventListener('click', function(e){ e.preventDefault(); setTypeFilter(''); });
+  allLi.appendChild(allA);
+  typeList.appendChild(allLi);
+
+  types.forEach(function(type) {
+    var count = allProducts.filter(function(p){
+      return (!currentCategory || p.category === currentCategory) && p.type === type;
+    }).length;
+    var li = document.createElement('li');
+    li.className = 'widget-dropdown-item';
+    var a = document.createElement('a');
+    a.href = '#';
+    a.className = 'widget-filter-link' + (currentType === type ? ' active' : '');
+    a.dataset.type = type;
+    a.innerHTML = escH(type) + ' <span class="filter-count">' + count + '</span>';
+    a.addEventListener('click', function(e){ e.preventDefault(); setTypeFilter(type); });
+    li.appendChild(a);
+    typeList.appendChild(li);
+  });
+}
+
+function buildFeatured() {
+  var container = document.getElementById('sidebar-featured');
+  if (!container) return;
+  var featured = allProducts.slice(0, 3);
+  container.innerHTML = '';
+  featured.forEach(function(p) {
+    var div = document.createElement('div');
+    div.className = 'product-preview-list-item';
+    var rating = p.rating || 4;
+    div.innerHTML =
+      '<a href="product-page-v1.html?id=' + p.id + '">' +
+        '<figure class="product-img tiny"><img src="' + p.images.main + '" alt="' + escH(p.name) + '" loading="lazy"></figure>' +
+      '</a>' +
+      '<a href="product-page-v1.html?id=' + p.id + '"><h6 class="title micro">' + escH(p.name) + '</h6></a>' +
+      // buildStars(rating, 'small') +
+      '<p class="product-price small">' + escH(p.price || 'Contact for Price') + '</p>';
+    container.appendChild(div);
+  });
+}
+
+/* ── FILTER SETTERS ── */
+function setCategoryFilter(cat) {
+  currentCategory = cat;
+  currentType = '';
+  currentPage = 1;
+  document.getElementById('btn-clear-cat').classList.toggle('visible', cat !== '');
+  document.getElementById('btn-clear-type').classList.remove('visible');
+  buildTypeFilter();
+  renderProducts();
+  updateSidebarActive();
+}
+
+function setTypeFilter(type) {
+  currentType = type;
+  currentPage = 1;
+  document.getElementById('btn-clear-type').classList.toggle('visible', type !== '');
+  renderProducts();
+  updateSidebarActive();
+}
+
+function clearCategoryFilter() { setCategoryFilter(''); }
+function clearTypeFilter()     { setTypeFilter(''); }
+
+function updateSidebarActive() {
+  document.querySelectorAll('#sidebar-categories .widget-filter-link').forEach(function(a){
+    a.classList.toggle('active', a.dataset.cat === currentCategory);
+  });
+  document.querySelectorAll('#sidebar-types .widget-filter-link').forEach(function(a){
+    a.classList.toggle('active', a.dataset.type === currentType);
+  });
+}
+
+/* ── RENDER PRODUCTS ── */
+function renderProducts() {
+  filteredProducts = allProducts.filter(function(p) {
+    var catOk    = !currentCategory || p.category === currentCategory;
+    var typeOk   = !currentType     || p.type === currentType;
+    var searchOk = !currentSearch   ||
+      p.name.toLowerCase().includes(currentSearch) ||
+      (p.short_descriptor || '').toLowerCase().includes(currentSearch) ||
+      (p.category || '').toLowerCase().includes(currentSearch);
+    return catOk && typeOk && searchOk;
+  });
+
+  // Sort
+  var sorted = filteredProducts.slice();
+  if (currentSort === 'az') sorted.sort(function(a,b){ return a.name.localeCompare(b.name); });
+  else if (currentSort === 'za') sorted.sort(function(a,b){ return b.name.localeCompare(a.name); });
+
+  // Breadcrumb / count
+  var breadcrumb = document.getElementById('category-breadcrumb');
+  if (breadcrumb) breadcrumb.textContent = currentCategory || 'All Products';
+  document.getElementById('results-count').innerText =
+    'Showing ' + sorted.length + ' result' + (sorted.length !== 1 ? 's' : '');
+
+  // Pagination
+  var totalPages = Math.max(1, Math.ceil(sorted.length / perPage));
+  if (currentPage > totalPages) currentPage = totalPages;
+  var start = (currentPage - 1) * perPage;
+  var pageItems = (perPage >= 9999) ? sorted : sorted.slice(start, start + perPage);
+
+  // Render cards
+  var grid = document.getElementById('dynamic-product-grid');
+  var html = '';
+
+  if (pageItems.length === 0) {
+    html = '<p style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#aaa;font-size:14px;">No products match the current filters.</p>';
+  } else {
+    pageItems.forEach(function(product) {
+      var safeName = product.name.replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+      var rating   = product.rating || 4;
+      html +=
+        '<div class="product-list-item column">' +
+
+          '<div class="product-list-item-preview">' +
+            '<figure class="product-img">' +
+              '<img src="' + product.images.main + '" alt="' + safeName + '" loading="lazy">' +
+            '</figure>' +
+
+            '<div class="product-list-item-actions">' +
+              '<div class="button-list wrap-4">' +
+
+                /* CART button */
+                '<a href="#" class="button square dnt-add-cart-btn"' +
+                  ' data-id="' + product.id + '"' +
+                  ' data-name="' + safeName + '"' +
+                  ' data-cat="' + escH(product.category) + '"' +
+                  ' data-type="' + escH(product.type || '') + '"' +
+                  ' data-img="' + escH(product.images.main) + '"' +
+                  ' title="Add to Cart">' +
+                  '<svg class="svg-cart-small"><use xlink:href="#svg-cart-small"></use></svg>' +
+                '</a>' +
+
+                /* INQUIRY button (quick) */
+                '<a href="#" class="button square diq-trigger"' +
+                  ' data-product="' + safeName + '"' +
+                  ' title="Inquire about this product">' +
+                  '<i class="fa fa-envelope-o" style="font-size:13px;"></i>' +
+                '</a>' +
+
+                /* HEART / wishlist placeholder */
+                '<a href="#" class="button square" title="Wishlist">' +
+                  '<svg class="svg-heart"><use xlink:href="#svg-heart"></use></svg>' +
+                '</a>' +
+
+                /* LINK to product page */
+                '<a href="product-page-v1.html?id=' + product.id + '" class="button square" title="View Details">' +
+                  '<i class="fa fa-search" style="font-size:13px;"></i>' +
+                '</a>' +
+
+              '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="product-list-item-info">' +
+            '<a href="product-page-v1.html?id=' + product.id + '">' +
+              '<h6 class="title">' + escH(product.name) + '</h6>' +
+            '</a>' +
+            '<p class="product-description">' + escH(product.short_descriptor || '') + '</p>' +
+
+            '<div class="product-list-item-price">' +
+              // buildStars(rating) +
+              '<h6' +
+                ' class="product-price small diq-trigger"' +
+                ' data-product="' + safeName + '"' +
+                ' title="Click to inquire about pricing"' +
+                ' style="cursor:pointer;display:inline-flex;align-items:center;gap:8px;"' +
+              '>' +
+                escH(product.price || 'Contact for Price') +
+                '<span style="font-size:10px;font-weight:700;letter-spacing:0.6px;background:#E8600A;color:#fff;padding:3px 8px;border-radius:3px;text-transform:uppercase;white-space:nowrap;">Inquire</span>' +
+              '</h6>' +
+            '</div>' +
+          '</div>' +
+
+        '</div>';
+    });
+  }
+
+  grid.innerHTML = html;
+
+  // Bind cart buttons
+  grid.querySelectorAll('.dnt-add-cart-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      DentessaCart.addToCart({
+        id:       this.dataset.id,
+        name:     this.dataset.name,
+        category: this.dataset.cat,
+        type:     this.dataset.type,
+        img:      this.dataset.img
       });
+      // Pop animation on icon
+      var svgEl = this.querySelector('svg');
+      if (svgEl) {
+        svgEl.classList.remove('dnt-pop');
+        void svgEl.offsetWidth; // reflow
+        svgEl.classList.add('dnt-pop');
+      }
+      // Brief open of cart panel
+      DentessaCart.openPanel();
     });
+  });
 
-    // Re-init theme imgLiquid after HTML inject
-    if (typeof jQuery !== 'undefined' && typeof imgLiquid !== 'undefined') {
-      jQuery('.product-img').imgLiquid();
-    }
+  // Bind inquiry triggers
+  grid.querySelectorAll('.diq-trigger').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      DentessaInquiry.open(this.dataset.product);
+    });
+  });
+
+  // imgLiquid
+  if (typeof jQuery !== 'undefined' && typeof imgLiquid !== 'undefined') {
+    jQuery('.product-img').imgLiquid();
   }
 
-  /* ── CATEGORY SUBTITLES ─────────────────────── */
-  function getCategorySubtitle(category) {
-    const map = {
-      'Endodontics':              'Healing Beyond the Surface — Perfect Seal · Efficient Canal Cleaning · Bioactive · Biocompatible',
-      'Restorative Dentistry':    'Comprehensive Solutions for Aesthetic & Durable Restorations',
-      'Diagnosis & Prophylaxis':  'Advanced Diagnostic Tools & Preventive Care Solutions',
-      'Surgery':                  'Precision Instruments for Surgical Excellence'
-    };
-    return map[category] || 'Explore Our Dental Solutions';
+  // Render pager
+  renderPager(totalPages);
+}
+
+/* ── PAGER ── */
+function renderPager(totalPages) {
+  var wrap = document.getElementById('pager-wrap');
+  var list = document.getElementById('pager-list');
+  if (!list) return;
+  if (totalPages <= 1) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+
+  var html = '';
+  // Prev
+  html += '<li class="pager-item' + (currentPage === 1 ? ' disabled' : '') + '">' +
+    '<a href="#" data-page="' + (currentPage - 1) + '">' +
+      '<svg class="svg-arrow medium inverted"><use xlink:href="#svg-arrow"></use></svg>' +
+    '</a></li>';
+  // Pages
+  for (var i = 1; i <= totalPages; i++) {
+    html += '<li class="pager-item' + (i === currentPage ? ' selected' : '') + '">' +
+      '<a href="#" data-page="' + i + '">' + i + '</a></li>';
   }
+  // Next
+  html += '<li class="pager-item' + (currentPage === totalPages ? ' disabled' : '') + '">' +
+    '<a href="#" data-page="' + (currentPage + 1) + '">' +
+      '<svg class="svg-arrow medium"><use xlink:href="#svg-arrow"></use></svg>' +
+    '</a></li>';
+
+  list.innerHTML = html;
+  list.querySelectorAll('a[data-page]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var p = parseInt(this.dataset.page);
+      if (p < 1 || p > totalPages || p === currentPage) return;
+      currentPage = p;
+      renderProducts();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+}
+
+/* ── HELPERS ── */
+function buildStars(rating, extraClass) {
+  rating = Math.round(Math.max(0, Math.min(5, rating)));
+  var cls = 'rating' + (extraClass ? ' ' + extraClass : '');
+  var html = '<ul class="' + cls + '">';
+  for (var i = 1; i <= 5; i++) {
+    html += '<li class="rating-item' + (i <= rating ? ' filled' : '') + '">' +
+      '<svg class="svg-star"><use xlink:href="#svg-star"></use></svg>' +
+    '</li>';
+  }
+  html += '</ul>';
+  return html;
+}
+
+function escH(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 </script>
 </body>
 </html>

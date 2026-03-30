@@ -15,7 +15,7 @@
 
   /* ── CONFIG ────────────────────────────────── */
   const CONFIG = {
-    toEmail: 'YOUR_EMAIL@domain.com',  // ← CHANGE THIS
+    toEmail: 'website@alphabetasolution.com',  // ← CHANGE THIS
     brandName: 'Dentessa',
   };
 

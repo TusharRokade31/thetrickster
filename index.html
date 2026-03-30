@@ -3,44 +3,276 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-  <!-- styles -->
   <link rel="stylesheet" href="css/vendor/font-awesome.min.css">
   <link rel="stylesheet" href="css/vendor/simple-line-icons.css">
   <link rel="stylesheet" href="css/vendor/magnific-popup.css">
   <link rel="stylesheet" href="css/style.min.css">
   <link rel="stylesheet" href="inquiry-popup.css">
-  <!-- favicon -->
   <link rel="icon" href="favicon.ico">
   <title>Dentessa | Home</title>
+
+  <style>
+    /* =============================================
+       SIDE CART PANEL & FLOATING BUTTON (From Shop Grid)
+       ============================================= */
+    #dnt-cart-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28,28,28,0.45);
+      backdrop-filter: blur(3px);
+      z-index: 88888;
+    }
+    #dnt-cart-overlay.active { display: block; }
+
+    #dnt-cart-panel {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 360px;
+      max-width: 95vw;
+      background: #fff;
+      box-shadow: -8px 0 40px rgba(28,28,28,0.18);
+      z-index: 88889;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(110%);
+      transition: transform 0.32s cubic-bezier(0.34,1.1,0.64,1);
+    }
+    #dnt-cart-panel.open { transform: translateX(0); }
+
+    .dnt-cart-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      background: #1C1C1C;
+    }
+    .dnt-cart-head h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dnt-cart-head h3 .dnt-cart-count-badge {
+      background: #E8600A;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+    }
+    .dnt-cart-close-btn {
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .dnt-cart-close-btn:hover { background: rgba(255,255,255,0.22); }
+
+    .dnt-cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+    .dnt-cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: #aaa;
+      font-size: 14px;
+      text-align: center;
+      gap: 12px;
+      padding: 40px 0;
+    }
+    .dnt-cart-empty svg { opacity: 0.25; }
+
+    .dnt-cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f4f4f4;
+      position: relative;
+    }
+    .dnt-cart-item:last-child { border-bottom: none; }
+    .dnt-cart-item-img {
+      width: 60px; height: 60px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #f5f5f5;
+      border: 1px solid #eee;
+    }
+    .dnt-cart-item-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .dnt-cart-item-info { flex: 1; min-width: 0; }
+    .dnt-cart-item-info .dnt-item-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1C1C1C;
+      margin: 0 0 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dnt-cart-item-info .dnt-item-type {
+      font-size: 11px;
+      color: #888;
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .dnt-item-qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dnt-qty-btn {
+      width: 24px; height: 24px;
+      border-radius: 4px;
+      border: 1.5px solid #e0e0e0;
+      background: #fafafa;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1C1C1C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, background 0.15s;
+      line-height: 1;
+    }
+    .dnt-qty-btn:hover { border-color: #E8600A; background: #fff5f0; color: #E8600A; }
+    .dnt-qty-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1C1C1C;
+      min-width: 18px;
+      text-align: center;
+    }
+    .dnt-item-remove {
+      position: absolute;
+      top: 12px; right: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ccc;
+      font-size: 16px;
+      line-height: 1;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+    .dnt-item-remove:hover { color: #d9534f; }
+
+    .dnt-cart-footer {
+      padding: 16px 22px 22px;
+      border-top: 1px solid #f0f0f0;
+      background: #fafafa;
+    }
+    .dnt-cart-footer-note {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+    .dnt-cart-inquiry-btn {
+      width: 100%;
+      padding: 13px;
+      background: #E8600A;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .dnt-cart-inquiry-btn:hover { background: #c95208; transform: translateY(-1px); }
+    .dnt-cart-inquiry-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+    /* ── floating cart trigger ── */
+    #dnt-cart-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px; height: 52px;
+      background: #1C1C1C;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(28,28,28,0.28);
+      z-index: 8000;
+      transition: background 0.2s, transform 0.2s;
+    }
+    #dnt-cart-fab:hover { background: #E8600A; transform: translateY(-2px); }
+    #dnt-cart-fab .dnt-fab-badge {
+      position: absolute;
+      top: -4px; right: -4px;
+      background: #E8600A;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      min-width: 18px; height: 18px;
+      border-radius: 9px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      border: 2px solid #fff;
+    }
+    #dnt-cart-fab .dnt-fab-badge.visible { display: flex; }
+
+    /* ── Cart pop animation ── */
+    @keyframes dnt-pop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+    .dnt-pop { animation: dnt-pop 0.3s ease; }
+    .dnt-add-cart-btn { cursor: pointer; text-decoration: none; }
+  </style>
 </head>
 <body>
 <div id="dynamic-header"></div>
 
-  <!-- MAIN SLIDER -->
   <div class="main-slider">
-    <!-- SLIDER CONTROLS -->
     <div class="slider-controls">
-      
-
-      <!-- SLIDER CONTROL -->
       <div class="slider-control"></div>
-      <!-- SLIDER CONTROL -->
-
-      <!-- SLIDER CONTROL -->
       <div class="slider-control"></div>
-      <!-- SLIDER CONTROL -->
     </div>
-    <!-- /SLIDER CONTROLS -->
-
-    <!-- SLIDE LIST -->
     <div class="slide-list">
-      
-
-      <!-- SLIDE -->
       <div class="slide slide-2">
-        <!-- SLIDE CONTENT WRAP -->
         <div class="slide-content-wrap">
-          <!-- SLIDE CONTENT -->
           <div class="slide-content">
             <h2 class="banner-title small">We have</h2>
             <h2 class="banner-title"><span class="highlighted">Incredible</span></h2>
@@ -49,196 +281,106 @@
             </br>Surgery & Prophylaxis.</h2>
             <a href="/shop-grid.html" class="button">Browse Popular</a>
           </div>
-          <!-- SLIDE CONTENT -->
         </div>
-        <!-- SLIDE CONTENT WRAP -->
       </div>
-      <!-- SLIDE -->
-
-      <!-- SLIDE -->
       <div class="slide slide-3">
-        <!-- SLIDE CONTENT WRAP -->
         <div class="slide-content-wrap">
-          <!-- SLIDE CONTENT -->
           <div class="slide-content">
             <h2 class="banner-title dark large">Elevating Dentistry</h2>
             <h2 class="banner-title main small">Trusted by Dentists Across India</h2>
             <h2 class="banner-title micro light">From root canal sealers to surgical gels — every product, a promise.</h2>
             <a href="/contactus.html" class="button">Request a Sample</a>
           </div>
-          <!-- SLIDE CONTENT -->
         </div>
-        <!-- SLIDE CONTENT WRAP -->
       </div>
-      <!-- SLIDE -->
+      </div>
     </div>
-    <!-- /SLIDE LIST -->
-  </div>
-  <!-- /MAIN SLIDER -->
-
-  <!-- BUILDER ACTIONS -->
   <div class="builder-actions column-full-3-wrap">
-    <!-- BUILDER ACTIONS ITEM WRAP -->
     <div class="builder-actions-item-wrap column">
-      <!-- BUILDER ACTIONS ITEM -->
       <div class="builder-actions-item">
         <img src="img/home/categories/images website_surgery.webp" alt="start01">
         <h6 class="title">Surgery</h6>
-        <!-- <p>Durability and Comfort</p> -->
         <a href="/shop-grid.html?category=Surgery" class="button small">View Product →</a>
       </div>
-      <!-- /BUILDER ACTIONS ITEM -->
     </div>
-    <!-- /BUILDER ACTIONS ITEM WRAP -->
-
-    <!-- BUILDER ACTIONS ITEM WRAP -->
     <div class="builder-actions-item-wrap column">
-      <!-- BUILDER ACTIONS ITEM -->
       <div class="builder-actions-item">
         <img src="img/home/categories/images website_diagnosis.webp" alt="start02">
         <h6 class="title">Diagnosis & Prophylaxis</h6>
-        <!-- <p>For Extreme Conditions</p> -->
         <a href="/shop-grid.html?category=Diagnosis%20%26%20Prophylaxis" class="button small">View Product →</a>
       </div>
-      <!-- /BUILDER ACTIONS ITEM -->
     </div>
-    <!-- /BUILDER ACTIONS ITEM WRAP -->
-
-    <!-- BUILDER ACTIONS ITEM WRAP -->
     <div class="builder-actions-item-wrap column">
-      <!-- BUILDER ACTIONS ITEM -->
       <div class="builder-actions-item">
         <img src="img/home/categories/images website_restorative.webp" alt="start03">
         <h6 class="title">Restorative Dentistry</h6>
-        <!-- <p>Handpicked Designs</p> -->
         <a href="/shop-grid.html?category=Restorative%20Dentistry" class="button small">View Product →</a>
       </div>
-      <!-- /BUILDER ACTIONS ITEM -->
     </div>
-    <!-- /BUILDER ACTIONS ITEM WRAP -->
-      <!-- BUILDER ACTIONS ITEM WRAP -->
     <div class="builder-actions-item-wrap column">
-      <!-- BUILDER ACTIONS ITEM -->
       <div class="builder-actions-item">
         <img src="img/home/categories/images website_ebdodontics.webp" alt="start03">
         <h6 class="title">Endodontics</h6>
-        <!-- <p>Handpicked Designs</p> -->
         <a href="/shop-grid.html?category=Endodontics" class="button small">View Product →</a>
       </div>
-      <!-- /BUILDER ACTIONS ITEM -->
     </div>
-    <!-- /BUILDER ACTIONS ITEM WRAP -->
-  </div>
-  <!-- /BUILDER ACTIONS -->
-
-  <!-- SECTION WRAP -->
+    </div>
   <div class="section-wrap">
-    <!-- WELCOME SECTION -->
     <div class="welcome-section section">
       <h6 class="pretitle">Crafted for Clinicians</h6>
       <h3 class="title large">Welcome to Dentessa!</h3>
       <hr class="line-separator short">
       <p class="section-description">At Dentessa, we believe that excellence in dentistry begins with the materials you choose and the trust you place in them. Every product in our range reflects a commitment to purity, precision, and purpose — developed from years of research, real-world clinical use, and continuous refinement.</p>
     </div>
-    <!-- /WELCOME SECTION -->
   </div>
-  <!-- /SECTION WRAP -->
 
-  <!-- ACTION POSTER WRAP -->
   <div class="action-poster-wrap">
-    <!-- ACTION POSTER -->
     <div class="action-poster">
-      <!-- ACTION POSTER INFO -->
       <div class="action-poster-info">
         <h3 class="title">Check Our <span class="bold">Clinically Proven Materials</span></h3>
         <p>Carefully Designed by Expert Artists</p>
       </div>
-      <!-- /ACTION POSTER INFO -->
-
-      <a href="index.html#" class="button medium with-icon">
+      <a href="/shop-grid.html" class="button medium with-icon">
         Start Browsing
-        <!-- SVG ARROW -->
-        <svg class="svg-arrow">
-          <use xlink:href="#svg-arrow"></use>
-        </svg>
-        <!-- /SVG ARROW -->
+        <svg class="svg-arrow"><use xlink:href="#svg-arrow"></use></svg>
       </a>
     </div>
-    <!-- /ACTION POSTER -->
   </div>
-  <!-- /ACTION POSTER WRAP -->
 
-  <!-- SECTION WRAP -->
   <div class="section-wrap">
-    <!-- FEATURES SECTION -->
     <div class="features-section section">
       <h6 class="pretitle">Take a Peek at the</h6>
       <h3 class="title large">Dentessa Advantage</h3>
       <hr class="line-separator">
-      <!-- BG DECORATION -->
       <img src="img/home/bannerFeature01.webp" alt="features" class="bg-decoration">
 
-      <!-- FEATURE LIST -->
       <ul class="feature-list small">
-        <!-- FEATURE LIST ITEM -->
         <li class="feature-list-item">
-          <!-- SVG CHECK -->
-          <svg class="svg-check medium">
-            <use xlink:href="#svg-check"></use>
-          </svg>
-          <!-- /SVG CHECK -->
+          <svg class="svg-check medium"><use xlink:href="#svg-check"></use></svg>
           <p class="title">Scientific Integrity</p>
           <p>Every Dentessa material is developed on strong academic foundations, supported by research and evidence-based dentistry.</p>
         </li>
-        <!-- /FEATURE LIST ITEM -->
-
-        <!-- FEATURE LIST ITEM -->
         <li class="feature-list-item">
-          <!-- SVG CHECK -->
-          <svg class="svg-check medium">
-            <use xlink:href="#svg-check"></use>
-          </svg>
-          <!-- /SVG CHECK -->
+          <svg class="svg-check medium"><use xlink:href="#svg-check"></use></svg>
           <p class="title">Clinical Reliability</p>
           <p>Our products are designed to perform predictably in real clinical situations, supporting dentists with confidence in everyday practice.</p>
         </li>
-        <!-- /FEATURE LIST ITEM -->
-
-        <!-- FEATURE LIST ITEM -->
         <li class="feature-list-item">
-          <!-- SVG CHECK -->
-          <svg class="svg-check medium">
-            <use xlink:href="#svg-check"></use>
-          </svg>
-          <!-- /SVG CHECK -->
+          <svg class="svg-check medium"><use xlink:href="#svg-check"></use></svg>
           <p class="title">Thoughtful Innovation</p>
           <p>Innovation at Dentessa focuses on improving clinical outcomes rather than introducing complexity for the clinician.</p>
         </li>
-        <!-- /FEATURE LIST ITEM -->
-
-        <!-- FEATURE LIST ITEM -->
         <li class="feature-list-item">
-          <!-- SVG CHECK -->
-          <svg class="svg-check medium">
-            <use xlink:href="#svg-check"></use>
-          </svg>
-          <!-- /SVG CHECK -->
+          <svg class="svg-check medium"><use xlink:href="#svg-check"></use></svg>
           <p class="title">Made in India</p>
           <p>State-of-the-art manufacturing in Jammu, J&K — ISO 13485 and CE certified, CDSCO compliant, clinically validated in India.</p>
         </li>
-        <!-- /FEATURE LIST ITEM -->
       </ul>
-      <!-- /FEATURE LIST -->
     </div>
-    <!-- /FEATURES SECTION -->
   </div>
-  <!-- /SECTION WRAP -->
 
-  <!-- SERVICE BANNERS -->
   <div class="service-banners">
-    <!-- SERVICE BANNER -->
     <div class="service-banner main">
-      <!-- SERVICE BANNER CONTENT -->
       <div class="service-banner-content">
         <i class="icon-badge s-icon"></i>
         <h5 class="title medium">ISO & CE </h5>
@@ -246,13 +388,8 @@
         <hr class="line-separator big">
         <p>Every Dentessa product meets rigorous international quality standards — ISO 13485, ISO 9001, and CE certified.</p>
       </div>
-      <!-- /SERVICE BANNER CONTENT -->
     </div>
-    <!-- /SERVICE BANNER -->
-
-    <!-- SERVICE BANNER -->
     <div class="service-banner secondary">
-      <!-- SERVICE BANNER CONTENT -->
       <div class="service-banner-content">
         <i class="icon-like s-icon"></i>
         <h5 class="title medium">Clinician-Developed</h5>
@@ -260,13 +397,8 @@
         <hr class="line-separator big">
         <p>Our formulations are developed with inputs from practising dentists across India — tested chairside, not just in labs.</p>
       </div>
-      <!-- /SERVICE BANNER CONTENT -->
     </div>
-    <!-- /SERVICE BANNER -->
-
-    <!-- SERVICE BANNER -->
     <div class="service-banner tertiary">
-      <!-- SERVICE BANNER CONTENT -->
       <div class="service-banner-content">
         <i class="icon-rocket s-icon"></i>
         <h5 class="title medium">Globally</h5>
@@ -274,152 +406,148 @@
         <hr class="line-separator big">
         <p>Order online or through your distributor. Our clinical support team responds within 24 hours.</p>
       </div>
-      <!-- /SERVICE BANNER CONTENT -->
     </div>
-    <!-- /SERVICE BANNER -->
   </div>
-  <!-- /SERVICE BANNERS -->
 
-  <!-- SECTION WRAP -->
   <div class="section-wrap">
-    <!-- SECTION -->
     <div class="section">
-      <!-- STEP LIST -->
       <div class="step-list">
-        <!-- STEP LIST ITEM -->
         <div class="step-list-item left">
           <div class="step-list-item-info">
             <h6 class="title medium"><span class="bold">01.</span></h6>
-            <h6 class="title large">Browse Our Range</h6>
-            </br>
-            <!-- <h6 class="title small">Starting the building process</h6> -->
+            <h6 class="title large">Browse Our Range</h6></br>
             <p>Visit our product pages to explore Endodontics, Restorative Dentistry, Diagnosis & Prophylaxis, and Surgery categories. Each product page includes full indications, key benefits, and comparison tables.</p>
           </div>
           <img src="img/home/step01.webp" alt="step01" class="step-list-item-img">
         </div>
-        <!-- /STEP LIST ITEM -->
-
-        <!-- STEP LIST ITEM -->
         <div class="step-list-item right">
           <div class="step-list-item-info">
             <h6 class="title medium"><span class="bold">02.</span></h6>
-            <h6 class="title large">Select & Enquire</h6>
-          </br>
-            <!-- <h6 class="title small">Give your style to the product</h6> -->
+            <h6 class="title large">Select & Enquire</h6></br>
             <p>Found a product you want to try? Fill in our enquiry form with your clinic name, contact details, and product of interest. Our clinical team will get back to you within 24 hours with pricing and availability.</p>
           </div>
           <img src="img/home/step02.webp" alt="step02" class="step-list-item-img">
         </div>
-        <!-- /STEP LIST ITEM -->
-
-        <!-- STEP LIST ITEM -->
         <div class="step-list-item left">
           <div class="step-list-item-info">
             <h6 class="title medium"><span class="bold">03.</span></h6>
-            <h6 class="title large">Confirm Your Order</h6>
-            </br>
-            <!-- <h6 class="title small">Finishing the purchase</h6> -->
+            <h6 class="title large">Confirm Your Order</h6></br>
             <p>Once you confirm your requirement, we process and dispatch your order from our facility in Jammu, J&K. Shipping timelines and policies are detailed in our Shipping Policy page.</p>
           </div>
           <img src="img/home/step03.webp" alt="step03" class="step-list-item-img">
         </div>
-        <!-- /STEP LIST ITEM -->
       </div>
-      <!-- /STEP LIST -->
     </div>
-    <!-- /SECTION -->
   </div>
-  <!-- /SECTION WRAP -->
 
-  <!-- PROMO BANNERS -->
   <div class="promo-banners">
-    <!-- PROMO BANNER -->
     <div class="promo-banner main">
-      <!-- PROMO BANNER TITLE WRAP -->
       <div class="promo-banner-title-wrap">
         <h3 class="title title-promo composed">18</h3>
         <h3 class="title title-percent">+</h3>
         <h3 class="title title-extra"><br>Products </h3>
       </div>
-      <!-- PROMO BANNER TITLE WRAP -->
-
       <h6 class="title title-description">Across 4 Clinical Specialities</h6>
-      <p>Endodontics
-Restorative
-Surgery
-Prophylaxis</p>
+      <p>Endodontics, Restorative, Surgery, Prophylaxis</p>
       <a href="/shop-grid.html" class="button medium dark">Browse All</a>
     </div>
-    <!-- /PROMO BANNER -->
-
-    <!-- PROMO BANNER -->
     <div class="promo-banner dark">
-      <!-- PROMO BANNER TITLE WRAP -->
       <div class="promo-banner-title-wrap">
         <h3 class="title title-promo simple"><span class="bold">ISO</span></h3>
-        <h3 class="title title-extra"><br>Certified</h3>
+        <h3 class="title title-extra">, Certified</h3>
       </div>
-      <!-- PROMO BANNER TITLE WRAP -->
-
       <h6 class="title title-description">Quality You Can Trust</h6>
-      <p>ISO 13485
-ISO 9001
-CE Mark
-CDSCO Compliant</p>
+      <p>ISO 13485, ISO 9001, CE Mark, CDSCO Compliant</p>
       <a href="/aboutus.html" class="button medium with-icon">
         Learn About Us
-        <!-- SVG ARROW -->
-        <svg class="svg-arrow">
-          <use xlink:href="#svg-arrow"></use>
-        </svg>
-        <!-- /SVG ARROW -->
+        <svg class="svg-arrow"><use xlink:href="#svg-arrow"></use></svg>
       </a>
     </div>
-    <!-- /PROMO BANNER -->
   </div>
-  <!-- /PROMO BANNERS -->
 
-  <!-- SECTION WRAP -->
   <div class="section-wrap">
-    <!-- SECTION -->
     <div class="section bottom-short">
       <h6 class="pretitle">Dentessa</h6>
       <h3 class="title large">Featured Products</h3>
       <hr class="line-separator">
 
-      <!-- PRODUCT LIST -->
       <div class="product-list column-4-wrap" id="dynamic-product-grid">
+      </div>
+      </div>
   </div>
-      <!-- /PRODUCT LIST -->
-    </div>
-    <!-- /SECTION -->
-  </div>
-  <!-- /SECTION WRAP -->
 
-  <!-- WIDGET FORM WRAP -->
   <div class="widget-form-wrap">
-    <!-- WIDGET FORM -->
     <div class="widget-form">
-      <!-- WIDGET FORM INFO -->
       <div class="widget-form-info">
         <h6 class="title">Join our newsletter</h6>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Stay updated on the latest clinical materials.</p>
       </div>
-      <!-- /WIDGET FORM INFO -->
-
-      <!-- WIDGET FORM INPUT -->
       <form class="widget-form-input">
         <input type="text" name="subscribe_email" placeholder="Enter your email here...">
         <i class="icon-envelope"></i>
       </form>
-      <!-- /WIDGET FORM INPUT -->
     </div>
-    <!-- /WIDGET FORM -->
   </div>
 
   <div id="dynamic-footer"></div>
-  <!-- /WIDGET FORM WRAP -->
+
+
+  <button id="dnt-cart-fab" onclick="DentessaCart.openPanel()" title="View Cart">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+    </svg>
+    <span class="dnt-fab-badge" id="dnt-fab-badge">0</span>
+  </button>
+
+  <div id="dnt-cart-overlay" onclick="DentessaCart.closePanel()"></div>
+
+  <div id="dnt-cart-panel">
+    <div class="dnt-cart-head">
+      <h3>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        Cart
+        <span class="dnt-cart-count-badge" id="dnt-cart-badge-head">0</span>
+      </h3>
+      <button class="dnt-cart-close-btn" onclick="DentessaCart.closePanel()">&times;</button>
+    </div>
+
+    <div class="dnt-cart-items" id="dnt-cart-items-list">
+      <div class="dnt-cart-empty" id="dnt-cart-empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+          <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <p>Your cart is empty.<br>Add products to get started.</p>
+      </div>
+    </div>
+
+    <div class="dnt-cart-footer" id="dnt-cart-footer" style="display:none;">
+      <p class="dnt-cart-footer-note">
+        This is a B2B inquiry cart.<br>
+        Submit to get a personalised quote from Dentessa.
+      </p>
+      <button class="dnt-cart-inquiry-btn" onclick="DentessaCart.openInquiry()">
+        Request a Quote →
+      </button>
+    </div>
+  </div>
+
+
+<script src="js/vendor/jquery-3.1.0.min.js"></script>
+<script src="js/vendor/imgLiquid-min.js"></script>
+<script src="js/vendor/jquery.magnific-popup.min.js"></script>
+<script src="js/liquid.js"></script>
+<script src="js/dropdowns.js"></script>
+<script src="js/xmslider.js"></script>
+<script src="js/popups.js"></script>
+<script src="inquiry-popup.js"></script>
+
 <script>
+   // Load Header and Footer
    fetch('header.html')
      .then(response => response.text())
      .then(data => document.getElementById('dynamic-header').innerHTML = data);
@@ -427,22 +555,140 @@ CDSCO Compliant</p>
    fetch('footer.html')
      .then(response => response.text())
      .then(data => document.getElementById('dynamic-footer').innerHTML = data);
-</script>
 
-<script src="inquiry-popup.js"></script>
-<script>
-  /* ── INIT INQUIRY POPUP ───────────────────────
-     Change the email once here — works site-wide.  */
+  /* ============================================================
+     DENTESSA SIDE CART LOGIC
+     ============================================================ */
+  (function () {
+    'use strict';
+    var cart = []; 
+
+    function save() {
+      try { localStorage.setItem('dnt_cart', JSON.stringify(cart)); } catch(e) {}
+    }
+    function load() {
+      try {
+        var d = localStorage.getItem('dnt_cart');
+        if (d) cart = JSON.parse(d);
+      } catch(e) {}
+    }
+
+    function updateBadges() {
+      var total = cart.reduce(function(s, i){ return s + i.qty; }, 0);
+      var badge = document.getElementById('dnt-fab-badge');
+      var badgeHead = document.getElementById('dnt-cart-badge-head');
+      if (badge)    { badge.textContent = total; badge.classList.toggle('visible', total > 0); }
+      if (badgeHead) badgeHead.textContent = total;
+    }
+
+    function renderCartItems() {
+      var list = document.getElementById('dnt-cart-items-list');
+      var empty = document.getElementById('dnt-cart-empty');
+      var footer = document.getElementById('dnt-cart-footer');
+      if (!list) return;
+
+      Array.from(list.querySelectorAll('.dnt-cart-item')).forEach(function(el){ el.remove(); });
+
+      if (cart.length === 0) {
+        if (empty)  empty.style.display = '';
+        if (footer) footer.style.display = 'none';
+        return;
+      }
+      if (empty)  empty.style.display = 'none';
+      if (footer) footer.style.display = '';
+
+      cart.forEach(function(item, idx) {
+        var el = document.createElement('div');
+        el.className = 'dnt-cart-item';
+        el.innerHTML =
+          '<div class="dnt-cart-item-img">' +
+            '<img src="' + item.img + '" alt="' + escHtml(item.name) + '" loading="lazy">' +
+          '</div>' +
+          '<div class="dnt-cart-item-info">' +
+            '<p class="dnt-item-name">' + escHtml(item.name) + '</p>' +
+            '<p class="dnt-item-type">' + escHtml(item.type || item.category || '') + '</p>' +
+            '<div class="dnt-item-qty-row">' +
+              '<button class="dnt-qty-btn" data-idx="' + idx + '" data-action="dec">−</button>' +
+              '<span class="dnt-qty-val">' + item.qty + '</span>' +
+              '<button class="dnt-qty-btn" data-idx="' + idx + '" data-action="inc">+</button>' +
+            '</div>' +
+          '</div>' +
+          '<button class="dnt-item-remove" data-idx="' + idx + '" title="Remove">&times;</button>';
+        list.appendChild(el);
+      });
+
+      list.querySelectorAll('.dnt-qty-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var i = parseInt(this.dataset.idx);
+          if (this.dataset.action === 'inc') {
+            cart[i].qty++;
+          } else {
+            cart[i].qty--;
+            if (cart[i].qty <= 0) cart.splice(i, 1);
+          }
+          save(); updateBadges(); renderCartItems();
+        });
+      });
+      list.querySelectorAll('.dnt-item-remove').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var i = parseInt(this.dataset.idx);
+          cart.splice(i, 1);
+          save(); updateBadges(); renderCartItems();
+        });
+      });
+    }
+
+    function addToCart(product) {
+      var existing = cart.find(function(i){ return i.id === product.id; });
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ id: product.id, name: product.name, category: product.category, type: product.type, img: product.img, qty: 1 });
+      }
+      save(); updateBadges(); renderCartItems();
+    }
+
+    function openPanel() {
+      document.getElementById('dnt-cart-overlay').classList.add('active');
+      document.getElementById('dnt-cart-panel').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePanel() {
+      document.getElementById('dnt-cart-overlay').classList.remove('active');
+      document.getElementById('dnt-cart-panel').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function openInquiry() {
+      closePanel();
+      var names = cart.map(function(i){ return i.name + ' ×' + i.qty; }).join(', ');
+      if (typeof DentessaInquiry !== 'undefined') {
+        DentessaInquiry.open(names || 'Multiple Products');
+      }
+    }
+
+    function escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    load(); updateBadges();
+
+    window.DentessaCart = {
+      addToCart: addToCart,
+      openPanel: openPanel,
+      closePanel: closePanel,
+      openInquiry: openInquiry,
+      getCart: function(){ return cart; }
+    };
+  })();
+
+  /* ── INIT INQUIRY POPUP ─────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     DentessaInquiry.init({ email: 'info@dentessa.com' }); // ← YOUR EMAIL
   });
  
-  /* ── PRODUCT GRID LOADER ─────────────────────
-     Reusable: pass any container ID + slice range.
-     Usage examples:
-       loadProducts('dynamic-product-grid', 0, 4);   // index.html — 4 featured
-       loadProducts('shop-product-grid', 0, 999);    // shop.html — all products
-  ─────────────────────────────────────────────── */
+  /* ── PRODUCT GRID LOADER ───────────────────── */
   function loadProducts(containerId, sliceFrom, sliceTo) {
     fetch('data.json')
       .then(response => response.json())
@@ -454,23 +700,31 @@ CDSCO Compliant</p>
         let htmlContent = '';
  
         products.forEach(product => {
+          let safeName = product.name.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
           htmlContent += `
           <div class="product-list-item column">
- 
-            <!-- PRODUCT LIST ITEM PREVIEW -->
             <div class="product-list-item-preview">
               <figure class="product-img">
-                <img src="${product.images.main}" alt="${product.name}" loading="lazy">
+                <img src="${product.images.main}" alt="${safeName}" loading="lazy">
               </figure>
  
               <div class="product-list-item-actions">
                 <div class="button-list wrap-4">
-                  <a href="product-page-v1.html?id=${product.id}" class="button square" title="View Product">
+
+                  <a href="#" class="button square dnt-add-cart-btn" 
+                     data-id="${product.id}" 
+                     data-name="${safeName}" 
+                     data-cat="${product.category || ''}" 
+                     data-type="${product.type || ''}" 
+                     data-img="${product.images.main}" 
+                     title="Add to Cart">
                     <svg class="svg-cart-small"><use xlink:href="#svg-cart-small"></use></svg>
                   </a>
-                  <a href="product-page-v1.html?id=${product.id}" class="button square" title="Wishlist">
-                    <svg class="svg-heart"><use xlink:href="#svg-heart"></use></svg>
+                  
+                  <a href="product-page-v1.html?id=${product.id}" class="button square" title="View Product">
+                    <i class="fa fa-search" style="font-size:13px;"></i>
                   </a>
+
                   <a href="product-page-v1.html?id=${product.id}" class="button square" title="Share on Facebook">
                     <i class="fa fa-facebook"></i>
                   </a>
@@ -480,24 +734,20 @@ CDSCO Compliant</p>
                 </div>
               </div>
             </div>
-            <!-- /PRODUCT LIST ITEM PREVIEW -->
- 
-            <!-- PRODUCT LIST ITEM INFO -->
             <div class="product-list-item-info">
               <a href="product-page-v1.html?id=${product.id}">
                 <h6 class="title">${product.name}</h6>
               </a>
-              <p class="product-description">${product.short_descriptor}</p>
+              <p class="product-description">${product.short_descriptor || ''}</p>
  
-              <!-- PRICE — click opens B2B inquiry popup -->
               <div class="product-list-item-price">
                 <h6
                   class="product-price small diq-trigger"
                   title="Click to inquire about pricing"
-                  data-product="${product.name.replace(/"/g, '&quot;')}"
+                  data-product="${safeName}"
                   style="cursor:pointer;"
                 >
-                  ${product.price}
+                  ${product.price || 'Contact for Price'}
                   <span style="
                     display:inline-block;
                     font-size:10px;
@@ -513,55 +763,51 @@ CDSCO Compliant</p>
                   ">Inquire</span>
                 </h6>
               </div>
-              <!-- /PRICE -->
- 
-            </div>
-            <!-- /PRODUCT LIST ITEM INFO -->
- 
-          </div>`;
+              </div>
+            </div>`;
         });
  
         gridContainer.innerHTML = htmlContent;
  
-        /* Bind click on every price tag in THIS container */
+        /* Bind Inquiry Click */
         gridContainer.querySelectorAll('.diq-trigger').forEach(function (el) {
           el.addEventListener('click', function () {
             DentessaInquiry.open(this.dataset.product);
           });
         });
+
+        /* Bind Add to Cart Click */
+        gridContainer.querySelectorAll('.dnt-add-cart-btn').forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            DentessaCart.addToCart({
+              id:       this.dataset.id,
+              name:     this.dataset.name,
+              category: this.dataset.cat,
+              type:     this.dataset.type,
+              img:      this.dataset.img
+            });
+            
+            // Pop animation on icon
+            var svgEl = this.querySelector('svg');
+            if (svgEl) {
+              svgEl.classList.remove('dnt-pop');
+              void svgEl.offsetWidth; // reflow
+              svgEl.classList.add('dnt-pop');
+            }
+            
+            // Brief open of cart panel
+            DentessaCart.openPanel();
+          });
+        });
+
       })
       .catch(error => console.error('Error loading products:', error));
   }
  
-  /* ── PAGE-SPECIFIC CALLS ─────────────────────
-     Uncomment the line that matches the current page.
-     Or put this inline in each page's own <script> block.
-  ─────────────────────────────────────────────── */
- 
-  // index.html — 4 featured products
+  // index.html — load 4 featured products
   loadProducts('dynamic-product-grid', 0, 4);
- 
-  // shop.html — all products (uncomment & change container id)
-  // loadProducts('shop-product-grid', 0, 999);
- 
-  // category page — products 5 to 16
-  // loadProducts('category-grid', 4, 16);
-</script>
- 
 
-<!-- jQuery -->
-<script src="js/vendor/jquery-3.1.0.min.js"></script>
-<!-- imgLiquid -->
-<script src="js/vendor/imgLiquid-min.js"></script>
-<!-- magnificPopup -->
-<script src="js/vendor/jquery.magnific-popup.min.js"></script>
-<!-- liquid -->
-<script src="js/liquid.js"></script>
-<!-- dropdowns -->
-<script src="js/dropdowns.js"></script>
-<!-- app -->
-<script src="js/xmslider.js"></script>
-<!-- popups -->
-<script src="js/popups.js"></script>
+</script>
 </body>
 </html>

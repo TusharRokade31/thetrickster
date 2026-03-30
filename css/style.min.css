@@ -7195,3 +7195,58 @@ span.bold {
   }
 }
 
+
+.builder-actions {
+    padding: 80px 0 64px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.builder-actions .builder-actions-item-wrap {
+    border-right: 1px solid #e8e8e8;
+}
+
+.builder-actions .builder-actions-item {
+    text-align: center;
+}
+
+/* Remove the card jump effect */
+.builder-actions .builder-actions-item:hover {
+    transform: none;
+    -webkit-transform: none;
+}
+
+.builder-actions .builder-actions-item img {
+    display: block;
+    margin: 0 auto 28px;
+}
+
+.builder-actions .builder-actions-item .title {
+    margin-bottom: 10px;
+}
+
+.builder-actions .builder-actions-item .button {
+    width: 126px;
+    margin: 18px auto 0;
+    opacity: 1;
+    visibility: visible;
+    display: inline-block;
+    
+    /* Default State: Orange background */
+    background-color: #ff6b00; /* Standard medical/action orange */
+    color: #fff;
+    border: 2px solid #ff6b00;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+/* Hover State: White background, Orange text/border */
+.builder-actions .builder-actions-item .button:hover {
+    background-color: #fff !important;
+    color: #ff6b00 !important;
+    border: 2px solid #ff6b00;
+}
+
+.builder-actions .builder-actions-item:last-child {
+    border-right: none;
+}

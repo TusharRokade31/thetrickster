@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/vendor/simple-line-icons.css">
   <link rel="stylesheet" href="css/vendor/magnific-popup.css">
   <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="inquiry-popup.css">
   <link rel="icon" href="favicon.ico">
   <title>The Trickster | Product Page</title>
 </head>
@@ -50,7 +51,6 @@
             <li class="rating-item filled"><svg class="svg-star"><use xlink:href="#svg-star"></use></svg></li>
           </ul>
           
-          <!-- <h6 class="product-price big" id="prod-price"></h6> -->
           <p class="product-description-preview" id="prod-tagline" style="font-style:italic; margin-bottom: 20px;"></p>
           <p class="product-description-preview" id="prod-pack-size" style="font-weight:bold; margin-bottom: 20px;"></p>
 
@@ -66,14 +66,10 @@
           </form>
 
           <div class="product-details-actions">
-            <a href="#" class="button medium cart-icon">
-              <!-- <svg class="svg-cart"><use xlink:href="#svg-cart"></use></svg> -->
+            <a href="#" class="button medium cart-icon" id="enquire-btn">
               Enquire About This Product
             </a>
-            <!-- <div class="button-list wrap-3">
-              <a href="#" class="button square tooltip-trigger" title="Request a Sample"><svg class="svg-heart"><use xlink:href="#svg-heart"></use></svg></a>
-            </div> -->
-          </div>
+            </div>
         </div>
       </div>
     </div>
@@ -169,7 +165,12 @@
 <script src="js/counter.js"></script>
 <script src="js/zoomifier.js"></script>
 
+<script src="inquiry-popup.js"></script>
+
 <script>
+   // ADDED: Initialize the Inquiry Popup
+   DentessaInquiry.init({ email: 'website@alphabetasolution.com' });
+
    // Load Header and Footer
    fetch('header.html')
      .then(response => response.text())
@@ -203,6 +204,15 @@
            }
            if(product.pack_size) { 
              document.getElementById('prod-pack-size').innerText = `Pack Size: ${product.pack_size}`; 
+           }
+
+           // ADDED: Bind Inquiry Popup to the Button using the loaded product name
+           const enquireBtn = document.getElementById('enquire-btn');
+           if(enquireBtn) {
+             enquireBtn.addEventListener('click', function(e) {
+               e.preventDefault();
+               DentessaInquiry.open(product.name);
+             });
            }
 
            // 2. Build Image Gallery

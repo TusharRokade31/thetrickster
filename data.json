@@ -327,8 +327,8 @@
       "price": "Enquire for Price",
       "feature_tags": ["Superior Flow", "Easy Administration", "Homogeneous Consistency"],
       "images": {
-        "main": "images/products/nexacal-main.jpg",
-        "gallery": ["images/products/nexacal-1.jpg", "images/products/nexacal-2.jpg", "images/products/nexacal-3.jpg"]
+        "main": "img/products01/Statrix.png",
+        "gallery": ["img/products01/Statrix.png"]
       },
       "description": {
         "about": "NexaCal delivers the antimicrobial benefits of calcium hydroxide in a water-based formulation with exceptional flow characteristics. Its homogeneous consistency and smooth delivery ensure complete canal filling while maintaining the high pH necessary for healing and disinfection.",
